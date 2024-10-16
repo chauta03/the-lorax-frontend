@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "next dev"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +41,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.58.1",
+    "@types/googlemaps": "^3.43.3",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
   }
 }

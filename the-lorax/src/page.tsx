@@ -11,14 +11,14 @@ import {
 
 export default function Intro() {
     const position = { lat: 53.54,  lng: 10 };
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const apiKey = process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     console.log(apiKey)
     console.log(process.env);
 
     return (
         <APIProvider apiKey={apiKey}>
             <div style={{ height: "100vh",  width: "100%" }}>
-                <Map zoom={9} center={position}></Map>
+                <Map></Map>
             </div>
         </APIProvider>
     )
