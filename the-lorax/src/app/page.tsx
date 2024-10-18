@@ -8,7 +8,6 @@ import {
     Map,
     useMap,
     AdvancedMarker,
-    Pin,
     InfoWindow,
 } from "@vis.gl/react-google-maps"
 import trees from "../data/tree";
@@ -36,13 +35,13 @@ export default function Intro() {
     )
 }
 
-type Point = google.maps.LatLngLiteral & {key: string };
+type Point = google.maps.LatLngLiteral & {key: string } & {name: string};
 type Props = { points: Point[] };
 
 const Markers = ({ points }: Props) => {
     const map = useMap();
     const [markers, setMarkers] = useState<{[key: string]: Marker }>({});
-    const [activeMarker, setActiveMarker] = useState<string | null>(null);
+    const [activeMarker, setActiveMarker] = useState<Point | null>(null);
     const clusterer = useRef<MarkerClusterer | null>(null);
 
     useEffect(() => {
@@ -73,43 +72,43 @@ const Markers = ({ points }: Props) => {
         })
     }
 
-    const handleMarkerClick = (key: string) => {
-        setActiveMarker(key);
+    const handleMarkerClick = (point: Point) => {
+        setActiveMarker(point);
     }
 
     const handleCloseInfoWindow = () =>  {
         setActiveMarker(null);
     }
 
+    
+
     return (
         <>
            {points.map((point) => (
             <AdvancedMarker
-              position={point}
-              key={point.key}
-              ref={(marker) => setMarkerRef(marker, point.key)}
-              onClick={() => handleMarkerClick(point.key)}
+                position={{ lat: point.lat - 0.00004, lng: point.lng }}
+                key={point.key}
+                ref={(marker) => setMarkerRef(marker, point.key)}
+                onClick={() => handleMarkerClick(point)}
+                
             >
-                <span style={{ fontSize: "2rem" }}>🌳</span>
+                <span style={{ fontSize: "2rem"}}>🌳</span>
             </AdvancedMarker>
+            
           ))}
-          {activeMarker &&
-            points.map(
-                (point) =>
-                    activeMarker === point.key && (
-                        <InfoWindow
-                            key={`info-${point.key}`}
-                            position={point}
-                            onCloseClick={handleCloseInfoWindow}    
-                        >
-                            <div>
-                                <h4>Tree Information</h4>
-                                <p>Location: {point.lat}, {point.lng}</p>
-                                {/* Add more info if needed */}
-                            </div>
-                        </InfoWindow>
-            )
-        )}
+          {activeMarker && (
+                <InfoWindow
+                    position={activeMarker}
+                    onCloseClick={handleCloseInfoWindow}
+                >
+                    <div>
+                        <h4>Tree Information</h4>
+                        <p>Location: {activeMarker.lat}, {activeMarker.lng}</p>
+                        <p>Title: {activeMarker.name}</p>
+                        {/* Add more info if needed */}
+                    </div>
+                </InfoWindow>
+            )}
         </>
     );
 }
