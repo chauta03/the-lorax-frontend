@@ -1,0 +1,43 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+
+/* Background (which I can't use right now) */
+.action-page-background {
+    /* display: flex; */
+    /* align-items: center; */
+    justify-content: center;
+    background-color: #78D8A4;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Directory Button */
+.directory-button {
+    display: inline-block;
+    transition: transform 0.3s ease;
+
+}
+
+.directory-button:hover {
+transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.directory-button svg path {
+    transition: fill 0.3s ease;
+}
+
+.directory-button:hover svg path {
+    fill: #93642D; /* Change color on hover */
+}
+  
+.directory-button-text {
+    /* color: #E0FFDF; */
+    /* text-align: center; */
+    font-family: DynaPuff;
+    font-size: 5vh;
+    font-style: normal;
+    font-weight: 400;
+    /* line-height: normal; */
+    letter-spacing: 0.1vh;
+    /* transform: rotate(-81.678deg); */
+}
