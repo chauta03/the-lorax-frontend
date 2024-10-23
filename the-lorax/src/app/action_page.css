@@ -1,10 +1,11 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
-/* Background (which I can't use right now) */
+/* Background */
 .action-page-background {
-    /* display: flex; */
-    /* align-items: center; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
     justify-content: center;
     background-color: #78D8A4;
     height: 100vh;
@@ -15,7 +16,6 @@
 .directory-button {
     display: inline-block;
     transition: transform 0.3s ease;
-
 }
 
 .directory-button:hover {
@@ -29,8 +29,13 @@ transform: scale(1.05); /* Slight zoom on hover */
 .directory-button:hover svg path {
     fill: #93642D; /* Change color on hover */
 }
+
+/* .button-container {
+    display: flex;
+    justify-content: space-between;
+} */
   
-.directory-button-text {
+.button-text {
     /* color: #E0FFDF; */
     /* text-align: center; */
     font-family: DynaPuff;
@@ -39,5 +44,4 @@ transform: scale(1.05); /* Slight zoom on hover */
     font-weight: 400;
     /* line-height: normal; */
     letter-spacing: 0.1vh;
-    /* transform: rotate(-81.678deg); */
 }
