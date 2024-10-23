@@ -13,20 +13,20 @@
 }
 
 /* Directory Button */
-.directory-button {
+.button {
     display: inline-block;
     transition: transform 0.3s ease;
 }
 
-.directory-button:hover {
+.button:hover {
 transform: scale(1.05); /* Slight zoom on hover */
 }
 
-.directory-button svg path {
+.button svg path {
     transition: fill 0.3s ease;
 }
 
-.directory-button:hover svg path {
+.button:hover svg path {
     fill: #93642D; /* Change color on hover */
 }
 
@@ -44,4 +44,31 @@ transform: scale(1.05); /* Slight zoom on hover */
     font-weight: 400;
     /* line-height: normal; */
     letter-spacing: 0.1vh;
+}
+
+.tree-icon {
+    width: 183px;
+    height: 274px;
+    background-image: url('../../public/images/tree-icon-3-1.svg');
+    background-position: center;
+    background-size: fit; /* Adjust size of the background image */
+    background-repeat: no-repeat; /* Prevent background from repeating */
+    z-index: 2;
+}
+
+.button-tree-only {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.button-tree-only:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.button-tree-only svg path {
+    transition: fill 0.3s ease;
+}
+
+.button-tree-only:hover svg path {
+    fill: #dfcc60; /* Change color on hover */
 }
