@@ -21,18 +21,21 @@ export default function Intro() {
 
     return (
         <APIProvider apiKey={apiKey}>
-            <div style={{ height: "100vh", width: "100%"}}>
-                <Map
-                    defaultZoom={15}   // Set initial zoom
-                    defaultCenter={initialPosition}  // Set initial center
-                    mapId={process.env.REACT_APP_NEXT_PUBLIC_MAP_ID}
-                    gestureHandling="auto"    // Allows dragging and gestures
-                    zoomControl={true}        // Enables zoom control buttons
-                    scrollwheel={true}        // Allows zooming with the scroll wheel
-                    disableDoubleClickZoom={false} // Double-click zoom is enabled
-                >
-                    <Markers />
-                </Map>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                {/* Map Component */}
+                <div style={{ height: "90vh", width: "90%", marginBottom: "20px" }}>
+                    <Map
+                        defaultZoom={15}   // Set initial zoom
+                        defaultCenter={initialPosition}  // Set initial center
+                        mapId={process.env.REACT_APP_NEXT_PUBLIC_MAP_ID}
+                        gestureHandling="auto"    // Allows dragging and gestures
+                        zoomControl={true}        // Enables zoom control buttons
+                        scrollwheel={true}        // Allows zooming with the scroll wheel
+                        disableDoubleClickZoom={false} // Double-click zoom is enabled
+                    >
+                        <Markers />
+                    </Map>
+                </div>
             </div>
         </APIProvider>
     )

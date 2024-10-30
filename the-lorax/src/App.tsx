@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import BackgroundComponent from "./app/landing_page";
 import ActionButton from './app/action_page';
+import Intro from './app/page'
 
 function App() {
   
@@ -10,6 +11,7 @@ function App() {
     <div className="App">
       <BackgroundComponent/>
       <ActionButton/>
+      <Intro/>
     </div>
   );
 }
