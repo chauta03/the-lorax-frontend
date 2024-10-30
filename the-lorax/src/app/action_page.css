@@ -3,18 +3,28 @@
 
 /* Background */
 .action-page-background {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 2vw; /* Optional: space between buttons */
+    justify-items: center;
     align-items: center;
-    flex-direction: row;
-    justify-content: center;
+    /* flex-direction: row;
+    justify-content: center; */
     background-color: #78D8A4;
     height: 100vh;
     width: 100vw;
 }
 
+.button-containter {
+    display: grid;
+    height: 50vh;
+    width: 50vw;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+}
+
 /* Directory Button */
 .button {
-    display: inline-block;
+    width: 100%;
     transition: transform 0.3s ease;
 }
 
@@ -29,11 +39,6 @@ transform: scale(1.05); /* Slight zoom on hover */
 .button:hover svg path {
     fill: #93642D; /* Change color on hover */
 }
-
-/* .button-container {
-    display: flex;
-    justify-content: space-between;
-} */
   
 .button-text {
     /* color: #E0FFDF; */
