@@ -52,22 +52,23 @@ const fetchTreeInfo = async (): Promise<Point[]> => {
 
         // Map the raw data into the Point format
         const formatted: Point[] = trees.map(tree => ({
-            key: tree.Tree_ID,
-            tagNum: tree.Tag_Number,
-            speciesCo: tree.Species_Co,
-            latinName: tree.Latin_Name,
-            species1: tree.Species_1,
-            builVinta: tree.Buil_Vinta,
-            distToBu: tree.Dist_to_Bu,
-            azimuth: tree.Azimuth,
-            sun: tree.Sun,
-            lat: tree.Y,
-            lng: tree.X
+            key: tree.tree_id,
+            tagNum: tree.tag_number,
+            speciesCo: tree.species_code,
+            latinName: tree.latin_name,
+            commonName: tree.common_name,
+            sun: tree.sun,
+            lat: tree.lat,
+            lng: tree.long
         }));
 
         return formatted;
     } catch (error) {
-        console.error("Error fetching tree info:", error);
+        if (axios.isAxiosError(error)) {
+            console.error("Error fetching tree info:", error.response?.data);
+        } else {
+            console.error("Unexpected error:", error);
+        }
         return [];
     }
 };

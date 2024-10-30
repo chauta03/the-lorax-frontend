@@ -114,10 +114,8 @@ const Markers = () => {
                     <div className="Details">
                         <p>Tag number: {activeMarker.tagNum}</p>
                         <p>Species Code: {activeMarker.speciesCo}</p>
-                        <p>Species Name: {activeMarker.species1}</p>
-                        <p>Distance to building: {activeMarker.distToBu}</p>
-                        <p>Year: {activeMarker.builVinta} </p>
-                        <p>Azimuth: {activeMarker.azimuth}</p>
+                        <p>Latin Name: {activeMarker.latinName}</p>
+                        <p>Common Name: {activeMarker.commonName} </p>
                         <p>Sun: {activeMarker.sun}</p>
                         <p>Lat: {activeMarker.lat}</p>
                         <p>Lng: {activeMarker.lng}</p>

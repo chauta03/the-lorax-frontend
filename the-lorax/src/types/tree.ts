@@ -5,10 +5,7 @@ export type Tree = {
     tagNum?: number;
     speciesCo?: string;
     latinName?: string;
-    species1?: string;
-    builVinta?: number;
-    distToBu?: number;
-    azimuth?: number;
+    commonName?: string;
     sun?: string;
     lat?: number;
     lng?: number;
@@ -19,10 +16,7 @@ export type Point = google.maps.LatLngLiteral & {
     tagNum?: number;
     speciesCo?: string;
     latinName?: string;
-    species1?: string;
-    builVinta?: number;
-    distToBu?: number;
-    azimuth?: number;
+    commonName?: string;
     sun?: string;
     lat?: number;
     lng?: number;
