@@ -1,8 +1,9 @@
 import React from 'react';
 import "./action_page.css";
-import DirectoryButton from './action_buttons/directory_button';
-import AboutButton from './action_buttons/about_button';
-import TreeButton from './action_buttons/tree_button';
+import DirectoryButton from './action_buttons/directoryButton';
+import AboutButton from './action_buttons/aboutButton';
+import TreeButton from './action_buttons/treeButton';
+import SearchBar from './action_buttons/searchBar';
 
 const ActionButton: React.FC = () => {
     const Directory_Click = () => {
@@ -17,11 +18,18 @@ const ActionButton: React.FC = () => {
         alert("Tree!!!!");
     };
 
+    const SearchBar_Click = () => {
+        alert("SearchBar!!!!");
+    };
+
     return (
         <div className="action-page-background">
-            <DirectoryButton onClick={Directory_Click} /> 
-            <AboutButton onClick={About_Click} />
-            <TreeButton onClick={Tree_Click} />
+            <div className="action-page-upper-buttons">
+                <DirectoryButton onClick={Directory_Click} /> 
+                <AboutButton onClick={About_Click} />
+                <TreeButton onClick={Tree_Click} />
+            </div>
+            <SearchBar onClick={SearchBar_Click}/>
         </div>
         
     );
