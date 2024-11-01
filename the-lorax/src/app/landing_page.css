@@ -30,7 +30,7 @@
 }
 
 .landing-page-trees {
-    background-image: url('../../public/images/background_trees.svg');
+    background-image: url('../images/background_trees.svg');
     background-position: bottom;
     background-size: cover; /* Adjust size of the background image */
     background-repeat: no-repeat; /* Prevent background from repeating */
