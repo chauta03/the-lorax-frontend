@@ -5,6 +5,7 @@ import BackgroundComponent from "./app/pages/landing/landing_page";
 import ActionButton from './app/pages/action/action_page';
 import Intro from './app/page'
 import Directory from './app/pages/directory/directory';
+import Login from './app/pages/login/login'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <ActionButton />
       <Intro />
       <Directory />
+      <Login/>
     </div>
   );
 }

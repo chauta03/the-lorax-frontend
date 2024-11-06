@@ -18,7 +18,9 @@
 }
 
 .header-tree-icon {
-    height: 60px;
+    width: 60%;
+    height: 60%; 
+    object-fit: contain;
 }
 
 .header-expand-bar {
