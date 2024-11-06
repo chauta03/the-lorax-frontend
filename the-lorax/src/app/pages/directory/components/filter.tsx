@@ -1,40 +1,43 @@
 import React from 'react';
-import "./filter.css";
+import "../directory.css";
 import ArrowDown from '../../../../images/icons/arrow-down.svg';
+import { Point } from "../../../../types/tree";
 
-
-// Create the functional component
-type CustomButtonProps = {
-    onClick: () => void; // Function to handle button click
+type FilterProps = {
+    onSort: (key: keyof Point) => void; 
 };
 
-export default function Filter() {
+
+export default function Filter({ onSort }: FilterProps) {
     return (
         <div className="filter">
-            <text className="filter-text">filter</text>
+            <span className="filter-text">filter</span>
             <div className="filter-category">   
-                <div className="filter-category-field"> 
-                    <text>name</text>
-                    <img src={ArrowDown}/>
+                <div className="filter-category-field" onClick={() => onSort('tagNum')}> 
+                    <span>Tag Number</span>
+                    <img src={ArrowDown} alt="Sort"/>
                 </div>
-                <div className="filter-category-field"> 
-                    <text>family</text>
-                    <img src={ArrowDown}/>
+                <div className="filter-category-field" onClick={() => onSort('speciesCo')}> 
+                    <span>Species Code</span>
+                    <img src={ArrowDown} alt="Sort"/>
                 </div>
-                <div className="filter-category-field"> 
-                    <text>status</text>
-                    <img src={ArrowDown}/>
+                <div className="filter-category-field" onClick={() => onSort('latinName')}> 
+                    <span>Latin Name</span>
+                    <img src={ArrowDown} alt="Sort"/>
                 </div>
-                <div className="filter-category-field"> 
-                    <text>location</text>
-                    <img src={ArrowDown}/>
+                <div className="filter-category-field" onClick={() => onSort('commonName')}> 
+                    <span>Common Name</span>
+                    <img src={ArrowDown} alt="Sort"/>
                 </div>
-                <div className="filter-category-field"> 
-                    <text>CO2</text>
-                    <img src={ArrowDown}/>
+                <div className="filter-category-field" onClick={() => onSort('lat')}> 
+                    <span>Lat</span>
+                    <img src={ArrowDown} alt="Sort"/>
+                </div>
+                <div className="filter-category-field" onClick={() => onSort('lng')}> 
+                    <span>Long</span>
+                    <img src={ArrowDown} alt="Sort"/>
                 </div>
             </div>
         </div>
     );
 };
-  

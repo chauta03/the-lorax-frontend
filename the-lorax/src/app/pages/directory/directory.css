@@ -1,5 +1,80 @@
 .directory {
-    height: 100vh;
+    height: fit-content;
     background-color: #78D8A4;
 }
 
+.directory-body {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* Filter */
+.filter {
+    display: flex;
+    flex-direction: column;   
+}
+
+.filter-text {
+    padding: 10px;
+    grid-template-columns: 1fr; 
+}
+
+.filter-category {
+    width: 15vw;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--light-green);
+}
+
+.filter-category * {
+    color: var(--grey);
+    cursor: pointer;
+}
+
+.filter-category-field {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+/* Display */
+.display-filter {
+    width: 70vw;
+}
+
+.display-filter-header, .display-filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 10px;
+    padding: 10px;
+}
+
+.display-filter-header {
+    font-weight: bold;
+
+}
+
+.display-filter-row {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.display-filter-container {
+    border-radius: 20px;
+    background-color: var(--light-green);
+    padding: 10px;
+}
+
+/* Pagination */
+.pagination-controls {
+    padding: 10px;
+    display: flex;
+    justify-self: center;
+    gap: 10px;
+}
