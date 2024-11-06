@@ -1,0 +1,28 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    width: 215px;
+    height: 262px;
+}
+
+.filter-category {
+    width: 15vw;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--light-green);
+}
+
+.filter-category * {
+    color: var(--gre);
+    cursor: pointer;
+}
+
+.filter-category-field {
+    display: flex;
+    justify-content: space-between;
+    
+}
