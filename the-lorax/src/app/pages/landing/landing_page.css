@@ -1,0 +1,37 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+
+/* Background */
+.landing-page-background {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    background-color: #78D8A4;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Text */
+.landing-page-text {
+    color: #E0FFDF;
+    text-align: center;
+    font-family: DynaPuff;
+    font-size: 15vh;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.landing-page-text-container {
+    position: absolute;
+    top: 10.5%;
+    width: 60vw;
+    justify-content: center;
+    flex-shrink: 1;
+}
+
+.landing-page-trees {
+    background-image: url('../../../images/background_trees.svg');
+    background-position: bottom;
+    background-size: cover; /* Adjust size of the background image */
+    background-repeat: no-repeat; /* Prevent background from repeating */
+}
