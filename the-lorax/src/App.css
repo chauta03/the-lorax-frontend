@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: DynaPuff;
 }
 
 .App-logo {
@@ -26,6 +27,13 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* Define variable */
+:root {
+  --dark-green: #76b182;
+  --light-green: #E0FFDF;
+  --grey: #345D33;
 }
 
 @keyframes App-logo-spin {
