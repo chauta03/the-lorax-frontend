@@ -11,7 +11,9 @@ type CustomButtonProps = {
 export default function Header() {
     return (
         <div className="header">
-            <img src={tree} alt="Tree Icon" className="header-tree-icon" />
+            <div className="header-tree-circle">
+                <img src={tree} alt="Tree Icon" className="header-tree-icon" />
+            </div>       
             <div className="header-expand-bar">
                 <text>directory</text>
                 <text>about</text>

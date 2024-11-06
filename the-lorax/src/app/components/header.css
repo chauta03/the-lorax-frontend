@@ -6,9 +6,19 @@
     height: 10%;
 }
 
+.header-tree-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--light-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .header-tree-icon {
-    width: 55px;
-    height: 87px;
+    height: 60px;
 }
 
 .header-expand-bar {
