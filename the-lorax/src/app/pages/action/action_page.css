@@ -10,6 +10,7 @@
     background-color: #78D8A4;
     height: 100vh;
     width: 100vw;
+    z-index: -100;
 }
 
 /* Upper buttons */
@@ -20,13 +21,14 @@
 
 /* Directory Button */
 .button {
-    display: inline-block;
+    /* display: inline-block; */
     transition: transform 0.3s ease;
-    display: inline-block;
+    position: relative;
+    
 }
 
 .button:hover {
-transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.05); 
 }
 
 .button svg path {
@@ -34,26 +36,19 @@ transform: scale(1.05); /* Slight zoom on hover */
 }
 
 .button:hover svg path {
-    fill: #93642D; /* Change color on hover */
+    fill: #93642D; 
 }
 
-/* .button-container {
-    display: flex;
-    justify-content: space-between;
-} */
   
 .button-text {
-    /* color: #E0FFDF; */
-    /* text-align: center; */
     font-family: DynaPuff;
     font-size: 5vh;
     font-style: normal;
     font-weight: 400;
-    /* line-height: normal; */
     letter-spacing: 0.1vh;
 }
 
-.tree-icon {
+.button-tree-icon {
     z-index: 2;
     position: absolute;
 }
@@ -77,18 +72,34 @@ transform: scale(1.05); /* Slight zoom on hover */
 
 .button-tree-background {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
     fill: #BCE8BB;
     transition: fill 0.3s ease; /* Smooth transition for background color change */
-    pointer-events: none; /* Allows clicks to pass through to the main button */
 }
 
 .button-tree-only:hover .button-tree-background {
     fill: #dfcc60; /* Change color on hover */
+}
+
+/* Admin button */
+.button-admin-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+.button-admin-text {
+    color: #E0FFDF; 
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -50%) rotate(-36.19deg);
 }
 
 /* Search bar */
@@ -122,7 +133,7 @@ transform: scale(1.05); /* Slight zoom on hover */
     justify-content: center;
     width: 50px;
     height: 50px;
-    background-color: #76b182; /* Darker green background for icon */
+    background-color: var(--dark-green); /* Darker green background for icon */
     border-radius: 50%;
 }
 
