@@ -11,12 +11,23 @@
     height: 100vh;
     width: 100vw;
     z-index: -100;
+    background-image: url('../../../images/mapLine.svg');
+    background-size: cover;    /* Adjusts the size */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center;  /* Centers the SVG */
 }
 
 /* Upper buttons */
 .action-page-upper-buttons {
     display: flex;
     align-items: end;
+    margin-bottom: 2.5%;
+}
+
+/* Lower buttons */
+.action-page-lower-buttons {
+    display: flex;
+    margin-top: 2.5%;
 }
 
 /* Directory Button */
@@ -99,7 +110,7 @@
     font-family: DynaPuff;
     position: absolute;
     text-align: center;
-    transform: translate(-50%, -50%) rotate(-36.19deg);
+    transform: translate(-60%, 160%) rotate(-36.19deg);
 }
 
 /* Search bar */
@@ -140,4 +151,44 @@
 .search-icon {
     width: 24px; 
     height: 24px;
+}
+
+/* Map Button */
+
+.button-map-text {
+    color: #345D33;
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, 150%);
+}
+
+.button-map-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* fill: #BCE8BB;  */
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+/* Support Button */
+
+.button-support-text {
+    color: #E0FFDF;
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-45%, 120%) rotate(-34.172deg);;
+}
+
+.button-support-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+    margin-left: 13%;
 }
