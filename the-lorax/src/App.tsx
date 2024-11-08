@@ -6,6 +6,7 @@ import ActionButton from './app/pages/action/action_page';
 import Intro from './app/page'
 import Directory from './app/pages/directory/directory';
 import Login from './app/pages/login/login'
+import AdminDashboard from './app/pages/admin/adminDashboard'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Intro />
       <Directory />
       <Login/>
+      <AdminDashboard/>
     </div>
   );
 }
