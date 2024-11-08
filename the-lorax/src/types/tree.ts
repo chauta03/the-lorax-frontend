@@ -1,5 +1,3 @@
-
-
 export type Tree = {
     treeId?: number;
     tagNum?: number;
