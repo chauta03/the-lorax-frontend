@@ -71,6 +71,7 @@ export default function AdminFilter() {
                     <span className="display-filter-column">Full Name</span>
                     <span className="display-filter-column">Data Permissions</span>
                     <span className="display-filter-column">User Permissions</span>
+                    {/* <span className="display-filter-column">Edit User</span> */}
                 </div>
 
                 <div className="display-filter-container">
@@ -82,6 +83,7 @@ export default function AdminFilter() {
                                 <span className="display-filter-column">{user.full_name}</span>
                                 <span className="display-filter-column">{user.data_permissions ? "Yes" : "No"}</span>
                                 <span className="display-filter-column">{user.user_permissions ? "Yes" : "No"}</span>
+                                {/* <span className="display-filter-column">{user.user_permissions ? "Yes" : "No"}</span> */}
                             </div>
                         ))
                     ) : (
