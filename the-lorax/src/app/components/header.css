@@ -8,7 +8,7 @@
 }
 
 .header-tree-circle {
-    width: 8%;
+    width: 5%;
     /* height: 10%; */
     aspect-ratio: 1 / 1;
     border-radius: 50%;
@@ -26,8 +26,8 @@
 }
 
 .header-expand-bar {
-    width: 60%;
-    aspect-ratio: 10 / 1;
+    width: 50%;
+    aspect-ratio: 12 / 1;
     opacity: 0.77px;
     background-color: #E0FFDF;
     border-radius: 40px;
@@ -37,7 +37,7 @@
     font-family: DynaPuff;
     padding: 0 3%;
     font-weight: 600;
-    font-size: 1em;
+    font-size: 1.5em;
     transition: all 1s;
     opacity: 0;
 }
@@ -47,7 +47,7 @@
 }
 
 .logo-container {
-    width: 9%;
+    width: 6%;
     aspect-ratio: 1 / 1;
     position: absolute;
     left: 50%;
