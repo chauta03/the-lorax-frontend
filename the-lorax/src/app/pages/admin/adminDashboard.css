@@ -1,9 +1,9 @@
-.directory {
+.admin {
     height: fit-content;
     background-color: #78D8A4;
 }
 
-.directory-body {
+.admin-body {
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -11,17 +11,17 @@
 }
 
 /* Filter */
-.filter {
+.admin {
     display: flex;
     flex-direction: column;   
 }
 
-.filter-text {
+.admin-text {
     padding: 10px;
     grid-template-columns: 1fr; 
 }
 
-.filter-category {
+.admin-category {
     width: 15vw;
     height: 230px;
     display: flex;
@@ -32,40 +32,40 @@
     background-color: var(--light-green);
 }
 
-.filter-category * {
+.admin-category * {
     color: var(--grey);
     cursor: pointer;
 }
 
-.filter-category-field {
+.admin-category-field {
     display: flex;
     justify-content: space-between;
     
 }
 
 /* Display */
-.display-filter {
+.admin-filter {
     width: 70vw;
 }
 
-.display-filter-header, .display-filter-row {
+.admin-filter-header, .admin-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 0.25fr 0.5fr 1.5fr 0.5fr 0.5fr 0.5fr; 
     gap: 10px;
     padding: 10px;
 }
 
-.display-filter-header {
+.admin-filter-header {
     font-weight: bold;
 
 }
 
-.display-filter-row {
+.admin-filter-row {
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
 
-.display-filter-container {
+.admin-filter-container {
     border-radius: 20px;
     background-color: var(--light-green);
     padding: 10px;
