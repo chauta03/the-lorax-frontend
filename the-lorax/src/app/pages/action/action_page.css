@@ -94,7 +94,62 @@
     fill: #dfcc60; /* Change color on hover */
 }
 
-/* Admin button */
+/* Directory Button */
+.button-dir-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+.button-dir-text {
+    color: #E0FFDF;
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, 300%) rotate(-81.678deg)
+}
+
+/* About Button */
+.button-about-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+.button-about-text {
+    color: #E0FFDF;
+    font-family: DynaPuff;
+    position: absolute;
+    display: block;
+    text-align: center;
+    transform: translate(69%, 300%) rotate(7.769deg)
+}
+
+/* Position the boxes in a vertical column */
+.button-about-text:nth-child(1) {
+    top: calc(-15%);  /* Center first box with an offset */
+    left: calc(+3%);
+}
+  
+.button-about-text:nth-child(2) {
+    top: calc();      /* Center the second box directly in the middle */
+    left: calc(+20%);
+}
+
+.button-about-text:nth-child(3) {
+    top: calc(+15%);  /* Center the third box with an offset */
+    left: calc(-12%);
+}
+
+/* Admin Button */
 .button-admin-background {
     display: flex;
     align-items: center;
