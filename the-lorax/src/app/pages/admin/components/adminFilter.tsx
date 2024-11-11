@@ -3,6 +3,7 @@ import "../adminDashboard.css";
 import fetchUserData from '../../../../data/users';
 import { User } from '../../../../types/user'
 import Filter from "./filter";
+import edit from '../../../../images/buttons/3-dots.svg';
 
 export default function AdminFilter() {
     const [userData, setUserData] = useState<User[]>([]);
@@ -61,29 +62,31 @@ export default function AdminFilter() {
     };
 
     return (
-        <div className="directory-body">
+        <div className="admin-body">
             <Filter onSort={handleSort} />
 
-            <div className="display-filter">
-                <div className="display-filter-header">
-                    <span className="display-filter-column">Username</span>
-                    <span className="display-filter-column">Email</span>
-                    <span className="display-filter-column">Full Name</span>
-                    <span className="display-filter-column">Data Permissions</span>
-                    <span className="display-filter-column">User Permissions</span>
-                    {/* <span className="display-filter-column">Edit User</span> */}
+            <div className="admin-filter">
+                <div className="admin-filter-header">
+                    <span className="admin-filter-column">Edit</span>
+                    <span className="admin-filter-column">Username</span>
+                    <span className="admin-filter-column">Email</span>
+                    <span className="admin-filter-column">Full Name</span>
+                    <span className="admin-filter-column">Data Permissions</span>
+                    <span className="admin-filter-column">User Permissions</span>
                 </div>
 
-                <div className="display-filter-container">
+                <div className="admin-filter-container">
                     {currentUsers.length > 0 ? (
                         currentUsers.map((user) => (
-                            <div key={user.username} className="display-filter-row">
-                                <span className="display-filter-column">{user.username}</span>
-                                <span className="display-filter-column">{user.email}</span>
-                                <span className="display-filter-column">{user.full_name}</span>
-                                <span className="display-filter-column">{user.data_permissions ? "Yes" : "No"}</span>
-                                <span className="display-filter-column">{user.user_permissions ? "Yes" : "No"}</span>
-                                {/* <span className="display-filter-column">{user.user_permissions ? "Yes" : "No"}</span> */}
+                            <div key={user.username} className="admin-filter-row">
+                                <span className="admin-filter-column">
+                                    <img src={edit} alt="Three Icon" className="three-dots-icon" ></img>
+                                </span>
+                                <span className="admin-filter-column">{user.username}</span>
+                                <span className="admin-filter-column">{user.email}</span>
+                                <span className="admin-filter-column">{user.full_name}</span>
+                                <span className="admin-filter-column">{user.data_permissions ? "Yes" : "No"}</span>
+                                <span className="admin-filter-column">{user.user_permissions ? "Yes" : "No"}</span>
                             </div>
                         ))
                     ) : (

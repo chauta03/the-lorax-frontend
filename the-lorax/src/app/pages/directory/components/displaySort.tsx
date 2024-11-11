@@ -4,6 +4,7 @@ import ArrowDown from '../../../../images/icons/arrow-down.svg';
 import fetchTreeInfo from "../../../../data/trees";
 import { Point } from "../../../../types/tree";
 import { useState, useEffect } from 'react';
+import Sort from "./sort";
 import Filter from "./filter";
 
 
@@ -26,13 +27,13 @@ export default function DisplayFilter() {
     const sortedData = React.useMemo(() => {
         if (sortKey) {
             return [...treeData].sort((a, b) => {
-                const aValue = a[sortKey] ?? ''; 
+                const aValue = a[sortKey] ?? '';
                 const bValue = b[sortKey] ?? '';
 
                 // Handle undefined or empty values
-            if (aValue === undefined || aValue === '') return 1;  // Put `a` at the bottom
-            if (bValue === undefined || bValue === '') return -1; // Put `b` at the bottom
-    
+                if (aValue === undefined || aValue === '') return 1;  // Put `a` at the bottom
+                if (bValue === undefined || bValue === '') return -1; // Put `b` at the bottom
+
                 if (aValue < bValue) return -1;
                 if (aValue > bValue) return 1;
                 return 0;
@@ -67,7 +68,10 @@ export default function DisplayFilter() {
     return (
         <div className="directory-body">
             {/* Filter Component */}
-            <Filter onSort={handleSort} />
+            <div>
+                <Sort onSort={handleSort} />
+                <Filter onSort={handleSort}/>
+            </div>
 
             {/* Header Section */}
             <div className='display-filter'>

@@ -136,27 +136,27 @@ export default function Filter({ onSort }: FilterProps) {
             )}
 
             {/* Sort Options */}
-            <div className="filter">
-                <span className="filter-text">Sort</span>
-                <div className="filter-category">
-                    <div className="filter-category-field" onClick={() => onSort('username')}>
+            <div className="admin">
+                <span className="admin-text">Sort</span>
+                <div className="admin-category">
+                    <div className="admin-category-field" onClick={() => onSort('username')}>
                         <span>Username</span>
                         <img src={ArrowDown} alt="Sort" />
                     </div>
-                    <div className="filter-category-field" onClick={() => onSort('email')}>
+                    <div className="admin-category-field" onClick={() => onSort('email')}>
                         <span>Email</span>
                         <img src={ArrowDown} alt="Sort" />
                     </div>
-                    <div className="filter-category-field" onClick={() => onSort('full_name')}>
+                    <div className="admin-category-field" onClick={() => onSort('full_name')}>
                         <span>Full Name</span>
                         <img src={ArrowDown} alt="Sort" />
                     </div>
-                    <div className="filter-category-field" onClick={() => onSort('data_permissions')}>
-                        <span>Data Permissions</span>
+                    <div className="admin-category-field" onClick={() => onSort('data_permissions')}>
+                        <span>Data Permission</span>
                         <img src={ArrowDown} alt="Sort" />
                     </div>
-                    <div className="filter-category-field" onClick={() => onSort('user_permissions')}>
-                        <span>User Permissions</span>
+                    <div className="admin-category-field" onClick={() => onSort('user_permissions')}>
+                        <span>User Permission</span>
                         <img src={ArrowDown} alt="Sort" />
                     </div>
                 </div>
