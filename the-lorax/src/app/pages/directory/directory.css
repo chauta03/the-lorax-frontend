@@ -21,7 +21,7 @@
     grid-template-columns: 1fr; 
 }
 
-.sort-directory-category {
+/* .sort-directory-category {
     width: 15vw;
     height: fit-content;
     gap: 15px;
@@ -31,6 +31,14 @@
     padding: 20px;
     border-radius: 20px;
     background-color: var(--light-green);
+} */
+
+.sort-directory-category {
+    width: 20vw; /* Increased width for filter box */
+    padding: 15px 25px; /* Adjusted padding for better spacing */
+    border-radius: 15px; /* Slightly rounded corners */
+    background-color: var(--light-green);
+    position: relative; /* Enables dropdown positioning within filter box */
 }
 
 .sort-directory-category * {
@@ -38,10 +46,17 @@
     cursor: pointer;
 }
 
-.sort-directory-category-field {
+/* .sort-directory-category-field {
     display: flex;
     justify-content: space-between;
     
+} */
+
+.sort-directory-category-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
 }
 
 
@@ -80,3 +95,30 @@
     justify-self: center;
     gap: 10px;
 }
+
+/* Dropdown in filter*/
+.dropdown {
+    position: absolute;
+    top: 100%; /* Positions dropdown slightly below filter field */
+    left: 0;
+    margin-top: 5px; /* Additional space below filter text */
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 100%; /* Matches dropdown width to filter box */
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.dropdown div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em; /* Slightly smaller text for dropdown items */
+}
+
+.dropdown div:hover {
+    background-color: #f0f0f0;
+}
+

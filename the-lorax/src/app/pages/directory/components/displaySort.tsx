@@ -1,6 +1,5 @@
 import React from 'react';
 import "../directory.css";
-import ArrowDown from '../../../../images/icons/arrow-down.svg';
 import fetchTreeInfo from "../../../../data/trees";
 import { Point } from "../../../../types/tree";
 import { useState, useEffect } from 'react';
@@ -11,8 +10,14 @@ import Filter from "./filter";
 export default function DisplayFilter() {
     const [treeData, setTreeData] = useState<Point[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [sortKey, setSortKey] = useState<keyof Point | null>(null); // Update the sortKey type to be keyof Point or null
+    const [sortKey, setSortKey] = useState<keyof Point | null>(null);
+    const [selectedLatinName, setSelectedLatinName] = useState<string | null>(null);
+    const [selectedCommonName, setSelectedCommonName] = useState<string | null>(null);
     const treesPerPage = 15;
+
+    let latinNameSet = new Set<string>();
+    let commonNameSet = new Set<string>();
+
 
     // Fetch the tree data when the component mounts
     useEffect(() => {
@@ -25,22 +30,29 @@ export default function DisplayFilter() {
 
     // Sort the data based on the selected sort key
     const sortedData = React.useMemo(() => {
+        let data = [...treeData];
         if (sortKey) {
-            return [...treeData].sort((a, b) => {
+            data.sort((a, b) => {
                 const aValue = a[sortKey] ?? '';
                 const bValue = b[sortKey] ?? '';
-
-                // Handle undefined or empty values
-                if (aValue === undefined || aValue === '') return 1;  // Put `a` at the bottom
-                if (bValue === undefined || bValue === '') return -1; // Put `b` at the bottom
-
-                if (aValue < bValue) return -1;
-                if (aValue > bValue) return 1;
-                return 0;
+                return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
             });
         }
-        return treeData;
-    }, [treeData, sortKey]);
+        if (selectedLatinName) {
+            data = data.filter(tree => tree.latinName === selectedLatinName);
+        }
+        if (selectedCommonName) {
+            data = data.filter(tree => tree.commonName === selectedCommonName);
+        }
+        return data;
+    }, [treeData, sortKey, selectedLatinName, selectedCommonName]);
+
+    // Get the set of all latin name
+    treeData.forEach(tree => {
+        if (tree.latinName) latinNameSet.add(tree.latinName);
+        if (tree.commonName) commonNameSet.add(tree.commonName);
+    });
+
 
     // Calculate the index range for the current page
     const indexOfLastTree = currentPage * treesPerPage;
@@ -59,10 +71,16 @@ export default function DisplayFilter() {
             setCurrentPage(currentPage - 1);
         }
     };
+    
+    // Handle filtering when clicking on the filter buttons
+    const handleFilter = (key: keyof Point, value: string | null) => {
+        if (key === 'latinName') setSelectedLatinName(value);
+        else if (key === 'commonName') setSelectedCommonName(value);
+    };
 
     // Handle sorting when clicking on the filter buttons
     const handleSort = (key: keyof Point) => {
-        setSortKey(key);
+        setSortKey(prevSortKey => prevSortKey === key ? null : key);
     };
 
     return (
@@ -70,7 +88,11 @@ export default function DisplayFilter() {
             {/* Filter Component */}
             <div>
                 <Sort onSort={handleSort} />
-                <Filter onSort={handleSort}/>
+                <Filter
+                    latinNames={Array.from(latinNameSet)}
+                    commonNames={Array.from(commonNameSet)}
+                    onFilter={handleFilter}
+                />
             </div>
 
             {/* Header Section */}
@@ -101,7 +123,7 @@ export default function DisplayFilter() {
                         ))
                     ) : (
                         <div className="display-filter-loading">
-                            Loading tree data...
+                            No tree data to display
                         </div>
                     )}
                 </div>
