@@ -10,20 +10,21 @@
     justify-content: space-evenly;
 }
 
-/* Filter */
-.filter {
+/* Sort */
+.sort-directory {
     display: flex;
     flex-direction: column;   
 }
 
-.filter-text {
+.sort-directory-text {
     padding: 10px;
     grid-template-columns: 1fr; 
 }
 
-.filter-category {
+.sort-directory-category {
     width: 15vw;
-    height: 230px;
+    height: fit-content;
+    gap: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,16 +33,17 @@
     background-color: var(--light-green);
 }
 
-.filter-category * {
+.sort-directory-category * {
     color: var(--grey);
     cursor: pointer;
 }
 
-.filter-category-field {
+.sort-directory-category-field {
     display: flex;
     justify-content: space-between;
     
 }
+
 
 /* Display */
 .display-filter {
