@@ -8,11 +8,15 @@ type FilterProps = {
 };
 
 
-export default function Filter({ onSort }: FilterProps) {
+export default function SortDirectory({ onSort }: FilterProps) {
     return (
         <div className="sort-directory">
-            <span className="sort-directory-text">Filter</span>
+            <span className="sort-directory-text">Sort</span>
             <div className="sort-directory-category">   
+                <div className="sort-directory-category-field" onClick={() => onSort('tagNum')}> 
+                    <span>Tag Number</span>
+                    <img src={ArrowDown} alt="Sort"/>
+                </div>
                 <div className="sort-directory-category-field" onClick={() => onSort('speciesCo')}> 
                     <span>Species Code</span>
                     <img src={ArrowDown} alt="Sort"/>
@@ -23,6 +27,14 @@ export default function Filter({ onSort }: FilterProps) {
                 </div>
                 <div className="sort-directory-category-field" onClick={() => onSort('commonName')}> 
                     <span>Common Name</span>
+                    <img src={ArrowDown} alt="Sort"/>
+                </div>
+                <div className="sort-directory-category-field" onClick={() => onSort('lat')}> 
+                    <span>Lat</span>
+                    <img src={ArrowDown} alt="Sort"/>
+                </div>
+                <div className="sort-directory-category-field" onClick={() => onSort('lng')}> 
+                    <span>Long</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div>
             </div>
