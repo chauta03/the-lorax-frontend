@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import "./header.css";
-import tree from '../../images/icons/tree-icon-3-1.svg';
+import treeSandwich from '../../images/icons/sandwichBar.svg';
+import logo from '../../images/logo.svg';
 
 
 // Create the functional component
@@ -9,12 +11,16 @@ type CustomButtonProps = {
 };
 
 export default function Header() {
+    const [showNav, setShowNav] = useState(true)
     return (
         <div className="header">
-            <div className="header-tree-circle">
-                <img src={tree} alt="Tree Icon" className="header-tree-icon" />
+            <div className="header-tree-circle" onClick={() => setShowNav(!showNav)}>
+                <img src={treeSandwich} alt="Tree Icon" className="header-tree-icon" />
+            </div>
+            <div className='logo-container'>
+                <img src={logo} className={showNav ? 'logo-icon active' : 'logo-icon'}/>
             </div>       
-            <div className="header-expand-bar">
+            <div className={showNav ? 'header-expand-bar' : "header-expand-bar active"}>
                 <text>directory</text>
                 <text>about</text>
                 <text>explore</text>
