@@ -1,6 +1,10 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
+.background-for-all {
+    display: flex;
+    z-index: -1000;
+}
 /* Background */
 .action-page-background {
     display: flex;
@@ -10,11 +14,11 @@
     background-color: #78D8A4;
     height: 100vh;
     width: 100vw;
-    z-index: -100;
-    background-image: url('../../../images/mapLine.svg');
-    background-size: cover;    /* Adjusts the size */
-    background-repeat: no-repeat; /* Prevents tiling */
-    background-position: center;  /* Centers the SVG */
+    z-index: -1000;
+    /* background-image: url('../../../images/mapLine.svg');
+    background-size: cover;    
+    background-repeat: no-repeat; 
+    background-position: center;   */
 }
 
 /* Upper buttons */
@@ -110,7 +114,7 @@
     font-family: DynaPuff;
     position: absolute;
     text-align: center;
-    transform: translate(-50%, 300%) rotate(-81.678deg)
+    transform: translate(-50%, 280%) rotate(-81.678deg)
 }
 
 /* About Button */
@@ -130,7 +134,7 @@
     position: absolute;
     display: block;
     text-align: center;
-    transform: translate(69%, 300%) rotate(7.769deg)
+    transform: translate(55%, 270%) rotate(7.769deg)
 }
 
 /* Position the boxes in a vertical column */
@@ -246,4 +250,31 @@
     width: 100%;
     height: 100%;
     margin-left: 13%;
+}
+
+@media screen and (max-width: 768px) {
+    .action-page-background-phone {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #78D8A4;
+        height: 100vh;
+        width: 100vw;
+        z-index: -100;
+    }
+    /* Upper buttons */
+    .action-page-left-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        margin-bottom: 2.5%;
+    }
+
+    /* Lower buttons */
+    .action-page-right-buttons {
+        display: flex;
+        align-items: left;
+        margin-top: 2.5%;
+}
 }
