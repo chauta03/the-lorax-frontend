@@ -35,7 +35,6 @@ return (
             </div>
         ) : (
         <div className="landing-page-background landing-page-trees">
-            <Header />
             <div className="landing-page-text-container landing-page-text">
                 Kampus Tree Project
             </div>

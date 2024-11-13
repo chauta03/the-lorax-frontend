@@ -7,7 +7,6 @@ export default function About() {
     
     return (
         <div className="about_background">
-            <Header/>
             <div className="about-body">
                 <AboutBanner className='about-banner-background'></AboutBanner>
                 <h1 className="every-tree-text">Every Tree is A Scan Away!</h1>
