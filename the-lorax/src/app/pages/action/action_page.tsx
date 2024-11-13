@@ -1,6 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import "./action_page.css";
+import HeaderMobile from '../../components/headerMobile'; 
 import DirectoryButton from './action_buttons/directoryButton';
 import AboutButton from './action_buttons/aboutButton';
 import TreeButton from './action_buttons/treeButton';
@@ -10,6 +11,10 @@ import MapButton from './action_buttons/mapButton';
 import SupportButton from './action_buttons/supportButton';
 import AdminButtonMobile from './mobile_action_buttons/adminButtonMobile';
 import TreeButtonMobile from './mobile_action_buttons/treeButtonMobile';
+import AboutButtonMobile from './mobile_action_buttons/aboutButtonMobile';
+import DirectoryButtonMobile from './mobile_action_buttons/directoryButtonMobile';
+import MapButtonMobile from './mobile_action_buttons/mapButtonMobile';
+import SupportButtonMobile from './mobile_action_buttons/mapButtonMobile copy';
 
 const ActionButton: React.FC = () => {
     const Directory_Click = () => {
@@ -39,6 +44,7 @@ const ActionButton: React.FC = () => {
     const SupportButton_Click = () => {
         alert("I will always help you!!");
     };
+    
 
     const [isMobile, setIsMobile] = useState(false);
 
@@ -60,12 +66,22 @@ const ActionButton: React.FC = () => {
 
 
     return (
-        <div className="background-for-all">
+        <div>
             {isMobile ? (
-                <div className='action-page-background-phone'>
-                    <div className='action-page-left-buttons'>
-                        <AdminButtonMobile onClick={AdminButton_Click} />
-                        <TreeButtonMobile onClick={Tree_Click} />
+                <div className='action-page-phone'>
+                    <HeaderMobile />
+                    <span className='header-text'>Campus Tree Project</span>
+                    <div className='action-page-background-phone'>
+                        <div className='action-page-left-buttons'>
+                            <AdminButtonMobile onClick={AdminButton_Click} />
+                            <TreeButtonMobile onClick={Tree_Click} />
+                            <AboutButtonMobile onClick={About_Click} />
+                            <DirectoryButtonMobile onClick={Directory_Click} />
+                        </div>
+                        <div className='action-page-right-buttons'>
+                            <SupportButtonMobile onClick={SupportButton_Click} />
+                            <MapButtonMobile onClick={MapButton_Click} />
+                        </div>
                     </div>
                 </div>
             ) : (

@@ -1,10 +1,6 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
-.background-for-all {
-    display: flex;
-    z-index: -1000;
-}
 /* Background */
 .action-page-background {
     display: flex;
@@ -12,9 +8,10 @@
     flex-direction: column;
     justify-content: center;
     background-color: #78D8A4;
-    height: 100vh;
-    width: 100vw;
-    z-index: -1000;
+    height: fit-content;
+    padding: 10%;
+    /* width: 100vw; */
+    z-index: -100;
     /* background-image: url('../../../images/mapLine.svg');
     background-size: cover;    
     background-repeat: no-repeat; 
@@ -92,6 +89,17 @@
     z-index: 1;
     fill: #BCE8BB;
     transition: fill 0.3s ease; /* Smooth transition for background color change */
+}
+
+.button-tree-background-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 81%;
+    padding-left: 19%;
+    height: 100%;
 }
 
 .button-tree-only:hover .button-tree-background {
@@ -213,7 +221,6 @@
 }
 
 /* Map Button */
-
 .button-map-text {
     color: #345D33;
     font-family: DynaPuff;
@@ -233,7 +240,6 @@
 }
 
 /* Support Button */
-
 .button-support-text {
     color: #E0FFDF;
     font-family: DynaPuff;
@@ -253,13 +259,25 @@
 }
 
 @media screen and (max-width: 768px) {
+    .action-page-phone {
+        height: fit-content;
+        background-color: #78D8A4;
+    }
+
+    .header-text {
+        color: #E0FFDF;
+        text-align: center;
+        font-family: DynaPuff;
+        font-size: 6vh;
+        font-style: normal;
+        font-weight: 900;
+    }
+
     .action-page-background-phone {
         display: flex;
         align-items: center;
         flex-direction: row;
         justify-content: center;
-        background-color: #78D8A4;
-        height: 100vh;
         width: 100vw;
         z-index: -100;
     }
@@ -268,13 +286,38 @@
         display: flex;
         flex-direction: column;
         align-items: right;
-        margin-bottom: 2.5%;
+        margin: 3% 5% 3% 0%;
     }
 
     /* Lower buttons */
     .action-page-right-buttons {
         display: flex;
-        align-items: left;
-        margin-top: 2.5%;
-}
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 3% 0% 3% 5%;
+    }
+
+    .button-admin-background {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        fill: #BCE8BB; 
+        transition: fill 0.3s ease; 
+        width: 70%;
+        height: 100%;
+        padding-left: 30%;
+    }
+
+    .button-support-background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: fill 0.3s ease; 
+        width: 100%;
+        height: 100%;
+        margin: 0%;
+        padding-bottom: 15%;
+        padding-top: 65%;
+    }
 }
