@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../action_page.css";
 
-
-// Create the functional component
 type CustomButtonProps = {
-    onClick: () => void; // Function to handle button click
+    onSearch: (query: string) => void; // Function to handle search
 };
 
-const SearchBar: React.FC<CustomButtonProps> = ({onClick}) => {
+const SearchBar: React.FC<CustomButtonProps> = ({ onSearch }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = () => {
+        if (searchTerm.trim() !== '') {
+            onSearch(searchTerm); // Call the parent function to search
+        }
+    };
+
     return (
         <div className="search-bar-container">
-            <div className="search-bar" onClick={onClick}>
-                <span className="search-text">Looking for a tree?</span>
-                <div className="search-icon-container">
+            <div className="search-bar">
+                <input
+                    type="text"
+                    placeholder="Looking for a tree?"
+                    className="search-input search-text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // Trigger search on Enter
+                />
+                <div className="search-icon-container" onClick={handleSearch}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="24"
+                        height="24"
                         viewBox="0 0 24 24"
                         fill="none"
                         className="search-icon"
@@ -29,5 +42,5 @@ const SearchBar: React.FC<CustomButtonProps> = ({onClick}) => {
         </div>
     );
 };
-  
+
 export default SearchBar;
