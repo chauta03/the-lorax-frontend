@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import './directory.css';
 import Header from '../../components/header'
 import Filter from './components/sort'
-import DisplayFilter from "./components/displaySort";
+import Display from "./components/display";
 
 
 export default function Directory() {
@@ -13,7 +13,7 @@ export default function Directory() {
         <div className="directory">
             <Header />
             <div className="directory-body">
-                <DisplayFilter />
+                <Display />
             </div>
         </div>
     )
