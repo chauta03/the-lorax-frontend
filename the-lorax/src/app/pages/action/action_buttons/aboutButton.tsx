@@ -9,7 +9,7 @@ type CustomButtonProps = {
 
 const AboutButton: React.FC<CustomButtonProps> = ({onClick}) => {
     return (
-        <div className="button">
+        <div className="button" onClick={onClick}>
             <span className='button-text button-about-text'>about</span>
             <span className='button-text button-about-text'>the</span>
             <span className='button-text button-about-text'>project</span>

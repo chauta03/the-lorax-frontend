@@ -12,7 +12,6 @@ type CustomButtonProps = {
 const adminButtonMobile: React.FC<CustomButtonProps> = ({onClick}) => {
     return (
         <div className="button" onClick={onClick}>
-            {/* <span className="button-text button-admin-text">admin</span> */}
             <AdminBackgroundMobile className="button-admin-background"></AdminBackgroundMobile>
         </div>
     );
