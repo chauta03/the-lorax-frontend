@@ -15,7 +15,6 @@
 .landing-page-text {
     color: #E0FFDF;
     text-align: center;
-    font-family: DynaPuff;
     font-size: 15vh;
     font-style: normal;
     font-weight: 600;
@@ -23,7 +22,7 @@
 
 .landing-page-text-container {
     position: absolute;
-    top: 10.5%;
+    top: 15.5%;
     width: 65vw;
     justify-content: center;
     flex-shrink: 1;
