@@ -4,9 +4,9 @@ import { act, useEffect, useRef, useState } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import type { Marker } from "@googlemaps/markerclusterer";
 import { APIProvider, Map, useMap, AdvancedMarker, InfoWindow } from "@vis.gl/react-google-maps";
-import fetchTreeInfo from "../data/trees"; // Import the fetch function
+import fetchTreeInfo from "../../../data/trees"; // Import the fetch function
 import "./page.css";
-import { Point } from "../types/tree"
+import { Point } from "../../../types/tree"
 import "./markers.css"
 
 const Markers = () => {

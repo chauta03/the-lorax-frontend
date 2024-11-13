@@ -10,20 +10,20 @@ import {
     AdvancedMarker,
     InfoWindow,
 } from "@vis.gl/react-google-maps"
-import trees from "../data/trees";
+import trees from "../../../data/trees";
 import "./page.css";
 import axios from "axios";
 import Markers from "./markers";
 
-export default function Intro() {
-    const initialPosition = { lat: 42.290106400890906,  lng: -85.59815573221456 };
+export default function GgMap() {
+    const initialPosition = { lat: 42.290106400890906, lng: -85.59815573221456 };
     const apiKey = process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
 
     return (
         <APIProvider apiKey={apiKey}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div className="map-container">
                 {/* Map Component */}
-                <div style={{ height: "90vh", width: "90%", marginBottom: "20px" }}>
+                <div className="map">
                     <Map
                         defaultZoom={15}   // Set initial zoom
                         defaultCenter={initialPosition}  // Set initial center
