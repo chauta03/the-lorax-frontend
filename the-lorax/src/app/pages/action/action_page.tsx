@@ -2,7 +2,6 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import "./action_page.css";
 import { Point } from "../../../types/tree";
-import fetchTreeInfo from '../../../data/trees';
 import HeaderMobile from '../../components/headerMobile'; 
 import DirectoryButton from './action_buttons/directoryButton';
 import AboutButton from './action_buttons/aboutButton';
@@ -18,9 +17,11 @@ import DirectoryButtonMobile from './mobile_action_buttons/directoryButtonMobile
 import MapButtonMobile from './mobile_action_buttons/mapButtonMobile';
 import SupportButtonMobile from './mobile_action_buttons/mapButtonMobile copy';
 
+// Search
+import handleSearch from '../../../data/handleSearch';
+
 const ActionButton: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
-    const [searchResults, setSearchResults] = useState<Point[]>([]);
 
     const Directory_Click = () => {
         alert("Directory");
@@ -37,30 +38,6 @@ const ActionButton: React.FC = () => {
     const AdminButton_Click = () => {
         alert("Admin!!");
     };
-
-    const handleSearch = async (query: string) => {
-        try {
-            const allTrees = await fetchTreeInfo();
-            const terms = query.toLowerCase().split(/\s+/); // Split query by whitespace into terms
-    
-            const results = allTrees.filter(tree =>
-                terms.every(term => 
-                    tree.latinName?.toLowerCase().includes(term) ||
-                    tree.commonName?.toLowerCase().includes(term) ||
-                    tree.tagNum?.toString().includes(term) ||
-                    tree.speciesCo?.toLowerCase().includes(term) ||
-                    tree.sun?.toLowerCase().includes(term) ||
-                    tree.lat?.toString().includes(term) ||
-                    tree.lng?.toString().includes(term)
-                )
-            );
-    
-            setSearchResults(results);
-            console.log('Search results:', results); // Log the results
-        } catch (error) {
-            console.error("Error during search:", error);
-        }
-    };
     
 
     const MapButton_Click = () => {
@@ -73,7 +50,6 @@ const ActionButton: React.FC = () => {
     
 
     
-
     // Detect screen width on mount and resize
     useEffect(() => {
       const handleResize = () => {
