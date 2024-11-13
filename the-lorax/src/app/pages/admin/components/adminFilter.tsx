@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import "../adminDashboard.css";
 import fetchUserData from '../../../../data/users';
-import { User } from '../../../../types/user'
-import Filter from "./filter";
+import { User } from '../../../../types/user';
 import edit from '../../../../images/buttons/3-dots.svg';
 
-export default function AdminFilter() {
+interface AdminFilterProps {
+    sortKey: keyof User | null; // Accept sortKey as keyof User or null
+}
+
+export default function AdminFilter({ sortKey }: AdminFilterProps) {
     const [userData, setUserData] = useState<User[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [sortKey, setSortKey] = useState<keyof User | null>(null);
     const usersPerPage = 15;
 
     // Fetch the user data when the component mounts
@@ -56,49 +58,40 @@ export default function AdminFilter() {
         }
     };
 
-    // Handle sorting when clicking on the filter buttons
-    const handleSort = (key: keyof User) => {
-        setSortKey(key);
-    };
-
     return (
-        <div className="admin-body">
-            <Filter onSort={handleSort} />
+        <div className="admin-filter">
+            <div className="admin-filter-header">
+                <span className="admin-filter-column">Edit</span>
+                <span className="admin-filter-column">Username</span>
+                <span className="admin-filter-column">Email</span>
+                <span className="admin-filter-column">Full Name</span>
+                <span className="admin-filter-column">Data Permissions</span>
+                <span className="admin-filter-column">User Permissions</span>
+            </div>
 
-            <div className="admin-filter">
-                <div className="admin-filter-header">
-                    <span className="admin-filter-column">Edit</span>
-                    <span className="admin-filter-column">Username</span>
-                    <span className="admin-filter-column">Email</span>
-                    <span className="admin-filter-column">Full Name</span>
-                    <span className="admin-filter-column">Data Permissions</span>
-                    <span className="admin-filter-column">User Permissions</span>
-                </div>
+            <div className="admin-filter-container">
+                {currentUsers.length > 0 ? (
+                    currentUsers.map((user) => (
+                        <div key={user.username} className="admin-filter-row">
+                            <span className="admin-filter-column">
+                                <img src={edit} alt="Three Icon" className="three-dots-icon" />
+                            </span>
+                            <span className="admin-filter-column">{user.username}</span>
+                            <span className="admin-filter-column">{user.email}</span>
+                            <span className="admin-filter-column">{user.full_name}</span>
+                            <span className="admin-filter-column">{user.data_permissions ? "Yes" : "No"}</span>
+                            <span className="admin-filter-column">{user.user_permissions ? "Yes" : "No"}</span>
+                        </div>
+                    ))
+                ) : (
+                    <p>No users found</p>
+                )}
+            </div>
 
-                <div className="admin-filter-container">
-                    {currentUsers.length > 0 ? (
-                        currentUsers.map((user) => (
-                            <div key={user.username} className="admin-filter-row">
-                                <span className="admin-filter-column">
-                                    <img src={edit} alt="Three Icon" className="three-dots-icon" ></img>
-                                </span>
-                                <span className="admin-filter-column">{user.username}</span>
-                                <span className="admin-filter-column">{user.email}</span>
-                                <span className="admin-filter-column">{user.full_name}</span>
-                                <span className="admin-filter-column">{user.data_permissions ? "Yes" : "No"}</span>
-                                <span className="admin-filter-column">{user.user_permissions ? "Yes" : "No"}</span>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No users found</p>
-                    )}
-                </div>
-
-                <div className="pagination">
-                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
-                    <span>Page {currentPage}</span>
-                    <button onClick={handleNextPage} disabled={currentPage === Math.ceil(userData.length / usersPerPage)}>Next</button>
-                </div>
+            <div className="pagination-controls">
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
+                <span>Page {currentPage}</span>
+                <button onClick={handleNextPage} disabled={currentPage === Math.ceil(userData.length / usersPerPage)}>Next</button>
             </div>
         </div>
     );

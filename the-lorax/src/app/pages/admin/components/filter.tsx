@@ -136,7 +136,7 @@ export default function Filter({ onSort }: FilterProps) {
             )}
 
             {/* Sort Options */}
-            <div className="admin">
+            <div className="admin-sort">
                 <span className="admin-text">Sort</span>
                 <div className="admin-category">
                     <div className="admin-category-field" onClick={() => onSort('username')}>
