@@ -6,8 +6,12 @@ import { useState, useEffect } from 'react';
 import Sort from "./sort";
 import Filter from "./filter";
 
+type DisplayProps = {
+    data: Point[]; 
+};
 
-export default function Display() {
+
+export default function Display({ data }: DisplayProps) {
     const [treeData, setTreeData] = useState<Point[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortKey, setSortKey] = useState<keyof Point | null>(null);
