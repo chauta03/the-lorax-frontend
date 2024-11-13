@@ -1,13 +1,28 @@
 .directory {
     height: fit-content;
-    background-color: #78D8A4;
+    background-color: var(--mid-green);
+    padding-top: 8%;
 }
 
-.directory-body {
+.directory-lower {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Right body */
+.directory-display {
     width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+/* Left body */
+.directory-sort-and-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 
 /* Sort */
@@ -22,19 +37,6 @@
 }
 
 
-
-/* .sort-directory-category {
-    width: 15vw;
-    height: fit-content;
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: var(--light-green);
-} */
-
 .sort-directory-category {
     width: 20vw; /* Increased width for filter box */
     padding: 15px 25px; /* Adjusted padding for better spacing */
@@ -48,11 +50,6 @@
     cursor: pointer;
 }
 
-/* .sort-directory-category-field {
-    display: flex;
-    justify-content: space-between;
-    
-} */
 
 .sort-directory-category-field {
     display: flex;

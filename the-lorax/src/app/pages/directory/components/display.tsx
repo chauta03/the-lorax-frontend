@@ -1,75 +1,22 @@
-import React from 'react';
-import "../directory.css";
-import fetchTreeInfo from "../../../../data/trees";
+import React, { useState, useMemo } from 'react';
 import { Point } from "../../../../types/tree";
-import { useState, useEffect } from 'react';
-import Sort from "./sort";
-import Filter from "./filter";
 
 type DisplayProps = {
     data: Point[]; 
 };
 
-
 export default function Display({ data }: DisplayProps) {
-    const [treeData, setTreeData] = useState<Point[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [sortKey, setSortKey] = useState<keyof Point | null>(null);
-    const [selectedLatinName, setSelectedLatinName] = useState<string | null>(null);
-    const [selectedCommonName, setSelectedCommonName] = useState<string | null>(null);
     const treesPerPage = 15;
-
-    let latinNameSet = new Set<string>();
-    let commonNameSet = new Set<string>();
-
-
-    // Fetch the tree data when the component mounts
-    useEffect(() => {
-        const getData = async () => {
-            const data = await fetchTreeInfo();
-            setTreeData(data);
-        };
-        getData();
-    }, []);
-
-    // Sort the data based on the selected sort key
-    const sortedData = React.useMemo(() => {
-        let data = [...treeData];
-        if (sortKey) {
-            data.sort((a, b) => {
-                const aValue = a[sortKey] ?? '';
-                const bValue = b[sortKey] ?? '';
-
-                if (aValue === '' && bValue !== '') return 1;
-                if (aValue !== '' && bValue === '') return -1;
-
-                return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-            });
-        }
-        if (selectedLatinName) {
-            data = data.filter(tree => tree.latinName === selectedLatinName);
-        }
-        if (selectedCommonName) {
-            data = data.filter(tree => tree.commonName === selectedCommonName);
-        }
-        return data;
-    }, [treeData, sortKey, selectedLatinName, selectedCommonName]);
-
-    // Get the set of all latin name
-    treeData.forEach(tree => {
-        if (tree.latinName) latinNameSet.add(tree.latinName);
-        if (tree.commonName) commonNameSet.add(tree.commonName);
-    });
-
 
     // Calculate the index range for the current page
     const indexOfLastTree = currentPage * treesPerPage;
     const indexOfFirstTree = indexOfLastTree - treesPerPage;
-    const currentTrees = sortedData.slice(indexOfFirstTree, indexOfLastTree);
+    const currentTrees = useMemo(() => data.slice(indexOfFirstTree, indexOfLastTree), [data, indexOfFirstTree, indexOfLastTree]);
 
     // Handle page changes
     const handleNextPage = () => {
-        if (currentPage < Math.ceil(treeData.length / treesPerPage)) {
+        if (currentPage < Math.ceil(data.length / treesPerPage)) {
             setCurrentPage(currentPage + 1);
         }
     };
@@ -79,30 +26,9 @@ export default function Display({ data }: DisplayProps) {
             setCurrentPage(currentPage - 1);
         }
     };
-    
-    // Handle filtering when clicking on the filter buttons
-    const handleFilter = (key: keyof Point, value: string | null) => {
-        if (key === 'latinName') setSelectedLatinName(value);
-        else if (key === 'commonName') setSelectedCommonName(value);
-    };
-
-    // Handle sorting when clicking on the filter buttons
-    const handleSort = (key: keyof Point | null) => {
-        setSortKey(prevSortKey => prevSortKey === key ? null : key);
-    };
 
     return (
-        <div className="directory-body">
-            {/* Filter Component */}
-            <div className="directory-sort-and-filter">
-                <Sort onSort={handleSort} />
-                <Filter
-                    latinNames={Array.from(latinNameSet)}
-                    commonNames={Array.from(commonNameSet)}
-                    onFilter={handleFilter}
-                />
-            </div>
-
+        <div className="display-container">
             {/* Header Section */}
             <div className='display-filter'>
                 <div className="display-filter-header">
@@ -136,7 +62,7 @@ export default function Display({ data }: DisplayProps) {
                     )}
                 </div>
 
-                {/* Pagination Buttons */}
+                {/* Pagination Controls */}
                 <div className="pagination-controls">
                     <button
                         className="pagination-button"
@@ -145,11 +71,11 @@ export default function Display({ data }: DisplayProps) {
                     >
                         Previous
                     </button>
-                    <span>Page {currentPage} of {Math.ceil(treeData.length / treesPerPage)}</span>
+                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)}</span>
                     <button
                         className="pagination-button"
                         onClick={handleNextPage}
-                        disabled={currentPage >= Math.ceil(treeData.length / treesPerPage)}
+                        disabled={currentPage >= Math.ceil(data.length / treesPerPage)}
                     >
                         Next
                     </button>
