@@ -9,9 +9,7 @@ const SearchBar: React.FC<CustomButtonProps> = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = () => {
-        if (searchTerm.trim() !== '') {
-            onSearch(searchTerm); // Call the parent function to search
-        }
+        onSearch(searchTerm); // Call the parent function to search
     };
 
     return (
