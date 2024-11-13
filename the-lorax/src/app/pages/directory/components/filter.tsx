@@ -11,15 +11,19 @@ type FilterProps = {
 export default function Filter({ latinNames, commonNames, onFilter }: FilterProps) {
     const [showLatinDropdown, setShowLatinDropdown] = useState(false);
     const [showCommonDropdown, setShowCommonDropdown] = useState(false);
+    const [selectedLatinName, setSelectedLatinName] = useState<string | null>(null);
+    const [selectedCommonName, setSelectedCommonName] = useState<string | null>(null);
     const latinDropdownRef = useRef<HTMLDivElement | null>(null);
     const commonDropdownRef = useRef<HTMLDivElement | null>(null);
 
     const handleLatinSelect = (value: string | null) => {
+        setSelectedLatinName(value);
         onFilter('latinName', value);
         setShowLatinDropdown(false);
     };
 
     const handleCommonSelect = (value: string | null) => {
+        setSelectedCommonName(value);
         onFilter('commonName', value);
         setShowCommonDropdown(false);
     };
@@ -60,13 +64,25 @@ export default function Filter({ latinNames, commonNames, onFilter }: FilterProp
                     }}
                     ref={latinDropdownRef}
                 >
-                    <span>Latin Name</span>
+                    <span className='filter-field'>
+                        Latin Name: {selectedLatinName || 'All'}
+                    </span>
+                    
                     <img src={ArrowDown} alt="Sort" />
                     {showLatinDropdown && (
                         <div className="dropdown">
-                            <div onClick={() => handleLatinSelect(null)}>All</div>
+                            <div 
+                                onClick={() => handleLatinSelect(null)}
+                                style={{ fontWeight: selectedLatinName === null ? 'bold' : 'normal' }}
+                            >
+                                All
+                            </div>
                             {latinNames.map(name => (
-                                <div key={name} onClick={() => handleLatinSelect(name)}>
+                                <div
+                                    key={name}
+                                    onClick={() => handleLatinSelect(name)}
+                                    style={{ fontWeight: selectedLatinName === name ? 'bold' : 'normal' }}
+                                >
                                     {name}
                                 </div>
                             ))}
@@ -83,13 +99,24 @@ export default function Filter({ latinNames, commonNames, onFilter }: FilterProp
                     }}
                     ref={commonDropdownRef}
                 >
-                    <span>Common Name</span>
+                    <span>
+                        Common Name:  {selectedCommonName || 'All'}
+                    </span>
                     <img src={ArrowDown} alt="Sort" />
                     {showCommonDropdown && (
                         <div className="dropdown">
-                            <div onClick={() => handleCommonSelect(null)}>All</div>
+                            <div 
+                                onClick={() => handleCommonSelect(null)}
+                                style={{ fontWeight: selectedCommonName === null ? 'bold' : 'normal' }}
+                            >
+                                All
+                            </div>
                             {commonNames.map(name => (
-                                <div key={name} onClick={() => handleCommonSelect(name)}>
+                                <div
+                                    key={name}
+                                    onClick={() => handleCommonSelect(name)}
+                                    style={{ fontWeight: selectedCommonName === name ? 'bold' : 'normal' }}
+                                >
                                     {name}
                                 </div>
                             ))}

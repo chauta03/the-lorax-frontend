@@ -7,7 +7,7 @@ import Sort from "./sort";
 import Filter from "./filter";
 
 
-export default function DisplayFilter() {
+export default function Display() {
     const [treeData, setTreeData] = useState<Point[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortKey, setSortKey] = useState<keyof Point | null>(null);
@@ -35,6 +35,10 @@ export default function DisplayFilter() {
             data.sort((a, b) => {
                 const aValue = a[sortKey] ?? '';
                 const bValue = b[sortKey] ?? '';
+
+                if (aValue === '' && bValue !== '') return 1;
+                if (aValue !== '' && bValue === '') return -1;
+
                 return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
             });
         }
@@ -79,14 +83,14 @@ export default function DisplayFilter() {
     };
 
     // Handle sorting when clicking on the filter buttons
-    const handleSort = (key: keyof Point) => {
+    const handleSort = (key: keyof Point | null) => {
         setSortKey(prevSortKey => prevSortKey === key ? null : key);
     };
 
     return (
         <div className="directory-body">
             {/* Filter Component */}
-            <div>
+            <div className="directory-sort-and-filter">
                 <Sort onSort={handleSort} />
                 <Filter
                     latinNames={Array.from(latinNameSet)}
@@ -98,13 +102,13 @@ export default function DisplayFilter() {
             {/* Header Section */}
             <div className='display-filter'>
                 <div className="display-filter-header">
-                    <span className="display-filter-column">Tag Number</span>
+                    <span className="display-filter-column">Tag #</span>
                     <span className="display-filter-column">Species Code</span>
                     <span className="display-filter-column">Latin Name</span>
                     <span className="display-filter-column">Common Name</span>
                     <span className="display-filter-column">Sun</span>
-                    <span className="display-filter-column">Latitude</span>
-                    <span className="display-filter-column">Longitude</span>
+                    <span className="display-filter-column">Lat</span>
+                    <span className="display-filter-column">Long</span>
                 </div>
 
                 {/* Display the rows of data */}
