@@ -4,6 +4,7 @@
     background-color: var(--mid-green); 
     height: 100vh;
     font-family: DynaPuff;
+    padding-top: 8%;
 }
 
 .login-body {
