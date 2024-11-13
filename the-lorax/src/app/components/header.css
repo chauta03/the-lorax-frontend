@@ -4,8 +4,12 @@
     align-items: center;
     gap: 20px;
     height: 10%;
-    width: 96vw;
-    padding: 2%;
+    padding: 1%;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    background-color: transparent;
+    z-index: 1000;
 }
 
 .header-tree-circle {
