@@ -174,7 +174,6 @@
 
 .button-admin-text {
     color: #E0FFDF; 
-    font-family: DynaPuff;
     position: absolute;
     text-align: center;
     transform: translate(-60%, 160%) rotate(-36.19deg);
@@ -185,24 +184,32 @@
     display: flex;
     justify-content: center;
     padding: 10px;
+    
 }
 
 .search-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #d3f5d1; /* Light green background */
+    background-color: var(--light-green); 
     padding: 15px 15px 15px 30px;
-    border-radius: 40px;
+    border-radius: var(--border-radius);
     width: 65vw;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     cursor: pointer;
 }
 
 .search-text {
-    font-size: 45px; /* Adjust text size */
+    font-size: 45px;
     font-family: DynaPuff; 
     color: #333;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background-color: transparent;
 }
 
 .search-icon-container {

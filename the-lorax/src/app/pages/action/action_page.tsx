@@ -1,6 +1,8 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import "./action_page.css";
+import { Point } from "../../../types/tree";
+import fetchTreeInfo from '../../../data/trees';
 import HeaderMobile from '../../components/headerMobile'; 
 import DirectoryButton from './action_buttons/directoryButton';
 import AboutButton from './action_buttons/aboutButton';
@@ -17,6 +19,9 @@ import MapButtonMobile from './mobile_action_buttons/mapButtonMobile';
 import SupportButtonMobile from './mobile_action_buttons/mapButtonMobile copy';
 
 const ActionButton: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(false);
+    const [searchResults, setSearchResults] = useState<Point[]>([]);
+
     const Directory_Click = () => {
         alert("Directory");
     };
@@ -33,9 +38,30 @@ const ActionButton: React.FC = () => {
         alert("Admin!!");
     };
 
-    const SearchBar_Click = () => {
-        alert("SearchBar!!!!");
+    const handleSearch = async (query: string) => {
+        try {
+            const allTrees = await fetchTreeInfo();
+            const terms = query.toLowerCase().split(/\s+/); // Split query by whitespace into terms
+    
+            const results = allTrees.filter(tree =>
+                terms.every(term => 
+                    tree.latinName?.toLowerCase().includes(term) ||
+                    tree.commonName?.toLowerCase().includes(term) ||
+                    tree.tagNum?.toString().includes(term) ||
+                    tree.speciesCo?.toLowerCase().includes(term) ||
+                    tree.sun?.toLowerCase().includes(term) ||
+                    tree.lat?.toString().includes(term) ||
+                    tree.lng?.toString().includes(term)
+                )
+            );
+    
+            setSearchResults(results);
+            console.log('Search results:', results); // Log the results
+        } catch (error) {
+            console.error("Error during search:", error);
+        }
     };
+    
 
     const MapButton_Click = () => {
         alert("Google Maps!!");
@@ -46,7 +72,7 @@ const ActionButton: React.FC = () => {
     };
     
 
-    const [isMobile, setIsMobile] = useState(false);
+    
 
     // Detect screen width on mount and resize
     useEffect(() => {
@@ -92,7 +118,7 @@ const ActionButton: React.FC = () => {
                         <TreeButton onClick={Tree_Click} />
                         <AdminButton onClick={AdminButton_Click} />
                     </div>
-                    <SearchBar onClick={SearchBar_Click} />
+                    <SearchBar onSearch={handleSearch} />
                     <div className="action-page-lower-buttons">
                         <MapButton onClick={MapButton_Click} />
                         <SupportButton onClick={SupportButton_Click} />
