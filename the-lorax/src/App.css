@@ -2,6 +2,9 @@
   text-align: center;
   font-family: DynaPuff;
 }
+.home {
+  text-align: center;
+}
 
 .App * {
   font-family: DynaPuff;
