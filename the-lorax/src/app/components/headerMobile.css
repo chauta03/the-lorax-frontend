@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     height: 6vh;
+    width: 100vw;
     padding: 3% 0% 3% 5%;
 }
 
