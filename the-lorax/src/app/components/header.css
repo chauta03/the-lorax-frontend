@@ -5,6 +5,7 @@
     gap: 20px;
     height: 10%;
     padding: 1%;
+    width: 100vw;
 }
 
 .header-tree-circle {
@@ -26,15 +27,14 @@
 }
 
 .header-expand-bar {
-    width: 50%;
     aspect-ratio: 12 / 1;
     opacity: 0.77px;
     background-color: #E0FFDF;
     border-radius: 40px;
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
     align-items: center;
-    font-family: DynaPuff;
+    justify-items: space-evenly;
+    gap: 2vw;
     padding: 0 3%;
     font-weight: 600;
     font-size: 1.3em;
