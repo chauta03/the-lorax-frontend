@@ -7,7 +7,8 @@ async function fetchUserData() {
     }
 
     try {
-        const response = await fetch("http://localhost:8000/users", {
+        const backend = process.env.REACT_APP_FASTAPI_URL || "";
+        const response = await fetch(`${backend}users`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,

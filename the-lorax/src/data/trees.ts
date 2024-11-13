@@ -3,7 +3,8 @@ import { Tree, Point } from "../types/tree";
 
 const fetchTreeInfo = async (): Promise<Point[]> => {
     try {
-        const response = await axios.get("http://localhost:8000/treeinfo");
+        const backend = process.env.REACT_APP_FASTAPI_URL || "";
+        const response = await axios.get(`${backend}treeinfo`);
 
         // Assuming the response data is an array of raw tree data
         const trees: any[] = response.data;
@@ -19,7 +20,8 @@ const fetchTreeInfo = async (): Promise<Point[]> => {
             lat: tree.lat,
             lng: tree.long
         }));
-
+        
+        console.log("Fetched tree info:", formatted);
         return formatted;
     } catch (error) {
         if (axios.isAxiosError(error)) {
