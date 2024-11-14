@@ -10,7 +10,7 @@ export type Tree = {
 };
 
 export type Point = google.maps.LatLngLiteral & {
-    key: string;
+    treeId: string;
     tagNum?: number;
     speciesCo?: string;
     latinName?: string;
@@ -18,4 +18,13 @@ export type Point = google.maps.LatLngLiteral & {
     sun?: string;
     lat?: number;
     lng?: number;
+};
+
+export type TreeHistory = {
+    treeId?: number;
+    histId?: number;
+    hazardRating?: string;
+    DBH?: number;
+    notes?: string;
+    year: number;
 };
