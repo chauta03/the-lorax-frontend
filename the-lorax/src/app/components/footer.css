@@ -1,0 +1,16 @@
+.k-logo-container {
+    width: 3%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    left: 3%;
+    bottom: 2%;
+    transform: translate(-50%, -5%);
+}
+
+.k-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 10%;
+}
+
