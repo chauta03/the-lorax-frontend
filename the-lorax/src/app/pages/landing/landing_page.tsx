@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import "./landing_page.css";
 import Header  from "../../components/header";
 import HeaderMobile from '../../components/headerMobile';
+import logo from '../../../images/logo.svg';
+import "../../components/header.css";
+import "../../components/footer.css";
+import kLogo from '../../../images/K-Color-1.png';
   
 // Create the functional component
 
@@ -35,8 +39,14 @@ return (
             </div>
         ) : (
         <div className="landing-page-background landing-page-trees">
+            <div className='logo-container'>
+                <img src={logo} className='logo-icon'/>
+            </div>
             <div className="landing-page-text-container landing-page-text">
                 Kampus Tree Project
+            </div>
+            <div className='k-logo-container'>
+                <img src={kLogo} className='k-logo' />
             </div>
         </div>
         )}
