@@ -32,22 +32,23 @@
 
 .header-expand-bar {
     aspect-ratio: 12 / 1;
-    opacity: 0.77px;
     background-color: #E0FFDF;
     border-radius: 40px;
     display: inline-flex;
     align-items: center;
     justify-items: space-evenly;
     gap: 2vw;
-    padding: 0 3%;
+    padding: 1% 3%;
     font-weight: 600;
-    font-size: 1.3em;
+    font-size: 1.5em;
     transition: all 1s;
     opacity: 0;
+    pointer-events: none;
 }
 
 .header-expand-bar.active {
     opacity: 100%;
+    pointer-events: all;
 }
 
 .logo-container {
@@ -62,11 +63,12 @@
     width: 100%;
     height: 100%;
     display: block;
-    transition: all 0.5s;
-    opacity: 0;
+    /* transition: all 0.5s; */
+    opacity: 100%;
+    margin: 10%;
 }
 
-.logo-icon.active {
+/* .logo-icon.active {
     opacity: 100%;
-}
+} */
 

@@ -18,9 +18,9 @@ export default function Header() {
             <div className="header-tree-circle" onClick={() => setShowNav(!showNav)}>
                 <img src={treeSandwich} alt="Tree Icon" className="header-tree-icon" />
             </div>
-            <div className='logo-container'>
+            {/* <div className='logo-container'>
                 <img src={logo} className={showNav ? 'logo-icon active' : 'logo-icon'}/>
-            </div>       
+            </div>        */}
             <div className={showNav ? 'header-expand-bar' : "header-expand-bar active"}>
                 <Link to="/">home</Link>
                 <Link to="/directory">directory</Link>
