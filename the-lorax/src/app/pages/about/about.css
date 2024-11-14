@@ -1,15 +1,17 @@
 /* Background */
 .about_background {
-    height: fit-content;
+    height: 100vh;
     background-color: #78D8A4;
     padding: 8% 0px;
 }
 
 .about-body {
     width: 100vw;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
 }
 
 .about-banner-background {
@@ -23,11 +25,17 @@
     padding-top: 2%;
 }
 
+.every-tree-text-container {
+    width: fit-content;
+    justify-content: center;
+    padding: 2%;
+}
+
 .every-tree-text {
     font-size: 5em;
     font-weight: bold;
     /* margin-bottom: 20px; */
-    margin: 1%;
+    justify-content: center;
 }
 
 .body-text {
