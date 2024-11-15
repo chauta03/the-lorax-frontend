@@ -74,8 +74,8 @@ const Markers = () => {
             {points.map((point) => (
                 <AdvancedMarker
                     position={{ lat: point.lat, lng: point.lng }}
-                    key={point.key}
-                    ref={(marker) => setMarkerRef(marker, point.key)}
+                    key={point.treeId}
+                    ref={(marker) => setMarkerRef(marker, point.treeId)}
                     onClick={() => handleMarkerClick(point)}
                 >
                     <span style={{ fontSize: "2rem" }}>🌳</span>
@@ -112,6 +112,7 @@ const Markers = () => {
                     </button>
                     <h3>{activeMarker.latinName}</h3>
                     <div className="Details">
+                        <p>Tag number: {activeMarker.treeId}</p>
                         <p>Tag number: {activeMarker.tagNum}</p>
                         <p>Species Code: {activeMarker.speciesCo}</p>
                         <p>Latin Name: {activeMarker.latinName}</p>
