@@ -14,14 +14,34 @@ import trees from "../../../data/trees";
 import "./page.css";
 import axios from "axios";
 import Markers from "./markers";
+import logo from '../../../images/logo.svg';
 
 export default function GgMap() {
     const initialPosition = { lat: 42.290106400890906, lng: -85.59815573221456 };
     const apiKey = process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
+    const [isMobile, setIsMobile] = useState(false);
+    // Detect screen width on mount and resize
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
 
+        // Set initial value
+        handleResize();
+
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
     return (
         <APIProvider apiKey={apiKey}>
             <div className="map-container">
+                <div className='logo-container'>
+                    <img src={logo} className='logo-icon'/>
+                </div>
                 {/* Map Component */}
                 <div className="map">
                     <Map
