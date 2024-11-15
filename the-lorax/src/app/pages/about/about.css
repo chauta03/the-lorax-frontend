@@ -2,7 +2,7 @@
 .about_background {
     height: 100vh;
     background-color: #78D8A4;
-    padding: 8% 0px;
+    padding: 8% 0% 0% 0%;
 }
 
 .about-body {
@@ -45,5 +45,39 @@
     margin-right: 2%;
     margin-bottom: 3%;
     text-indent: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    .about-banner-background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 96%;
+        height: 100%;
+        padding: 15% 2% 0% 2%;
+    }
+
+    .every-tree-text-container {
+        width: fit-content;
+        justify-content: center;
+        padding: 2%;
+        text-align: center;
+    }
+    
+    .every-tree-text {
+        font-size: 3em;
+        font-weight: bold;
+        /* margin-bottom: 20px; */
+        justify-content: center;
+    }
+
+    .body-text {
+        font-size: 1.5em;
+        font-weight: lighter;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom: 3%;
+        text-indent: 5%;
+    }
 }
 
