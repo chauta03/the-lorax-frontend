@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom"; 
 import './login.css';
 import Header from '../../components/header';
 import treeImage from '../../../images/login-tree-image.svg';
@@ -8,7 +8,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate(); // Initialize navigate function
+    const navigate = useNavigate(); 
 
     // Check if already log in
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function Login() {
                 
                 alert("Login successful!");
                 // Redirect to admin dashboard after login
-                navigate("/adminDashBoard"); // Route to the admin dashboard
+                navigate("/adminDashBoard"); 
             } else {
                 alert("Login failed! Check your credentials.");
             }
