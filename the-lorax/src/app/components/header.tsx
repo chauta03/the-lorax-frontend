@@ -43,7 +43,9 @@ export default function Header() {
                         <img src={treeSandwich} alt="Tree Icon" className="header-tree-icon-mobile" />
                     </div>
                     <div className='logo-container-mobile'>
-                        <img src={logo} className={showNav ? 'logo-icon-mobile' : 'logo-icon-mobile active'}/>
+                        <Link to="/">
+                            <img src={logo} className={showNav ? 'logo-icon-mobile' : 'logo-icon-mobile active'}/>
+                        </Link>
                     </div>
                     {/* Sidebar overlay */}
                     <div className={`sidebar-overlay ${showNav ? 'active' : ''}`}>
