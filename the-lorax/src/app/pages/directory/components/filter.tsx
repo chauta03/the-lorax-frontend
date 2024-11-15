@@ -5,16 +5,37 @@ import ArrowDown from '../../../../images/icons/arrow-down.svg';
 type FilterProps = {
     latinNames: string[];
     commonNames: string[];
-    onFilter: (key: 'latinName' | 'commonName', value: string | null) => void; 
+    sun: string[];
+    speciesCo: string[];
+    onFilter: (key: 'latinName' | 'commonName' | 'sun' | 'speciesCo', value: string | null) => void; 
 };
 
-export default function Filter({ latinNames, commonNames, onFilter }: FilterProps) {
+export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilter }: FilterProps) {
+    // Sort
+    const sortedLatinNames = latinNames.sort();
+    const sortedCommonNames = commonNames.sort();
+    const sortedSun = sun.sort();
+    const sortedSpeciesCo = speciesCo.sort();
+
     const [showLatinDropdown, setShowLatinDropdown] = useState(false);
     const [showCommonDropdown, setShowCommonDropdown] = useState(false);
+    const [showSunDropdown, setShowSunDropdown] = useState(false);
+    const [showSpeciesCo, setShowSpeciesCo] = useState(false);
+
+    const [latinDropdownIndex, setLatinDropdownIndex] = useState(-1);
+    const [commonDropdownIndex, setCommonDropdownIndex] = useState(-1);
+    const [sunDropdownIndex, setSunDropdownIndex] = useState(-1);
+    const [speciesCoDropdownIndex, setSpeciesCoDropdownIndex] = useState(-1);
+    
     const [selectedLatinName, setSelectedLatinName] = useState<string | null>(null);
     const [selectedCommonName, setSelectedCommonName] = useState<string | null>(null);
+    const [selectedSun, setSelectedSun] = useState<string | null>(null);
+    const [selectedSpeciesCo, setSelectedSpeciesCo] = useState<string | null>(null);
+    
     const latinDropdownRef = useRef<HTMLDivElement | null>(null);
     const commonDropdownRef = useRef<HTMLDivElement | null>(null);
+    const sunDropdownRef = useRef<HTMLDivElement | null>(null);
+    const speciesCoDropdownRef = useRef<HTMLDivElement | null>(null);
 
     const handleLatinSelect = (value: string | null) => {
         setSelectedLatinName(value);
@@ -26,6 +47,18 @@ export default function Filter({ latinNames, commonNames, onFilter }: FilterProp
         setSelectedCommonName(value);
         onFilter('commonName', value);
         setShowCommonDropdown(false);
+    };
+
+    const handleSunSelect = (value: string | null) => {
+        setSelectedSun(value);
+        onFilter('sun', value);
+        setShowSunDropdown(false);
+    };
+
+    const handleSpeciesCoSelect = (value: string | null) => {
+        setSelectedSpeciesCo(value);
+        onFilter('speciesCo', value);
+        setShowSpeciesCo(false);
     };
 
     // Close dropdown when clicking outside
@@ -42,6 +75,18 @@ export default function Filter({ latinNames, commonNames, onFilter }: FilterProp
                 !commonDropdownRef.current.contains(event.target as Node)
             ) {
                 setShowCommonDropdown(false);
+            }
+            if (
+                sunDropdownRef.current &&
+                !sunDropdownRef.current.contains(event.target as Node)
+            ) {
+                setShowSunDropdown(false);
+            }
+            if (
+                speciesCoDropdownRef.current &&
+                !speciesCoDropdownRef.current.contains(event.target as Node)
+            ) {
+                setShowSpeciesCo(false);
             }
         };
 
@@ -77,7 +122,7 @@ export default function Filter({ latinNames, commonNames, onFilter }: FilterProp
                             >
                                 All
                             </div>
-                            {latinNames.map(name => (
+                            {sortedLatinNames.map(name => (
                                 <div
                                     key={name}
                                     onClick={() => handleLatinSelect(name)}
@@ -111,11 +156,79 @@ export default function Filter({ latinNames, commonNames, onFilter }: FilterProp
                             >
                                 All
                             </div>
-                            {commonNames.map(name => (
+                            {sortedCommonNames.map(name => (
                                 <div
                                     key={name}
                                     onClick={() => handleCommonSelect(name)}
                                     style={{ fontWeight: selectedCommonName === name ? 'bold' : 'normal' }}
+                                >
+                                    {name}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Sun Dropdown */}
+                <div
+                    className="sort-directory-category-field"
+                    onClick={() => {
+                        setShowSunDropdown(!showSunDropdown);
+                        setShowLatinDropdown(false); // Hide other dropdown
+                    }}
+                    ref={sunDropdownRef}
+                >
+                    <span>
+                        Sun: {selectedSun || 'All'}
+                    </span>
+                    <img src={ArrowDown} alt="Sort" />
+                    {showSunDropdown && (
+                        <div className="dropdown">
+                            <div 
+                                onClick={() => handleSunSelect(null)}
+                                style={{ fontWeight: selectedSun === null ? 'bold' : 'normal' }}
+                            >
+                                All
+                            </div>
+                            {sortedSun.map(name => (
+                                <div
+                                    key={name}
+                                    onClick={() => handleSunSelect(name)}
+                                    style={{ fontWeight: selectedSun === name ? 'bold' : 'normal' }}
+                                >
+                                    {name}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Species Co Dropdown */}
+                <div
+                    className="sort-directory-category-field"
+                    onClick={() => {
+                        setShowSpeciesCo(!showSpeciesCo);
+                        setShowLatinDropdown(false); // Hide other dropdown
+                    }}
+                    ref={speciesCoDropdownRef}
+                >
+                    <span>
+                        Species Co: {selectedSpeciesCo || 'All'}
+                    </span>
+                    <img src={ArrowDown} alt="Sort" />
+                    {showSpeciesCo && (
+                        <div className="dropdown">
+                            <div 
+                                onClick={() => handleSpeciesCoSelect(null)}
+                                style={{ fontWeight: selectedSpeciesCo === null ? 'bold' : 'normal' }}
+                            >
+                                All
+                            </div>
+                            {sortedSpeciesCo.map(name => (
+                                <div
+                                    key={name}
+                                    onClick={() => handleSpeciesCoSelect(name)}
+                                    style={{ fontWeight: selectedSpeciesCo === name ? 'bold' : 'normal' }}
                                 >
                                     {name}
                                 </div>
