@@ -8,6 +8,7 @@ import Filter from "./components/filter";
 import handleSearch from "../../../data/handleSearch";
 import { Point } from "../../../types/tree"; // Ensure this path is correct
 import fetchTreeInfo from "../../../data/trees";
+import logo from '../../../images/logo.svg';
 
 
 export default function Directory() {
@@ -99,6 +100,9 @@ export default function Directory() {
 
     return (
         <div className="directory">
+            <div className='logo-container'>
+                <img src={logo} className='logo-icon'/>
+            </div>
             <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
             <div className="directory-lower">
                 <div className="directory-sort-and-filter">
