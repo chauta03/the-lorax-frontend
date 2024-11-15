@@ -3,6 +3,7 @@ import { useState } from 'react';
 import "./header.css";
 import treeSandwich from '../../images/icons/sandwichBar.svg';
 import logo from '../../images/logo.svg';
+import sandwichArrow from '../../images/icons/sandwich-arrow-green.svg';
 import { Link } from 'react-router-dom';
 
 
@@ -18,6 +19,7 @@ export default function Header() {
             <div className="header-tree-circle" onClick={() => setShowNav(!showNav)}>
                 <img src={treeSandwich} alt="Tree Icon" className="header-tree-icon" />
             </div>
+            <img src={sandwichArrow} alt="Sandwich Arrow" className={`sandwich-arrow-container ${showNav ? '' : 'active'}`} />
             {/* <div className='logo-container'>
                 <img src={logo} className={showNav ? 'logo-icon active' : 'logo-icon'}/>
             </div>        */}
@@ -29,7 +31,7 @@ export default function Header() {
                 <Link to="/admin">admin</Link>
                 {/* <Link to="/search">search</Link> */}
                 <Link to="/map">map</Link>
-                {/* <Link to="/support">support</Link> */}
+                <Link to="/support">support</Link>
 
             </div>
         </div>
