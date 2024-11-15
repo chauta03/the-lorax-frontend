@@ -98,6 +98,7 @@ const ActionButton: React.FC = () => {
                             <Link to="/map"><MapButtonMobile/></Link>
                         </div>
                     </div>
+                    <Footer />
                 </div>
             ) : (
                 <div className="action-page-background">
