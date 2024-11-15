@@ -5,6 +5,9 @@
     height: 6vh;
     width: 100vw;
     padding: 3% 0% 3% 5%;
+    background-color: transparent;
+    position: fixed;
+    z-index: 1000;
 }
 
 .header-tree-circle-mobile {
@@ -16,6 +19,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .header-tree-icon-mobile {
@@ -42,4 +46,60 @@
 
 .logo-icon-mobile.active {
     opacity: 100%;
+}
+
+/* Sidebar */
+
+/* Menu icon inside the sandwich bar */
+.menu-icon {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Sidebar overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dim background */
+    display: flex;
+    justify-content: flex-start; /* Align sidebar to the left */
+    transform: translateX(-100%); /* Hide by default */
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+/* Sidebar content */
+.sidebar-content {
+    width: 70%; /* Adjust width as needed */
+    height: 100%;
+    background: var(--light-green);
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Links inside the sidebar */
+.sidebar-content-text {
+    font-size: 2rem;
+    color: #000;
+    text-decoration: none;
+}
+
+/* Close button */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+/* Active sidebar */
+.sidebar-overlay.active {
+    transform: translateX(0); /* Show sidebar */
 }
