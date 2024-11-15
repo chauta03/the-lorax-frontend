@@ -18,6 +18,10 @@
     font-size: 15vh;
     font-style: normal;
     font-weight: 600;
+    text-shadow: -1px -1px 2px #714D22, /* Top-left shadow */
+    1px -1px 2px #714D22, /* Top-right shadow */
+   -1px  1px 2px #714D22, /* Bottom-left shadow */
+    1px  1px 2px #714D22; /* Bottom-right shadow */;
 }
 
 .landing-page-text-container {
