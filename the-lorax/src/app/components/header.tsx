@@ -55,8 +55,8 @@ export default function Header() {
                             </button>
                             <Link to="/" onClick={closeSidebar} className='sidebar-content-text'>home</Link>
                             <Link to="/directory" onClick={closeSidebar} className='sidebar-content-text'>directory</Link>
+                            <Link to="/history" onClick={closeSidebar} className='sidebar-content-text'>history</Link>
                             <Link to="/about" onClick={closeSidebar} className='sidebar-content-text'>about</Link>
-                            {/* <Link to="/explore">explore</Link> */}
                             <Link to="/adminMobile" onClick={closeSidebar} className='sidebar-content-text'>admin</Link>
                             {/* <Link to="/search">search</Link> */}
                             <Link to="/map" onClick={closeSidebar} className='sidebar-content-text'>map</Link>
@@ -73,6 +73,7 @@ export default function Header() {
                     <div className={showNav ? 'header-expand-bar active' : "header-expand-bar"}>
                         <Link to="/">home</Link>
                         <Link to="/directory">directory</Link>
+                        <Link to="/history">history</Link>
                         <Link to="/about">about</Link>
                         {/* <Link to="/explore">explore</Link> */}
                         <Link to="/admin">admin</Link>

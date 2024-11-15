@@ -14,30 +14,58 @@ export default function History() {
     const [searchResults, setSearchResults] = useState<TreeHistory[] | null>(null);
     const [sortKey, setSortKey] = useState<keyof TreeHistory | null>(null);
     const [selectedHazardRating, setSelectedHazardRating] = useState<string | null>(null);
+    const [selectedYear, setSelectedYear] = useState<number | null>(null);
+    
+    const [hazardRatingArr, setHazardRatingArr] = useState<string[]>([]);
+    const [yearArr, setYearArr] = useState<number[]>([]);
+    
 
     // Fetch the initial tree data
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetchTreeHistoryInfo(); // Fetch all trees initially
-            console.log("history", data);
             setTreeData(data);
-        };
+
+             // Use a Set to ensure uniqueness
+            const hazardRatings = new Set<string>();
+            const years = new Set<number>();
+
+            // Get all unique hazard ratings and years
+            data.forEach(tree => {
+                if (tree.hazardRating) {
+                    hazardRatings.add(tree.hazardRating);
+                }
+
+                if (tree.year) {
+                    years.add(tree.year);
+                }
+            });
+
+            setHazardRatingArr(Array.from(hazardRatings).sort());
+            setYearArr(Array.from(years).sort());
+        }
         fetchData();
     }, []);
 
-    // // Function to handle search input and update search results
-    // const handleSearchInput = async (query: string) => {
-    //     if (query.trim() === "") {
-    //         setSearchResults(null); // Show all data if search query is empty
-    //     } else {
-    //         const results = await handleSearchHistory(query);
-    //         setSearchResults(results);
-    //     }
-    // };
+    // Function to handle search input and update search results
+    const handleSearchInput = async (query: string) => {
+        if (query.trim() === "") {
+            setSearchResults(null); // Show all data if search query is empty
+        } else {
+            const results = await handleSearchHistory(query);
+            setSearchResults(results);
+        }
+    };
 
-    // const handleFilter = (key: keyof TreeHistory, value: string | null) => {
-    //     setSelectedHazardRating(value);
-    // };
+    const handleFilter = (key: keyof TreeHistory, value: string | number | null) => {
+        if (key === 'hazardRating') {
+            setSelectedHazardRating(value as string);
+        }
+
+        if (key === 'year') {
+            setSelectedYear(value as number);
+        }
+    };
     
 
     // Handle sorting when clicking on the filter buttons
@@ -48,17 +76,20 @@ export default function History() {
     // Apply sorting and filtering to data (either all trees or search results)
     const filteredAndSortedDataHistory = useMemo(() => {
         let data = searchResults ?? treeData;
-        let sortedData = data;
 
         // Apply filtering
-        // if (selectedHazardRating) {
-        //     data = data.filter(tree => tree.hazardRating === selectedHazardRating);
-        // }
+        if (selectedHazardRating) {
+            data = data.filter(tree => tree.hazardRating === selectedHazardRating);
+        }
+
+        if (selectedYear) {
+            data = data.filter(tree => tree.year === selectedYear);
+        }
 
 
         // Apply sorting
         if (sortKey) {
-            sortedData = [...data].sort((a, b) => {
+            data = [...data].sort((a, b) => {
                 const aValue = a[sortKey] ?? '';
                 const bValue = b[sortKey] ?? '';
 
@@ -69,19 +100,20 @@ export default function History() {
             });
         }
 
-        return sortedData;
-    }, [searchResults, treeData, sortKey, selectedHazardRating]);
+        return data;
+    }, [searchResults, treeData, sortKey, selectedHazardRating, selectedYear]);
 
     return (
         <div className="directory">
             {/* <SearchBar onSearch={handleSearchInput} /> */}
             <div className="directory-lower">
                 <div className="directory-sort-and-filter">
-                    <SortHistory onSort={handleSort} />
-                    {/* <FilterHistory
-                        hazardRating={Array.from(new Set(treeData.map(tree => tree.hazardRating).filter(Boolean))) as string[]}
+                    <FilterHistory
+                        hazardRating={hazardRatingArr}
+                        year={yearArr}
                         onFilter={handleFilter}
-                    /> */}
+                    />
+                    <SortHistory onSort={handleSort} />
                 </div>
                 <div className="directory-display">
                     <Display data={filteredAndSortedDataHistory} />

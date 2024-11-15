@@ -48,7 +48,7 @@ export default function DisplayHistory({ data }: DisplayProps) {
         <div className="display-container">
             {/* Header Section */}
             <div className='display-filter'>
-                <div className="display-filter-header">
+                <div className="display-filter-header display-filter-history">
                     <span className="display-filter-column">Tree ID</span>
                     <span className="display-filter-column">History ID</span>
                     <span className="display-filter-column">Hazard Rating</span>
@@ -61,7 +61,7 @@ export default function DisplayHistory({ data }: DisplayProps) {
                 <div className="display-filter-container">
                     {currentTrees.length > 0 ? (
                         currentTrees.map((tree) => (
-                            <div key={tree.treeId} className="display-filter-row">
+                            <div key={tree.treeId} className="display-filter-row display-filter-history">
                                 <span className="display-filter-column">{tree.treeId}</span>
                                 <span className="display-filter-column">{tree.histId}</span>
                                 <span className="display-filter-column">{tree.hazardRating}</span>

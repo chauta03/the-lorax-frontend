@@ -41,14 +41,15 @@ export default function SortHistory({ onSort }: FilterProps) {
                     <span>Hazard Rating</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div>
-                <div
+                {/* Haha does not work dont know why => Solution: comment out :D */}
+                {/* <div
                     className="sort-directory-category-field"
                     onClick={() => handleSortHistory('DBH')}
                     style={{ fontWeight: selectedSortKey === 'DBH' ? 'bold' : 'normal' }}
                 >
                     <span>DBH</span>
                     <img src={ArrowDown} alt="Sort"/>
-                </div>
+                </div> */}
                 <div
                     className="sort-directory-category-field"
                     onClick={() => handleSortHistory('notes')}
