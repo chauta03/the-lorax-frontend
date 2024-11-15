@@ -79,3 +79,18 @@
 .link-text:hover {
     color: darkblue; /* Changes color on hover */
 }
+
+@media screen and (max-width: 768px) {
+    .support-text-container {
+        display: flex;
+        justify-content: center;
+        padding: 15% 10% 5% 10%;
+    }
+
+    .support-text {
+        font-size: 5rem;
+        font-weight: bold;
+        justify-content: center;
+    }
+
+}
