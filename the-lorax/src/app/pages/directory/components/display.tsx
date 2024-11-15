@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Point } from "../../../../types/tree";
 
 type DisplayProps = {
@@ -7,12 +7,27 @@ type DisplayProps = {
 
 export default function Display({ data }: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
-    const treesPerPage = 15;
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowHeight(window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const treesPerPage = Math.floor((windowHeight * 0.45) / 50);
 
     // Calculate the index range for the current page
     const indexOfLastTree = currentPage * treesPerPage;
     const indexOfFirstTree = indexOfLastTree - treesPerPage;
     const currentTrees = useMemo(() => data.slice(indexOfFirstTree, indexOfLastTree), [data, indexOfFirstTree, indexOfLastTree]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [data]);
 
     // Handle page changes
     const handleNextPage = () => {
@@ -27,11 +42,14 @@ export default function Display({ data }: DisplayProps) {
         }
     };
 
+
+
     return (
         <div className="display-container">
             {/* Header Section */}
             <div className='display-filter'>
                 <div className="display-filter-header">
+                    <span className="display-filter-column">Tree ID</span>
                     <span className="display-filter-column">Tag #</span>
                     <span className="display-filter-column">Species Code</span>
                     <span className="display-filter-column">Latin Name</span>
@@ -45,7 +63,8 @@ export default function Display({ data }: DisplayProps) {
                 <div className="display-filter-container">
                     {currentTrees.length > 0 ? (
                         currentTrees.map((tree) => (
-                            <div key={tree.key} className="display-filter-row">
+                            <div key={tree.treeId} className="display-filter-row">
+                                <span className="display-filter-column">{tree.treeId}</span>
                                 <span className="display-filter-column">{tree.tagNum}</span>
                                 <span className="display-filter-column">{tree.speciesCo}</span>
                                 <span className="display-filter-column">{tree.latinName}</span>
@@ -71,7 +90,7 @@ export default function Display({ data }: DisplayProps) {
                     >
                         Previous
                     </button>
-                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)}</span>
+                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)} (total of {data.length} trees)</span>
                     <button
                         className="pagination-button"
                         onClick={handleNextPage}
