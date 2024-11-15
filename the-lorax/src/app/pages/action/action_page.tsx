@@ -1,6 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import "./action_page.css";
+import { Link } from 'react-router-dom';
 import { Point } from "../../../types/tree";
 import HeaderMobile from '../../components/headerMobile'; 
 import DirectoryButton from './action_buttons/directoryButton';
@@ -16,6 +17,7 @@ import AboutButtonMobile from './mobile_action_buttons/aboutButtonMobile';
 import DirectoryButtonMobile from './mobile_action_buttons/directoryButtonMobile';
 import MapButtonMobile from './mobile_action_buttons/mapButtonMobile';
 import SupportButtonMobile from './mobile_action_buttons/mapButtonMobile copy';
+import Footer from '../../components/footer';
 
 // Search
 import handleSearch from '../../../data/handleSearch';
@@ -89,16 +91,18 @@ const ActionButton: React.FC = () => {
             ) : (
                 <div className="action-page-background">
                     <div className="action-page-upper-buttons">
-                        <DirectoryButton onClick={Directory_Click} />
-                        <AboutButton onClick={About_Click} />
-                        <TreeButton onClick={Tree_Click} />
-                        <AdminButton onClick={AdminButton_Click} />
+                        <Link to="/directory"> <DirectoryButton/> </Link>
+                        <Link to="/about"><AboutButton/></Link>
+                        <Link to="/"><TreeButton/></Link>
+                        <Link to="/admin"><AdminButton/></Link>
                     </div>
+                    {/* Need to add in search bar function! */}
                     <SearchBar onSearch={handleSearch} />
                     <div className="action-page-lower-buttons">
-                        <MapButton onClick={MapButton_Click} />
-                        <SupportButton onClick={SupportButton_Click} />
+                        <Link to="/map"><MapButton/></Link>
+                        <SupportButton/>
                     </div>
+                    <Footer />
                 </div>
             )}
         </div>

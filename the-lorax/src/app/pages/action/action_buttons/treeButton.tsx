@@ -10,9 +10,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const TreeButton: React.FC<CustomButtonProps> = ({onClick}) => {
+const TreeButton: React.FC = () => {
     return (
-        <div className="button-tree-only" onClick={onClick}>
+        <div className="button-tree-only">
             <img src={tree} alt="Tree Icon" className="button-tree-icon" />
             <TreeBackground className="button-tree-background" />
         </div>

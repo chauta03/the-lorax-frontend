@@ -7,9 +7,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const AboutButton: React.FC<CustomButtonProps> = ({onClick}) => {
+const AboutButton: React.FC = () => {
     return (
-        <div className="button" onClick={onClick}>
+        <div className="button">
             <span className='button-text button-about-text'>about</span>
             <span className='button-text button-about-text'>the</span>
             <span className='button-text button-about-text'>project</span>

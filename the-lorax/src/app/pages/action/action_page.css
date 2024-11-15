@@ -9,7 +9,7 @@
     justify-content: center;
     background-color: #78D8A4;
     height: fit-content;
-    padding: 10%;
+    padding: 10% 10% 0% 10%;
     /* width: 100vw; */
     z-index: -100;
     /* background-image: url('../../../images/mapLine.svg');
@@ -29,6 +29,7 @@
 .action-page-lower-buttons {
     display: flex;
     margin-top: 2.5%;
+    margin-bottom: 6%;
 }
 
 /* Directory Button */

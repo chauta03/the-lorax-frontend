@@ -9,9 +9,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const supportButton: React.FC<CustomButtonProps> = ({onClick}) => {
+const supportButton: React.FC = () => {
     return (
-        <div className="button" onClick={onClick}>
+        <div className="button">
             <span className="button-text button-support-text">support</span>
             <SupportBackground className="button-support-background"></SupportBackground>
         </div>
