@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './adminDashboard.css';
 import Header from '../../components/header';
 import AdminFilter from "./components/adminFilter";
-import Filter from "./components/filter"; // Import the Filter component
+import AdminSort from "./components/adminSort"; // Import the Filter component
 import { User } from '../../../types/user';
 
 
@@ -17,7 +17,7 @@ export default function AdminDashboard() {
     return (
         <div className="admin">
             <div className="admin-body">
-                <Filter onSort={handleSort} /> {/* Add Filter here */}
+                <AdminSort onSort={handleSort} /> {/* Add Filter here */}
                 <AdminFilter sortKey={sortKey} /> {/* Pass sortKey as prop */}
             </div>
         </div>
