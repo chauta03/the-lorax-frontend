@@ -1,11 +1,12 @@
 /* Background */
 .about_background {
     background-color: var(--mid-green);
+    height: 100vh;
+    min-height: fit-content;
 }
 
 .about-body {
     width: 100vw;
-    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
