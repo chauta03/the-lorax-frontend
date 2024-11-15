@@ -25,7 +25,7 @@ export default function Support() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
     return (
-        <div>
+        <div >
             {isMobile ? (
                 <div className="support-page-background">
                     <div className='support-text-container'>
@@ -56,7 +56,6 @@ export default function Support() {
                             </div>
                         </div>
                     </div>
-                    <Footer />
                 </div>
             ) : (
                 <div className="support-page-background">
@@ -97,10 +96,9 @@ export default function Support() {
                             <img src={bigTree2} alt='Big Tree 2' className='big-tree-icon'/>
                         </div>
                     </div>
-                    <Footer />
                 </div>
             )}
-            
+            <Footer />
         </div>
     )
 }

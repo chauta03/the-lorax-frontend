@@ -2,6 +2,7 @@
 .about_background {
     background-color: var(--mid-green);
     height: 100vh;
+    overflow: auto;
     min-height: fit-content;
 }
 

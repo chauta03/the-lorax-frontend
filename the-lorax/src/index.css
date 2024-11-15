@@ -1,4 +1,11 @@
 body {
   margin: 0;
   font-family: DynaPuff;
+  height: 100%;
+  overflow: auto;
 }
+
+/* body {
+
+  background-color: #ffff34;
+} */

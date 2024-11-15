@@ -1,17 +1,14 @@
 /* Background */
 .support-page-background {
-    display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
-    background-color: #78D8A4;
+    background-color: var(--mid-green);
     height: 100vh;
-    width: 100vw;
-    flex-direction: column;
+    overflow: auto;
+    min-height: fit-content;
+    flex-grow: 1;
 }
 
 .support-body {
-    width: 100vw;
-    height: fit-content;
+    /* height: fit-content; */
     display: flex;
     flex-direction: row;
     justify-content: center;

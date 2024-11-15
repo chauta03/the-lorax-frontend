@@ -1,6 +1,6 @@
 .directory {
-    height: calc(100vh - 12vh);
-    min-height: 88vh;
+    height: 100%;
+    overflow: auto;
     background-color: var(--mid-green);
     padding-top: 12vh;
 }
