@@ -3,11 +3,11 @@
     flex-direction: row;
     align-items: center;
     height: 6vh;
-    width: 100vw;
-    padding: 3% 0% 3% 5%;
+    width: 90vw;
+    padding: 3% 3% 3% 5%;
     background-color: transparent;
     position: fixed;
-    z-index: 1000;
+    z-index: 1000;                                    
 }
 
 .header-tree-circle-mobile {
