@@ -11,11 +11,6 @@ type FilterProps = {
 };
 
 export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilter }: FilterProps) {
-    // Sort
-    const sortedLatinNames = latinNames.sort();
-    const sortedCommonNames = commonNames.sort();
-    const sortedSun = sun.sort();
-    const sortedSpeciesCo = speciesCo.sort();
 
     const [showLatinDropdown, setShowLatinDropdown] = useState(false);
     const [showCommonDropdown, setShowCommonDropdown] = useState(false);
@@ -122,7 +117,7 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                             >
                                 All
                             </div>
-                            {sortedLatinNames.map(name => (
+                            {latinNames.map(name => (
                                 <div
                                     key={name}
                                     onClick={() => handleLatinSelect(name)}
@@ -156,7 +151,7 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                             >
                                 All
                             </div>
-                            {sortedCommonNames.map(name => (
+                            {commonNames.map(name => (
                                 <div
                                     key={name}
                                     onClick={() => handleCommonSelect(name)}
@@ -190,7 +185,7 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                             >
                                 All
                             </div>
-                            {sortedSun.map(name => (
+                            {sun.map(name => (
                                 <div
                                     key={name}
                                     onClick={() => handleSunSelect(name)}
@@ -224,7 +219,7 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                             >
                                 All
                             </div>
-                            {sortedSpeciesCo.map(name => (
+                            {speciesCo.map(name => (
                                 <div
                                     key={name}
                                     onClick={() => handleSpeciesCoSelect(name)}

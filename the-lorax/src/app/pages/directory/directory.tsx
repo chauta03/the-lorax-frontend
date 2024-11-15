@@ -25,6 +25,11 @@ export default function Directory() {
     const query = searchParams.get("query") || "";
     const [searchTerm, setSearchTerm] = useState(query);
 
+    const [commonNames, setCommonNames] = useState<string[]>([]);
+    const [latinNames, setLatinNames] = useState<string[]>([]);
+    const [suns, setSuns] = useState<string[]>([]);
+    const [speciesCos, setSpeciesCos] = useState<string[]>([]);
+
     // Search when query changes
     useEffect(() => {
         if (searchTerm) {
@@ -37,6 +42,36 @@ export default function Directory() {
         const fetchData = async () => {
             const data = await fetchTreeInfo(); // Fetch all trees initially
             setTreeData(data);
+
+            const commonNamesSet = new Set<string>();
+            const latinNamesSet = new Set<string>();
+            const sunsSet = new Set<string>();
+            const speciesCosSet = new Set<string>();
+
+            // Get all unique common names, latin names, suns, and speciesCos
+            data.forEach(tree => {
+                if (tree.commonName) {
+                    commonNamesSet.add(tree.commonName);
+                }
+
+                if (tree.latinName) {
+                    latinNamesSet.add(tree.latinName);
+                }
+
+                if (tree.sun) {
+                    sunsSet.add(tree.sun);
+                }
+
+                if (tree.speciesCo) {
+                    speciesCosSet.add(tree.speciesCo);
+                }
+            });
+
+            setCommonNames(Array.from(commonNamesSet).sort());
+            setLatinNames(Array.from(latinNamesSet).sort());
+            setSuns(Array.from(sunsSet).sort());
+            setSpeciesCos(Array.from(speciesCosSet).sort());
+
         };
         fetchData();
     }, []);
@@ -105,12 +140,25 @@ export default function Directory() {
             </div>
             <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
             <div className="directory-lower">
+                {/* Clear sort and filter button */}
+                {/* <button
+                    className="clear-button"
+                    onClick={() => {
+                        setSelectedLatinName(null);
+                        setSelectedCommonName(null);
+                        setSelectedSun(null);
+                        setSelectedSpeciesCo(null);
+                        setSortKey(null);
+                    }}
+                >
+                    Clear Sort and Filter
+                </button> */}
                 <div className="directory-sort-and-filter">
                     <Filter
-                        latinNames={Array.from(new Set(treeData.map(tree => tree.latinName).filter(Boolean))) as string[]}
-                        commonNames={Array.from(new Set(treeData.map(tree => tree.commonName).filter(Boolean))) as string[]}
-                        sun={Array.from(new Set(treeData.map(tree => tree.sun).filter(Boolean))) as string[]}
-                        speciesCo={Array.from(new Set(treeData.map(tree => tree.speciesCo).filter(Boolean))) as string[]}
+                        latinNames={latinNames}
+                        commonNames={commonNames}
+                        sun={suns}
+                        speciesCo={speciesCos}
                         onFilter={handleFilter}
                     />
                     <Sort onSort={handleSort} />
