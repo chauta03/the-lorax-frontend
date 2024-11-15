@@ -2,7 +2,6 @@
 .about_background {
     height: 100vh;
     background-color: #78D8A4;
-    padding: 8% 0% 0% 0%;
 }
 
 .about-body {
@@ -12,6 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 8% 0% 8% 0%;
 }
 
 .about-banner-background {

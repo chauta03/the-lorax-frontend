@@ -14,24 +14,10 @@ type CustomButtonProps = {
 };
 
 export default function Header() {
-    const [showNav, setShowNav] = useState(true)
-    return (
-        <div className="header">
-            <div className="header-tree-circle" onClick={() => setShowNav(!showNav)}>
-                <img src={treeSandwich} alt="Tree Icon" className="header-tree-icon" />
-            </div>
-            {/* <div className='logo-container'>
-                <img src={logo} className={showNav ? 'logo-icon active' : 'logo-icon'}/>
-            </div>        */}
-            <div className={showNav ? 'header-expand-bar' : "header-expand-bar active"}>
-                <Link to="/">home</Link>
-                <Link to="/directory">directory</Link>
-                <Link to="/history">history</Link>
-                <Link to="/about">about</Link>
-                <Link to="/admin">admin</Link>
-                {/* <Link to="/search">search</Link> */}
-                <Link to="/map">map</Link>
-                {/* <Link to="/support">support</Link> */}
+    const [showNav, setShowNav] = useState(false)
+    const [isMobile, setIsMobile] = useState(false);
+    // Function to close the sidebar
+    const closeSidebar = () => setShowNav(false);
 
     // Detect screen width on mount and resize
     useEffect(() => {

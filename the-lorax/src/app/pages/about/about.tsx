@@ -37,7 +37,6 @@ export default function About() {
                         In collaboration with Dr. Binney Girdler of the Biology Department, we digitized the locations of (almost) every tree on our main campus, which was collected in two previous Seniors Integrated Projects. With the Campus Tree Project, you can locate, search, and learn more about every tree you encounter. Our goal is to monitor the carbon sequestration of trees on campus, in the spirit of the Climate Action Plan of Kalamazoo College.
                         </text>
                     </div>
-                    <Footer />
                 </div>
             ) : (
                 <div className="about_background">
@@ -54,9 +53,9 @@ export default function About() {
                         In collaboration with Dr. Binney Girdler of the Biology Department, we digitized the locations of (almost) every tree on our main campus, which was collected in two previous Seniors Integrated Projects. With the Campus Tree Project, you can locate, search, and learn more about every tree you encounter. Our goal is to monitor the carbon sequestration of trees on campus, in the spirit of the Climate Action Plan of Kalamazoo College.
                         </text>
                     </div>
-                    <Footer />
                 </div>
             )}
+            <Footer />
         </div>
     )
 }
