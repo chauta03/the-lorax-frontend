@@ -8,6 +8,7 @@ import Login from './app/pages/login/login';
 import AdminDashboard from './app/pages/admin/adminDashboard';
 import About from './app/pages/about/about';
 import Header from './app/components/header';
+import History from './app/pages/history/history';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './app/flow/home';
 import ScrollToTop from './app/components/ScrollToTop';
@@ -32,6 +33,7 @@ function App() {
         <Route path="/adminMobile" element={<AdminMobile />} />
         <Route path="/map" element={<GgMap />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </BrowserRouter>
   );
