@@ -1,7 +1,6 @@
 /* Background */
 .about_background {
-    height: 100vh;
-    background-color: #78D8A4;
+    background-color: var(--mid-green);
 }
 
 .about-body {
