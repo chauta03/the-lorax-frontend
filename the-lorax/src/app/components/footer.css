@@ -14,3 +14,35 @@
     margin: 10%;
 }
 
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    height: 10%;
+    width: 100vw;
+    bottom: 0;
+    background-color: var(--light-green);
+    z-index: 1000;
+}
+
+.stack-left-container {
+    width: 10rem;
+    left: 10%;
+    padding: 2.5% 3%;
+}
+
+.footer-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-text {
+    font-size: 0.8em;
+    font-weight: 100;
+    color: #83C082;
+    align-self: baseline;
+}
+
+
+
