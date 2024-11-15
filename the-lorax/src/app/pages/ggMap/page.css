@@ -10,15 +10,16 @@
     height: 90vh;
     width: 90%;
     margin: 20px;
+    border-radius: 10%;
 }
 
 .sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
+    bottom: 0;
+    right: 0;
     width: 300px;
-    height: 100%;
-    background-color: white;
+    height: 80%;
+    background-color: var(--light-green);
     box-shadow: -3px 0 5px rgba(0,0,0,0.2);
     padding: 1rem;
     z-index: 1000;
@@ -37,4 +38,5 @@
     cursor: pointer;
     width: 3.5rem;
     float: right;
+    font-family: 'DynaPuff';
 }
