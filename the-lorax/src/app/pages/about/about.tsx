@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import Header from '../../components/header'
 import './about.css';
+import logo from '../../../images/logo.svg';
 import { ReactComponent as AboutBanner } from '../../../images/about_banner.svg';
 
 export default function About() {
     
     return (
         <div className="about_background">
+            <div className='logo-container' style={{top: '2%'}}>
+                <img src={logo} className='logo-icon'/>
+            </div>
             <div className="about-body">
                 <AboutBanner className='about-banner-background'></AboutBanner>
                 <div className='every-tree-text-container'>
