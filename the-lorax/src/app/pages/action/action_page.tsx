@@ -1,13 +1,14 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import "./action_page.css";
 import { Link } from 'react-router-dom';
 import { Point } from "../../../types/tree";
-import HeaderMobile from '../../components/headerMobile'; 
+import { useNavigate } from 'react-router-dom';
+import HeaderMobile from '../../components/headerMobile';
 import DirectoryButton from './action_buttons/directoryButton';
 import AboutButton from './action_buttons/aboutButton';
 import TreeButton from './action_buttons/treeButton';
-import SearchBar from './action_buttons/searchBar';
+import SearchBar from '../../components/searchBar';
 import AdminButton from './action_buttons/adminButton';
 import MapButton from './action_buttons/mapButton';
 import SupportButton from './action_buttons/supportButton';
@@ -25,6 +26,7 @@ import handleSearch from '../../../data/handleSearch';
 
 const ActionButton: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const navigate = useNavigate(); 
 
     const Directory_Click = () => {
         alert("Directory");
@@ -41,7 +43,7 @@ const ActionButton: React.FC = () => {
     const AdminButton_Click = () => {
         alert("Admin!!");
     };
-    
+
 
     const MapButton_Click = () => {
         alert("Google Maps!!");
@@ -50,23 +52,32 @@ const ActionButton: React.FC = () => {
     const SupportButton_Click = () => {
         alert("I will always help you!!");
     };
-    
 
-    
+    const handleSearchInput = (query: string) => {
+        if (query.trim() !== "") {
+            // Navigate to the directory route with query as a URL parameter
+            navigate(`/directory?query=${encodeURIComponent(query)}`);
+        } else {
+            console.log("Search query is empty");
+        }
+    };
+
+
+
     // Detect screen width on mount and resize
     useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
-  
-      // Set initial value
-      handleResize();
-  
-      // Attach resize event listener
-      window.addEventListener('resize', handleResize);
-  
-      // Cleanup event listener on unmount
-      return () => window.removeEventListener('resize', handleResize);
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        // Set initial value
+        handleResize();
+
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on unmount
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
 
@@ -96,8 +107,7 @@ const ActionButton: React.FC = () => {
                         <Link to="/"><TreeButton/></Link>
                         <Link to="/admin"><AdminButton/></Link>
                     </div>
-                    {/* Need to add in search bar function! */}
-                    <SearchBar onSearch={handleSearch} />
+                    <SearchBar onSearch={handleSearchInput} />
                     <div className="action-page-lower-buttons">
                         <Link to="/map"><MapButton/></Link>
                         <Link to="/support"><SupportButton/></Link>

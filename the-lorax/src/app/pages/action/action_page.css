@@ -178,56 +178,6 @@
     transform: translate(-60%, 160%) rotate(-36.19deg);
 }
 
-/* Search bar */
-.search-bar-container {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--light-green); 
-    padding: 15px 15px 15px 30px;
-    border-radius: var(--border-radius);
-    width: 65vw;
-    height: 3vh;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    cursor: pointer;
-}
-
-.search-text {
-    font-size: 2em;
-    font-family: DynaPuff; 
-    color: #333;
-}
-
-.search-input {
-    border: none;
-    outline: none;
-    flex-grow: 1;
-    background-color: transparent;
-}
-
-.search-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5em;
-    aspect-ratio: 1 / 1;
-    /* height: 50px; */
-    background-color: var(--dark-green); /* Darker green background for icon */
-    border-radius: 50%;
-}
-
-.search-icon {
-    width: 24px; 
-    height: 24px;
-}
-
 /* Map Button */
 .button-map-text {
     color: #345D33;
