@@ -10,6 +10,8 @@ import About from './app/pages/about/about';
 import Header from './app/components/header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './app/flow/home';
+import ScrollToTop from './app/components/ScrollToTop';
+import Support from './app/pages/support/support';
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/directory" element={<Directory />} />
@@ -26,6 +29,7 @@ function App() {
         <Route path="/search" element={<Directory />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/map" element={<GgMap />} />
+        <Route path="/support" element={<Support />} />
       </Routes>
     </BrowserRouter>
   );
