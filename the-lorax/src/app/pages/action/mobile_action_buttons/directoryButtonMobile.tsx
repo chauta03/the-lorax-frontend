@@ -9,9 +9,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const directoryButtonMobile: React.FC<CustomButtonProps> = ({onClick}) => {
+const directoryButtonMobile: React.FC = () => {
     return (
-        <div className="button" onClick={onClick}>
+        <div className="button">
             <DirectoryBackgroundMobile className="button-dir-background"></DirectoryBackgroundMobile>
         </div>
     );

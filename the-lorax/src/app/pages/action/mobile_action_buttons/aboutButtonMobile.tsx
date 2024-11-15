@@ -9,9 +9,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const aboutButtonMobile: React.FC<CustomButtonProps> = ({onClick}) => {
+const aboutButtonMobile: React.FC = () => {
     return (
-        <div className="button" onClick={onClick}>
+        <div className="button">
             <AboutBackgroundMobile className="button-about-background"></AboutBackgroundMobile>
         </div>
     );

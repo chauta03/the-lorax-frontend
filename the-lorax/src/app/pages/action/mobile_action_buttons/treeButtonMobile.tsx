@@ -9,9 +9,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const treeButtonMobile: React.FC<CustomButtonProps> = ({onClick}) => {
+const treeButtonMobile: React.FC = () => {
     return (
-        <div className="button" onClick={onClick}>
+        <div className="button">
             <TreeBackgroundMobile className="button-tree-background-mobile"></TreeBackgroundMobile>
         </div>
     );

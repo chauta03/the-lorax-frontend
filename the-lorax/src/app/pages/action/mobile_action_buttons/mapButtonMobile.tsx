@@ -9,9 +9,9 @@ type CustomButtonProps = {
     onClick: () => void; // Function to handle button click
 };
 
-const mapButtonMobile: React.FC<CustomButtonProps> = ({onClick}) => {
+const mapButtonMobile: React.FC = () => {
     return (
-        <div className="button" onClick={onClick}>
+        <div className="button">
             <MapBackgroundMobile className="button-map-background"></MapBackgroundMobile>
         </div>
     );

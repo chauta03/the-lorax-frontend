@@ -17,6 +17,7 @@ import AboutButtonMobile from './mobile_action_buttons/aboutButtonMobile';
 import DirectoryButtonMobile from './mobile_action_buttons/directoryButtonMobile';
 import MapButtonMobile from './mobile_action_buttons/mapButtonMobile';
 import SupportButtonMobile from './mobile_action_buttons/mapButtonMobile copy';
+import AdminMobile from '../adminMobile/adminMobile';
 import Footer from '../../components/footer';
 
 // Search
@@ -73,25 +74,24 @@ const ActionButton: React.FC = () => {
         <div>
             {isMobile ? (
                 <div className='action-page-phone'>
-                    <HeaderMobile />
                     <span className='header-text'>Campus Tree Project</span>
                     <div className='action-page-background-phone'>
                         <div className='action-page-left-buttons'>
-                            <AdminButtonMobile onClick={AdminButton_Click} />
-                            <TreeButtonMobile onClick={Tree_Click} />
-                            <AboutButtonMobile onClick={About_Click} />
-                            <DirectoryButtonMobile onClick={Directory_Click} />
+                            <Link to="/adminMobile"><AdminButtonMobile/></Link>
+                            <Link to="/"><TreeButtonMobile/></Link>
+                            <Link to="/about"><AboutButtonMobile/></Link>
+                            <Link to="/directory"><DirectoryButtonMobile/></Link>
                         </div>
                         <div className='action-page-right-buttons'>
-                            <SupportButtonMobile onClick={SupportButton_Click} />
-                            <MapButtonMobile onClick={MapButton_Click} />
+                            <Link to="/support"><SupportButtonMobile/></Link>
+                            <Link to="/map"><MapButtonMobile/></Link>
                         </div>
                     </div>
                 </div>
             ) : (
                 <div className="action-page-background">
                     <div className="action-page-upper-buttons">
-                        <Link to="/directory"> <DirectoryButton/> </Link>
+                        <Link to="/directory"><DirectoryButton/></Link>
                         <Link to="/about"><AboutButton/></Link>
                         <Link to="/"><TreeButton/></Link>
                         <Link to="/admin"><AdminButton/></Link>
@@ -100,7 +100,7 @@ const ActionButton: React.FC = () => {
                     <SearchBar onSearch={handleSearch} />
                     <div className="action-page-lower-buttons">
                         <Link to="/map"><MapButton/></Link>
-                        <SupportButton/>
+                        <Link to="/support"><SupportButton/></Link>
                     </div>
                     <Footer />
                 </div>
