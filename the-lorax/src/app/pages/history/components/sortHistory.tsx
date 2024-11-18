@@ -27,16 +27,16 @@ export default function SortHistory({ onSort }: FilterProps) {
             <div className="sort-directory-category">
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSortHistory('histId')}
-                    style={{ fontWeight: selectedSortKey === 'histId' ? 'bold' : 'normal' }}
+                    onClick={() => handleSortHistory('hist_id')}
+                    style={{ fontWeight: selectedSortKey === 'hist_id' ? 'bold' : 'normal' }}
                 >
                     <span>History ID</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div>
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSortHistory('hazardRating')}
-                    style={{ fontWeight: selectedSortKey === 'hazardRating' ? 'bold' : 'normal' }}
+                    onClick={() => handleSortHistory('hazard_rating')}
+                    style={{ fontWeight: selectedSortKey === 'hazard_rating' ? 'bold' : 'normal' }}
                 >
                     <span>Hazard Rating</span>
                     <img src={ArrowDown} alt="Sort"/>
@@ -50,14 +50,6 @@ export default function SortHistory({ onSort }: FilterProps) {
                     <span>DBH</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div> */}
-                <div
-                    className="sort-directory-category-field"
-                    onClick={() => handleSortHistory('notes')}
-                    style={{ fontWeight: selectedSortKey === 'notes' ? 'bold' : 'normal' }}
-                >
-                    <span>Notes</span>
-                    <img src={ArrowDown} alt="Sort"/>
-                </div>
                 <div
                     className="sort-directory-category-field"
                     onClick={() => handleSortHistory('year')}

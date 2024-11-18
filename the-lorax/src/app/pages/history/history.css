@@ -39,11 +39,11 @@
 
 
 .sort-directory-category {
-    width: 20vw; /* Increased width for filter box */
-    padding: 15px 25px; /* Adjusted padding for better spacing */
-    border-radius: 15px; /* Slightly rounded corners */
+    width: 20vw; 
+    padding: 15px 25px;
+    border-radius: 15px;
     background-color: var(--light-green);
-    position: relative; /* Enables dropdown positioning within filter box */
+    position: relative; 
 }
 
 .sort-directory-category * {
@@ -86,6 +86,10 @@
 }
 .display-filter-history {
     grid-template-columns: 0.5fr 0.5fr 1fr 0.5fr 1fr 0.75fr; 
+}
+
+.logged-in-display-filter-history {
+    grid-template-columns: 0.25fr 0.25fr 1fr 0.5fr 1fr 0.5fr 0.75fr; 
 }
 
 .display-filter-header {

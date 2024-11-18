@@ -5,7 +5,7 @@ import ArrowDown from '../../../../images/icons/arrow-down.svg';
 type FilterProps = {
     hazardRating: string[];
     year: number[];
-    onFilter: (key: 'hazardRating' | 'year', value: string | number | null) => void;
+    onFilter: (key: 'hazard_rating' | 'year', value: string | number | null) => void;
 };
 
 export default function FilterHistory({ hazardRating, year, onFilter }: FilterProps) {
@@ -19,7 +19,7 @@ export default function FilterHistory({ hazardRating, year, onFilter }: FilterPr
 
     const handleHazardRatingSelect = (value: string | null) => {
         setSelectedHazardRating(value);
-        onFilter('hazardRating', value);
+        onFilter('hazard_rating', value);
         setShowHazardRatingDropdown(false);
     };
 
@@ -70,7 +70,7 @@ export default function FilterHistory({ hazardRating, year, onFilter }: FilterPr
                         <span className='filter-field'>
                             Hazard Rating: {selectedHazardRating || 'All'}
                         </span>
-                        <img src={ArrowDown} alt="Sort" />
+                        {/* <img src={ArrowDown} alt="Sort" /> */}
                     </div>
                     {showHazardRatingDropdown && (
                         <div ref={hazardRatingDropdownRef} className="dropdown">
@@ -105,7 +105,7 @@ export default function FilterHistory({ hazardRating, year, onFilter }: FilterPr
                         <span className='filter-field'>
                             Year: {selectedYear || 'All'}
                         </span>
-                        <img src={ArrowDown} alt="Sort" />
+                        {/* <img src={ArrowDown} alt="Sort" /> */}
                     </div>
                     {showYearDropdown && (
                         <div ref={yearDropdownRef} className="dropdown">
