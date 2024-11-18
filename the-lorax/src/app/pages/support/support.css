@@ -1,0 +1,93 @@
+/* Background */
+.support-page-background {
+    background-color: var(--mid-green);
+    height: 100vh;
+    overflow: auto;
+    min-height: fit-content;
+    flex-grow: 1;
+}
+
+.support-body {
+    /* height: fit-content; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+
+.support-text-container {
+    display: flex;
+    justify-content: center;
+    padding: 10% 10% 5% 10%;
+}
+
+.support-text {
+    font-size: 5rem;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.big-tree-container {
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.big-tree-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.big-tree-icon {
+    object-fit: contain;
+}
+
+.support-body-text-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 60%;
+    margin: 2%;
+}
+
+.support-body-text {
+    font-size: 2em;
+    font-weight: 200;
+    justify-content: baseline;
+    align-self: baseline;
+}
+
+.logo-container-suppport-page {
+    width: 6%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    left: 50%;
+    padding: 1%;
+    transform: translate(-50%, -5%);
+}
+
+.link-text {
+    color: blue; /* Changes the link color */
+    text-decoration: underline; /* Underlines the link text */
+}
+
+.link-text:hover {
+    color: darkblue; /* Changes color on hover */
+}
+
+@media screen and (max-width: 768px) {
+    .support-text-container {
+        display: flex;
+        justify-content: center;
+        padding: 15% 10% 5% 10%;
+    }
+
+    .support-text {
+        font-size: 5rem;
+        font-weight: bold;
+        justify-content: center;
+    }
+
+}

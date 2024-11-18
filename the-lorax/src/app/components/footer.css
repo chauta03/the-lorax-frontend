@@ -1,0 +1,48 @@
+.k-logo-container {
+    width: 3%;
+    aspect-ratio: 1 / 1;
+    /* position: absolute; */
+    left: 3%;
+    bottom: 2%;
+    transform: translate(-50%, -5%);
+}
+
+.k-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 10%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    height: 10%;
+    width: 100vw;
+    background-color: var(--light-green);
+    z-index: 1000;
+    margin-top: auto;
+}
+
+.stack-left-container {
+    width: 10rem;
+    left: 10%;
+    padding: 2.5% 3%;
+}
+
+.footer-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-text {
+    font-size: 0.8em;
+    font-weight: 100;
+    color: #83C082;
+    align-self: baseline;
+}
+
+
+

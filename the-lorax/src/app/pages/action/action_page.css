@@ -1,0 +1,281 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+
+/* Background */
+.action-page-background {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #78D8A4;
+    height: fit-content;
+    padding: 10% 10% 0% 10%;
+    /* width: 100vw; */
+    z-index: -100;
+    /* background-image: url('../../../images/mapLine.svg');
+    background-size: cover;    
+    background-repeat: no-repeat; 
+    background-position: center;   */
+}
+
+/* Upper buttons */
+.action-page-upper-buttons {
+    display: flex;
+    align-items: end;
+    margin-bottom: 2.5%;
+}
+
+/* Lower buttons */
+.action-page-lower-buttons {
+    display: flex;
+    margin-top: 2.5%;
+    margin-bottom: 6%;
+}
+
+/* Directory Button */
+.button {
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.button:hover {
+    transform: scale(1.05); 
+}
+
+.button svg path {
+    transition: fill 0.3s ease;
+}
+
+.button:hover svg path {
+    fill: #93642D; 
+}
+
+  
+.button-text {
+    font-family: DynaPuff;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.1vh;
+}
+
+.button-tree-icon {
+    z-index: 2;
+    position: absolute;
+}
+
+.button-tree-only {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 183px;
+    height: 274px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.button-tree-only:hover {
+    transform: scale(1.05); 
+    fill: #dfcc60;
+}
+
+.button-tree-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    fill: #BCE8BB;
+    transition: fill 0.3s ease; /* Smooth transition for background color change */
+}
+
+.button-tree-background-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 81%;
+    padding-left: 19%;
+    height: 100%;
+}
+
+.button-tree-only:hover .button-tree-background {
+    fill: #dfcc60; /* Change color on hover */
+}
+
+/* Directory Button */
+.button-dir-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+.button-dir-text {
+    color: #E0FFDF;
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, 280%) rotate(-81.678deg)
+}
+
+/* About Button */
+.button-about-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+.button-about-text {
+    color: #E0FFDF;
+    font-family: DynaPuff;
+    position: absolute;
+    display: block;
+    text-align: center;
+    transform: translate(55%, 270%) rotate(7.769deg)
+}
+
+/* Position the boxes in a vertical column */
+.button-about-text:nth-child(1) {
+    top: calc(-15%);  /* Center first box with an offset */
+    left: calc(+3%);
+}
+  
+.button-about-text:nth-child(2) {
+    top: calc();      /* Center the second box directly in the middle */
+    left: calc(+20%);
+}
+
+.button-about-text:nth-child(3) {
+    top: calc(+15%);  /* Center the third box with an offset */
+    left: calc(-12%);
+}
+
+/* Admin Button */
+.button-admin-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #BCE8BB; 
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+.button-admin-text {
+    color: #E0FFDF; 
+    position: absolute;
+    text-align: center;
+    transform: translate(-60%, 160%) rotate(-36.19deg);
+}
+
+/* Map Button */
+.button-map-text {
+    color: #345D33;
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, 150%);
+}
+
+.button-map-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* fill: #BCE8BB;  */
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+}
+
+/* Support Button */
+.button-support-text {
+    color: #E0FFDF;
+    font-family: DynaPuff;
+    position: absolute;
+    text-align: center;
+    transform: translate(-45%, 120%) rotate(-34.172deg);;
+}
+
+.button-support-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: fill 0.3s ease; 
+    width: 100%;
+    height: 100%;
+    margin-left: 13%;
+}
+
+@media screen and (max-width: 768px) {
+    .action-page-phone {
+        height: fit-content;
+        background-color: #78D8A4;
+    }
+
+    .header-text {
+        color: #E0FFDF;
+        text-align: center;
+        font-family: DynaPuff;
+        font-size: 6vh;
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    .action-page-background-phone {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        width: 100vw;
+        z-index: -100;
+    }
+    /* Upper buttons */
+    .action-page-left-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        margin: 3% 5% 3% 0%;
+    }
+
+    /* Lower buttons */
+    .action-page-right-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 3% 0% 3% 5%;
+    }
+
+    .button-admin-background {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        fill: #BCE8BB; 
+        transition: fill 0.3s ease; 
+        width: 70%;
+        height: 100%;
+        padding-left: 30%;
+    }
+
+    .button-support-background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: fill 0.3s ease; 
+        width: 100%;
+        height: 100%;
+        margin: 0%;
+        padding-bottom: 15%;
+        padding-top: 65%;
+    }
+}

@@ -1,0 +1,109 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    height: 10vh;
+    padding: 1%;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+.header-tree-circle {
+    width: 5%;
+    /* height: 10%; */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: var(--light-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* .header-tree-circle:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #E0FFDF, #BCE8BB, #66A865, #458244, #6a904f, #bac370, #f1dc7a, #ff7300, #ff4000);
+    background-size: 400%;
+    border-radius: 50%;
+    filter: blur(6px);
+    animation: glowing 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+} */
+
+.header-tree-icon {
+    width: 60%;
+    height: 60%; 
+    object-fit: contain;
+}
+
+.header-expand-bar {
+    aspect-ratio: 12 / 1;
+    background-color: #E0FFDF;
+    border-radius: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-items: space-evenly;
+    gap: 2vw;
+    padding: 1% 3%;
+    font-weight: 600;
+    font-size: 1.5em;
+    transition: all 1s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.header-expand-bar.active {
+    opacity: 100%;
+    pointer-events: all;
+}
+
+.sandwich-arrow-container {
+    width: 2%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 1s ease-in-out;
+    opacity: 60%;
+}
+
+.sandwich-arrow-container.active {
+    display: none;
+}
+
+.logo-container {
+    width: 6%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -5%);
+}
+
+.logo-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* transition: all 0.5s; */
+    opacity: 100%;
+    margin: 10%;
+}
+
+/* .logo-icon.active {
+    opacity: 100%;
+} */
+

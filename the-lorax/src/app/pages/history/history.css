@@ -1,0 +1,22 @@
+
+.display-filter-history {
+    grid-template-columns: 0.5fr 0.5fr 1fr 0.5fr 1fr 0.75fr; 
+}
+
+.logged-in-display-filter-history {
+    grid-template-columns: 0.25fr 0.25fr 1fr 0.5fr 1fr 0.5fr 0.75fr; 
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .directory-sort-and-filter {
+        padding: 0px;
+    }
+
+    .display-filter-history {
+        display: grid;
+        grid-template-columns: 0.4fr 1fr 0.5fr 0.2fr; 
+        gap: 10px;
+        padding: 10px;
+    }
+}

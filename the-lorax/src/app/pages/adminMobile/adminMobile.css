@@ -1,0 +1,49 @@
+.admin-phone {
+    height: 100vh;
+    background-color: #78D8A4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.admin-phone-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    /* height: 10%; */
+    height: fit-content;
+    padding: 20% 5% 5% 5%;
+    flex-direction: column;
+}
+
+.admin-phone-text {
+    color: #E0FFDF;
+    text-align: center;
+    font-family: DynaPuff;
+    font-size: 6vh;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.admin-phone-body-text {
+    color: #000;
+    text-align: center;
+    font-size: 3vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sad-tree-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.sad-tree-icon {
+    width: 100%;
+    object-fit: contain;
+}

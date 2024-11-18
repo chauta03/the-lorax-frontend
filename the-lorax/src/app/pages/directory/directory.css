@@ -1,0 +1,211 @@
+.directory {
+    height: 100%;
+    overflow: auto;
+    background-color: var(--mid-green);
+    padding-top: 12vh;
+    min-height: 100vh;
+}
+
+.directory * {
+    font-family: DynaPuff;
+}
+
+.directory-lower {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Right body */
+.directory-display {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Left body */
+.directory-sort-and-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 10px;
+}
+
+/* Sort */
+.sort-directory {
+    display: flex;
+    flex-direction: column;   
+}
+
+.sort-directory-text {
+    padding: 10px;
+    grid-template-columns: 1fr; 
+}
+
+
+.sort-directory-category {
+    width: 20vw; /* Increased width for filter box */
+    padding: 15px 25px; /* Adjusted padding for better spacing */
+    border-radius: 15px; /* Slightly rounded corners */
+    background-color: var(--light-green);
+    position: relative; /* Enables dropdown positioning within filter box */
+}
+
+.sort-directory-category * {
+    color: var(--grey);
+    cursor: pointer;
+}
+
+
+.sort-directory-category-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.sort-directory-category-field span {
+    align-self: left;
+    text-align: left;
+}
+
+/* Display */
+.display-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.display-filter {
+    width: 70vw;
+    height: 100%;
+}
+
+.display-filter-header, .display-filter-row {
+    display: grid;
+    grid-template-columns: 0.3fr 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr; 
+    gap: 10px;
+    padding: 10px;
+}
+
+.logged-in-display-filter-header, .logged-in-display-filter-row {
+    display: grid;
+    grid-template-columns: 0.3fr 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr; 
+    gap: 10px;
+    padding: 10px;
+}
+
+
+
+.display-filter-header {
+    font-weight: bold;
+
+}
+
+.display-filter-row {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    height: 50px;
+}
+
+.display-filter-container {
+    border-radius: 20px;
+    background-color: var(--light-green);
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* Pagination */
+.pagination-controls {
+    padding: 10px;
+    display: flex;
+    justify-self: center;
+    gap: 10px;
+}
+
+/* Dropdown in filter*/
+.dropdown {
+    position: absolute;
+    top: 100%; /* Positions dropdown slightly below filter field */
+    left: 0;
+    margin-top: 5px; /* Additional space below filter text */
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 100%; /* Matches dropdown width to filter box */
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.dropdown div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em; /* Slightly smaller text for dropdown items */
+}
+
+.dropdown div:hover {
+    background-color: #f0f0f0;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .directory-lower {
+        width: 100vw;
+    }
+
+    .directory-display {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .display-filter {
+        width: 100vw;
+    }
+
+    .display-filter-header, .display-filter-row {
+        grid-template-columns: 0.5fr 1fr 0.75fr 0.15fr; /* Stack columns vertically */
+        gap: 5px;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .display-filter-container {
+        padding: 10px;
+    }
+
+    .sort-directory {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .sort-directory-category-field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .pagination-controls {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .sort-directory-category-field {
+        width: 100%;
+    }
+
+    .dropdown {
+        width: 90vw;
+        max-height: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+

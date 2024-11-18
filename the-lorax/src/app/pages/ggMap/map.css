@@ -1,0 +1,42 @@
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8% 0px;
+    background-color: #78D8A4;
+}
+
+.map {
+    height: 90vh;
+    width: 90%;
+    margin: 20px;
+    border-radius: 10%;
+}
+
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 80%;
+    background-color: var(--light-green);
+    box-shadow: -3px 0 5px rgba(0,0,0,0.2);
+    padding: 1rem;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarButton {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 3.5rem;
+    float: right;
+    font-family: 'DynaPuff';
+}

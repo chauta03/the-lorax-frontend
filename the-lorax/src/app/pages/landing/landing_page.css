@@ -1,0 +1,60 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+
+/* Background */
+.landing-page-background {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    background-color: #78D8A4;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Text */
+.landing-page-text {
+    color: #E0FFDF;
+    text-align: center;
+    font-size: 15vh;
+    font-style: normal;
+    font-weight: 600;
+    text-shadow: -1px -1px 2px #714D22, /* Top-left shadow */
+    1px -1px 2px #714D22, /* Top-right shadow */
+   -1px  1px 2px #714D22, /* Bottom-left shadow */
+    1px  1px 2px #714D22; /* Bottom-right shadow */;
+}
+
+.landing-page-text-container {
+    position: absolute;
+    top: 15.5%;
+    width: 65vw;
+    justify-content: center;
+    flex-shrink: 1;
+}
+
+.landing-page-trees {
+    background-image: url('../../../images/background_trees.svg');
+    background-position: bottom;
+    background-size: cover; /* Adjust size of the background image */
+    background-repeat: no-repeat; /* Prevent background from repeating */
+}
+
+/* Phone Layout */
+
+@media screen and (max-width: 768px) {
+    .landing-page-text {
+        color: #E0FFDF;
+        text-align: center;
+        font-family: DynaPuff;
+        font-size: 5em;
+        font-style: normal;
+        font-weight: 600;
+        width: 100%;
+    }
+
+    .landing-page-text-container {
+        position: absolute;
+        top: 20%;
+        justify-content: center;
+    }
+}

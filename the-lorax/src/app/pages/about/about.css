@@ -1,0 +1,84 @@
+/* Background */
+.about_background {
+    background-color: var(--mid-green);
+    height: 100vh;
+    overflow: auto;
+    min-height: fit-content;
+}
+
+.about-body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8% 0% 8% 0%;
+}
+
+.about-banner-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    height: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+}
+
+.every-tree-text-container {
+    width: fit-content;
+    justify-content: center;
+    padding: 2%;
+}
+
+.every-tree-text {
+    font-size: 5em;
+    font-weight: bold;
+    /* margin-bottom: 20px; */
+    justify-content: center;
+}
+
+.body-text {
+    font-size: 2em;
+    font-weight: lighter;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    text-indent: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    .about-banner-background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 96%;
+        height: 100%;
+        padding: 15% 2% 0% 2%;
+    }
+
+    .every-tree-text-container {
+        width: fit-content;
+        justify-content: center;
+        padding: 2%;
+        text-align: center;
+    }
+    
+    .every-tree-text {
+        font-size: 3em;
+        font-weight: bold;
+        /* margin-bottom: 20px; */
+        justify-content: center;
+    }
+
+    .body-text {
+        font-size: 1.5em;
+        font-weight: lighter;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom: 3%;
+        text-indent: 5%;
+    }
+}
+
