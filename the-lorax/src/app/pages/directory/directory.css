@@ -3,6 +3,7 @@
     overflow: auto;
     background-color: var(--mid-green);
     padding-top: 12vh;
+    min-height: 100vh;
 }
 
 .directory * {
@@ -70,7 +71,7 @@
 
 /* Display */
 .display-container {
-    height: 100%; /* Adjust for padding/margin as needed */
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -152,13 +153,22 @@
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
-    .directory-body {
-        flex-direction: column;
-        padding: 10px;
+    .directory-lower {
+        width: 100vw;
+    }
+
+    .directory-display {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .display-filter {
+        width: 100vw;
     }
 
     .display-filter-header, .display-filter-row {
-        grid-template-columns: 1fr; /* Stack columns vertically */
+        grid-template-columns: 0.5fr 1fr 0.75fr 0.15fr; /* Stack columns vertically */
         gap: 5px;
         padding: 10px;
         border-bottom: 1px solid #ddd;
