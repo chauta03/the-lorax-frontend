@@ -8,6 +8,7 @@ async function fetchUserData() {
 
     try {
         const backend = process.env.REACT_APP_FASTAPI_URL || "";
+        console.log(`${backend}users`)
         const response = await fetch(`${backend}users`, {
             method: "GET",
             headers: {

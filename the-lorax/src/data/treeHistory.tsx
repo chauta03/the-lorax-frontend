@@ -11,9 +11,9 @@ const fetchTreeHistoryInfo = async (): Promise<TreeHistory[]> => {
 
         // Map the raw data into the Point format
         const formatted: TreeHistory[] = trees.map(tree => ({
-            treeId: tree.tree_id,
-            histId: tree.hist_id,
-            hazardRating: tree.hazard_rating,
+            tree_id: tree.tree_id,
+            hist_id: tree.hist_id,
+            hazard_rating: tree.hazard_rating,
             DBH: tree.DBH,
             notes: tree.notes,
             year: tree.year

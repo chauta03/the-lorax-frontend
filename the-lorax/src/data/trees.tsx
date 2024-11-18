@@ -11,14 +11,14 @@ const fetchTreeInfo = async (): Promise<Point[]> => {
 
         // Map the raw data into the Point format
         const formatted: Point[] = trees.map(tree => ({
-            treeId: tree.tree_id,
-            tagNum: tree.tag_number,
-            speciesCo: tree.species_code,
-            latinName: tree.latin_name,
-            commonName: tree.common_name,
+            tree_id: tree.tree_id,
+            tag_number: tree.tag_number,
+            species_code: tree.species_code,
+            latin_name: tree.latin_name,
+            common_name: tree.common_name,
             sun: tree.sun,
             lat: tree.lat,
-            lng: tree.long
+            long: tree.long
         }));
         
         console.log("Fetched tree info:", formatted);

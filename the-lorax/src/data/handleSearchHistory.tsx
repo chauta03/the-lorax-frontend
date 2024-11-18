@@ -11,9 +11,9 @@ const handleSearchHistory = async (query: string): Promise<TreeHistory[]> => {
             includeScore: true, // Include score so we can see how close the matches are
             threshold: 0.3, // A lower threshold means more strict matches (0 is exact match, 1 is very loose)
             keys: [
-                'treeId',
-                'histId',
-                'hazardRating',
+                'tree_id',
+                'hist_id',
+                'hazard_rating',
                 'DBH',
                 'notes',
                 'year'

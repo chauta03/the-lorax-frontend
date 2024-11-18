@@ -11,13 +11,14 @@ const handleSearch = async (query: string): Promise<Point[]> => {
             includeScore: true, // Include score so we can see how close the matches are
             threshold: 0.3, // A lower threshold means more strict matches (0 is exact match, 1 is very loose)
             keys: [
-                'latinName',
-                'commonName',
-                'tagNum',
-                'speciesCo',
+                'tree_id',
+                'latin_name',
+                'common_name',
+                'tag_number',
+                'species_code',
                 'sun',
                 'lat',
-                'lng'
+                'long'
             ]
         };
 

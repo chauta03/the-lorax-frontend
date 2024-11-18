@@ -9,21 +9,21 @@ export type Tree = {
     lng?: number;
 };
 
-export type Point = google.maps.LatLngLiteral & {
-    treeId: string;
-    tagNum?: number;
-    speciesCo?: string;
-    latinName?: string;
-    commonName?: string;
+export type Point = {
+    tree_id?: number;
+    tag_number?: number;
+    species_code?: string;
+    latin_name?: string;
+    common_name?: string;
     sun?: string;
-    lat?: number;
-    lng?: number;
+    lat: number;
+    long: number;
 };
 
 export type TreeHistory = {
-    treeId?: number;
-    histId?: number;
-    hazardRating?: string;
+    tree_id?: number;
+    hist_id: number;
+    hazard_rating?: string;
     DBH?: number;
     notes?: string;
     year: number;
