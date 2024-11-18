@@ -1,0 +1,115 @@
+.login {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--mid-green); 
+    height: fit-content;
+    min-height: 92vh;
+    padding-top: 8vh;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.login * {
+    font-family: DynaPuff;
+}
+
+
+.login-body-left {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+
+.login-welcome-text {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.login-body-left-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-body-left-form label {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.login-body-left-form input {
+    background-color: var(--light-green);
+    padding: 10px;
+    border: 2px solid var(--dark-green);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: DynaPuff;
+}
+
+
+.login-button {
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: DynaPuff;
+    background-color: #4a8f4f; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+}
+
+.login-button:hover {
+    background-color: #3a7f3f; 
+}
+
+.login-body-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-tree-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* admin */
+.admin {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--mid-green); 
+    height: fit-content;
+    min-height: 87vh;
+    padding-top: 13vh;
+    align-items: center;
+}
+
+.admin * {
+    font-family: DynaPuff;
+}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+.admin-display-filter-header, .admin-display-filter-row {
+    display: grid;
+    grid-template-columns: 0.75fr 1fr 1fr 0.5fr 0.5fr 0.5fr; 
+    gap: 10px;
+    padding: 10px;
+}
+
+.admin-body {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
