@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import "./history.css";
 import Display from "./components/displayHistory";
+import DisplayHistoryMobile from "./components/displayHistoryMobile";
 import SearchBar from "../../components/searchBar";
 import SortHistory from "./components/sortHistory";
 import FilterHistory from "./components/filterHistory";
@@ -10,6 +11,8 @@ import fetchTreeHistoryInfo from "../../../data/treeHistory";
 import axios from "axios";
 
 export default function History({ token }: { token: string | null }) {
+    const [isMobile, setIsMobile] = useState(false);
+
     const [treeData, setTreeData] = useState<TreeHistory[]>([]);
     const [searchResults, setSearchResults] = useState<TreeHistory[] | null>(null);
     const [sortKey, setSortKey] = useState<keyof TreeHistory | null>(null);
@@ -160,33 +163,63 @@ export default function History({ token }: { token: string | null }) {
             .catch((err) => alert(`Error deleting history: ${err.message}`));
     };
 
+    // Detect screen width on mount and resize
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        // Set initial value
+        handleResize();
+
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <div className="directory">
             <SearchBar onSearch={handleSearchInput} />
             <div className="directory-lower">
                 <div className="directory-sort-and-filter">
-                    <button className="login-button" onClick={() => setAddHistoryModalOpen(true)}>
-                        Add History
-                    </button>
-                    <FilterHistory
-                        hazardRating={hazardRatingArr}
-                        year={yearArr}
-                        onFilter={handleFilter}
-                    />
-                    <SortHistory onSort={handleSort} />
+                {!isMobile && (
+                    <>
+                        {token && (
+                            <button className="login-button" onClick={() => setAddHistoryModalOpen(true)}>
+                                Add History
+                            </button>
+                        )}
+                        <FilterHistory
+                            hazardRating={hazardRatingArr}
+                            year={yearArr}
+                            onFilter={handleFilter}
+                        />
+                        <SortHistory onSort={handleSort} />
+                    </>
+                )}
                 </div>
                 <div className="directory-display">
-                    <Display
-                        token={token}
-                        data={filteredAndSortedDataHistory}
-                        onEdit={(history) => {
-                            if (history && history.hist_id !== undefined && history.hist_id !== null) {
-                                setUpdatedHistory(history);
-                                setEditHistoryModalOpen(true);
-                            }
-                        }}
-                        onDelete={handleDeleteHistory}
-                    />
+                    {
+                        isMobile ? (
+                            <DisplayHistoryMobile
+                                data={filteredAndSortedDataHistory}
+                            />
+                        ) : (
+                            <Display
+                                token={token}
+                                data={filteredAndSortedDataHistory}
+                                onEdit={(history) => {
+                                    if (history && history.hist_id !== undefined && history.hist_id !== null) {
+                                        setUpdatedHistory(history);
+                                        setEditHistoryModalOpen(true);
+                                    }
+                                }}
+                                onDelete={handleDeleteHistory}
+                            />
+                        )
+                    }
                 </div>
             </div>
 
