@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./searchBar.css";
+import SearchIcon from '../../images/icons/search-icon.svg'
 
 type CustomButtonProps = {
     onSearch: (query: string) => void;
@@ -13,6 +14,11 @@ const SearchBar: React.FC<CustomButtonProps> = ({ onSearch, initialQuery = '' })
         onSearch(searchTerm);
     };
 
+    const handleClear = () => {
+        setSearchTerm('');
+        onSearch(''); 
+    };
+
     return (
         <div className="search-bar-container">
             <div className="search-bar">
@@ -24,18 +30,13 @@ const SearchBar: React.FC<CustomButtonProps> = ({ onSearch, initialQuery = '' })
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // Trigger search on Enter
                 />
+                {searchTerm && (
+                    <button className="clear-search-button" onClick={handleClear} aria-label="Clear search">
+                        ✖
+                    </button>
+                )}
                 <div className="search-icon-container" onClick={handleSearch}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        className="search-icon"
-                    >
-                        <circle cx="11" cy="11" r="8" stroke="#FFFFFF" strokeWidth="3" />
-                        <line x1="16" y1="16" x2="21" y2="21" stroke="#FFFFFF" strokeWidth="3" />
-                    </svg>
+                    <img src={SearchIcon} alt="Search" className="search-icon" />
                 </div>
             </div>
         </div>
