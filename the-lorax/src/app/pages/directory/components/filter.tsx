@@ -7,7 +7,7 @@ type FilterProps = {
     commonNames: string[];
     sun: string[];
     speciesCo: string[];
-    onFilter: (key: 'latinName' | 'commonName' | 'sun' | 'speciesCo', value: string | null) => void; 
+    onFilter: (key: 'latin_name' | 'common_name' | 'sun' | 'species_code', value: string | null) => void; 
 };
 
 export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilter }: FilterProps) {
@@ -34,13 +34,13 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
 
     const handleLatinSelect = (value: string | null) => {
         setSelectedLatinName(value);
-        onFilter('latinName', value);
+        onFilter('latin_name', value);
         setShowLatinDropdown(false);
     };
 
     const handleCommonSelect = (value: string | null) => {
         setSelectedCommonName(value);
-        onFilter('commonName', value);
+        onFilter('common_name', value);
         setShowCommonDropdown(false);
     };
 
@@ -52,7 +52,7 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
 
     const handleSpeciesCoSelect = (value: string | null) => {
         setSelectedSpeciesCo(value);
-        onFilter('speciesCo', value);
+        onFilter('species_code', value);
         setShowSpeciesCo(false);
     };
 

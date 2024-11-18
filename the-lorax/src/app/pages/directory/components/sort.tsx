@@ -27,32 +27,32 @@ export default function SortDirectory({ onSort }: FilterProps) {
             <div className="sort-directory-category">
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSort('tagNum')}
-                    style={{ fontWeight: selectedSortKey === 'tagNum' ? 'bold' : 'normal' }}
+                    onClick={() => handleSort('tag_number')}
+                    style={{ fontWeight: selectedSortKey === 'tag_number' ? 'bold' : 'normal' }}
                 >
                     <span>Tag Number</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div>
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSort('speciesCo')}
-                    style={{ fontWeight: selectedSortKey === 'speciesCo' ? 'bold' : 'normal' }}
+                    onClick={() => handleSort('species_code')}
+                    style={{ fontWeight: selectedSortKey === 'species_code' ? 'bold' : 'normal' }}
                 >
                     <span>Species Code</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div>
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSort('latinName')}
-                    style={{ fontWeight: selectedSortKey === 'latinName' ? 'bold' : 'normal' }}
+                    onClick={() => handleSort('latin_name')}
+                    style={{ fontWeight: selectedSortKey === 'latin_name' ? 'bold' : 'normal' }}
                 >
                     <span>Latin Name</span>
                     <img src={ArrowDown} alt="Sort"/>
                 </div>
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSort('commonName')}
-                    style={{ fontWeight: selectedSortKey === 'commonName' ? 'bold' : 'normal' }}
+                    onClick={() => handleSort('common_name')}
+                    style={{ fontWeight: selectedSortKey === 'common_name' ? 'bold' : 'normal' }}
                 >
                     <span>Common Name</span>
                     <img src={ArrowDown} alt="Sort"/>
@@ -67,8 +67,8 @@ export default function SortDirectory({ onSort }: FilterProps) {
                 </div>
                 <div
                     className="sort-directory-category-field"
-                    onClick={() => handleSort('lng')}
-                    style={{ fontWeight: selectedSortKey === 'lng' ? 'bold' : 'normal' }}
+                    onClick={() => handleSort('long')}
+                    style={{ fontWeight: selectedSortKey === 'long' ? 'bold' : 'normal' }}
                 >
                     <span>Long</span>
                     <img src={ArrowDown} alt="Sort"/>

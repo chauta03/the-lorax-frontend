@@ -2,10 +2,13 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Point } from "../../../../types/tree";
 
 type DisplayProps = {
+    token: string | null;
     data: Point[]; 
+    onDelete: (treeId: number) => void;
+    onEdit: (tree: Point) => void;
 };
 
-export default function Display({ data }: DisplayProps) {
+export default function Display({token, data, onDelete, onEdit }: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
@@ -48,7 +51,7 @@ export default function Display({ data }: DisplayProps) {
         <div className="display-container">
             {/* Header Section */}
             <div className='display-filter'>
-                <div className="display-filter-header">
+                <div className={token ? "logged-in-display-filter-header" : "display-filter-header"}>
                     <span className="display-filter-column">Tree ID</span>
                     <span className="display-filter-column">Tag #</span>
                     <span className="display-filter-column">Species Code</span>
@@ -57,21 +60,42 @@ export default function Display({ data }: DisplayProps) {
                     <span className="display-filter-column">Sun</span>
                     <span className="display-filter-column">Lat</span>
                     <span className="display-filter-column">Long</span>
+                    {token && <span className="display-filter-column">Actions</span>}
                 </div>
 
                 {/* Display the rows of data */}
                 <div className="display-filter-container">
                     {currentTrees.length > 0 ? (
                         currentTrees.map((tree) => (
-                            <div key={tree.treeId} className="display-filter-row">
-                                <span className="display-filter-column">{tree.treeId}</span>
-                                <span className="display-filter-column">{tree.tagNum}</span>
-                                <span className="display-filter-column">{tree.speciesCo}</span>
-                                <span className="display-filter-column">{tree.latinName}</span>
-                                <span className="display-filter-column">{tree.commonName}</span>
+                            <div key={tree.tree_id} className={token ? "logged-in-display-filter-row" : "display-filter-row"}>
+                                <span className="display-filter-column">{tree.tree_id}</span>
+                                <span className="display-filter-column">{tree.tag_number}</span>
+                                <span className="display-filter-column">{tree.species_code}</span>
+                                <span className="display-filter-column">{tree.latin_name}</span>
+                                <span className="display-filter-column">{tree.common_name}</span>
                                 <span className="display-filter-column">{tree.sun}</span>
                                 <span className="display-filter-column">{tree.lat}</span>
-                                <span className="display-filter-column">{tree.lng}</span>
+                                <span className="display-filter-column">{tree.long}</span>
+                                {
+                                    token && (
+                                        <span className="display-filter-column admin-buttons-edit-delete">
+                                            <button
+                                                className="action-button edit-button"
+                                                onClick={() => onEdit(tree)}
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                className="action-button delete-button"
+                                                onClick={() => {
+                                                    onDelete(Number(tree.tree_id));
+                                                }}
+                                            >
+                                                Delete
+                                            </button>
+                                        </span>
+                                    )
+                                }
                             </div>
                         ))
                     ) : (
