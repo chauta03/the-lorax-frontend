@@ -1,13 +1,13 @@
 "use client";
 
-import { act, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import type { Marker } from "@googlemaps/markerclusterer";
+import type { Marker, Cluster } from "@googlemaps/markerclusterer";
 import { APIProvider, Map, useMap, AdvancedMarker, InfoWindow } from "@vis.gl/react-google-maps";
 import fetchTreeInfo from "../../../data/trees"; // Import the fetch function
-import "./page.css";
-import { Point } from "../../../types/tree"
-import "./markers.css"
+import "./map.css";
+import { Point } from "../../../types/tree";
+import "./markers.css";
 
 const Markers = () => {
     const map = useMap();
@@ -16,7 +16,7 @@ const Markers = () => {
     const [activeMarker, setActiveMarker] = useState<Point | null>(null);
     const [showSidebar, setShowSidebar] = useState<boolean>(false); // State for sidebar visibility
     const clusterer = useRef<MarkerClusterer | null>(null);
-    
+    const [zoom, setZoom] = useState<number | null>(null);
 
     // Fetch tree data when the component mounts
     useEffect(() => {
@@ -27,20 +27,49 @@ const Markers = () => {
 
         loadTreeData();
     }, []);
-    // console.log(points)
 
+    // Initialize the MarkerClusterer and attach it to the map
     useEffect(() => {
         if (!map) return;
+
+        // Initialize the MarkerClusterer
         if (!clusterer.current) {
             clusterer.current = new MarkerClusterer({ map });
         }
+
+        // Add a listener for cluster clicks to zoom in on the cluster
+        clusterer.current.addListener("click", (cluster: Cluster) => {
+            if (cluster.markers) {
+                // Zoom in on the clicked cluster
+                const mapBounds = new google.maps.LatLngBounds();
+                cluster.markers.forEach((marker) => {
+                    if ('getPosition' in marker) {
+                        const position = marker.getPosition();
+                        if (position) {
+                            mapBounds.extend(position);
+                        }
+                    }
+                });
+                map.fitBounds(mapBounds);
+            }
+        });
+
     }, [map]);
 
+    // Update the MarkerClusterer markers when the markers change
     useEffect(() => {
         clusterer.current?.clearMarkers();
         clusterer.current?.addMarkers(Object.values(markers));
     }, [markers]);
 
+    // if (map) {
+    //     google.maps.event.addListener(map, 'zoom_changed', function() {
+    //         var zoom = map.getZoom();
+    //     });
+    // }
+
+
+    // Function to set or remove a marker from the marker state
     const setMarkerRef = (marker: Marker | null, key: string) => {
         if (marker && markers[key]) return;
         if (!marker && !markers[key]) return;

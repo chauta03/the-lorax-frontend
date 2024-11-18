@@ -11,7 +11,7 @@ import {
     InfoWindow,
 } from "@vis.gl/react-google-maps"
 import trees from "../../../data/trees";
-import "./page.css";
+import "./map.css";
 import axios from "axios";
 import Markers from "./markers";
 import logo from '../../../images/logo.svg';
@@ -20,6 +20,9 @@ export default function GgMap() {
     const initialPosition = { lat: 42.290106400890906, lng: -85.59815573221456 };
     const apiKey = process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
     const [isMobile, setIsMobile] = useState(false);
+    const [zoomLevel, setZoomLevel] = useState<number | null>(null);
+    const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
+
     // Detect screen width on mount and resize
     useEffect(() => {
         const handleResize = () => {
@@ -36,25 +39,6 @@ export default function GgMap() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // const markers = locations.map((position, i) => {
-    //     const label = '🌳';
-    //     const pinGlyph = new google.maps.marker.PinElement({
-    //       glyph: label,
-    //       glyphColor: "white",
-    //     })
-    //     const marker = new google.maps.marker.AdvancedMarkerElement({
-    //       position,
-    //       content: pinGlyph.element,
-    //     });
-    
-    //     // markers can only be keyboard focusable when they have click listeners
-    //     // open info window when marker is clicked
-    //     marker.addListener("click", () => {
-    //       infoWindow.setContent(position.lat + ", " + position.lng);
-    //       infoWindow.open(map, marker);
-    //     });
-    //     return marker;
-    //   });
     
     return (
         <APIProvider apiKey={apiKey}>
