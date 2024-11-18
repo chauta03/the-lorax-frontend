@@ -86,6 +86,7 @@ const ActionButton: React.FC = () => {
             {isMobile ? (
                 <div className='action-page-phone'>
                     <span className='header-text'>Campus Tree Project</span>
+                    <SearchBar onSearch={handleSearchInput} />
                     <div className='action-page-background-phone'>
                         <div className='action-page-left-buttons'>
                             <Link to="/adminMobile"><AdminButtonMobile/></Link>
