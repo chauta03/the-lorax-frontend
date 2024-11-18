@@ -44,9 +44,9 @@ return (
             <div className="landing-page-text-container landing-page-text">
                 Kampus Tree Project
             </div>
-            <div className='k-logo-container'>
+            {/* <div className='k-logo-container'>
                 <img src={kLogo} className='k-logo' />
-            </div>
+            </div> */}
         </div>
         )}
     </div>
