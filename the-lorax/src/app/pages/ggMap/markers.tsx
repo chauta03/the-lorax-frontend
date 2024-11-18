@@ -16,6 +16,7 @@ const Markers = () => {
     const [activeMarker, setActiveMarker] = useState<Point | null>(null);
     const [showSidebar, setShowSidebar] = useState<boolean>(false); // State for sidebar visibility
     const clusterer = useRef<MarkerClusterer | null>(null);
+    
 
     // Fetch tree data when the component mounts
     useEffect(() => {
@@ -73,9 +74,9 @@ const Markers = () => {
         <>
             {points.map((point) => (
                 <AdvancedMarker
-                    position={{ lat: point.lat, lng: point.lng }}
-                    key={point.treeId}
-                    ref={(marker) => setMarkerRef(marker, point.treeId)}
+                    position={{ lat: point.lat, lng: point.long }}
+                    key={point.tree_id}
+                    ref={(marker) => setMarkerRef(marker, String(point.tree_id))}
                     onClick={() => handleMarkerClick(point)}
                 >
                     <span style={{ fontSize: "2rem" }}>🌳</span>
@@ -86,15 +87,15 @@ const Markers = () => {
                 <InfoWindow
                     position={{
                         lat: activeMarker.lat,
-                        lng: activeMarker.lng,
+                        lng: activeMarker.long,
                     }}
                     onCloseClick={() => handleCloseWindow()}
                     className="infor-window"
                 >
                     <div>
                         <h4>Tree Information</h4>
-                        <p>Location: {activeMarker.lat}, {activeMarker.lng}</p>
-                        <p>Title: {activeMarker.latinName}</p>
+                        <p>Location: {activeMarker.lat}, {activeMarker.long}</p>
+                        <p>Title: {activeMarker.latin_name}</p>
                         <button onClick={() => setShowSidebar(true)}>Learn more</button>
                     </div>
                 </InfoWindow>
@@ -110,16 +111,16 @@ const Markers = () => {
                     <button className="sidebarButton" onClick={handleCloseSidebar}>
                         Close
                     </button>
-                    <h3>{activeMarker.latinName}</h3>
+                    <h3>{activeMarker.latin_name}</h3>
                     <div className="Details">
-                        <p>Tag number: {activeMarker.treeId}</p>
-                        <p>Tag number: {activeMarker.tagNum}</p>
-                        <p>Species Code: {activeMarker.speciesCo}</p>
-                        <p>Latin Name: {activeMarker.latinName}</p>
-                        <p>Common Name: {activeMarker.commonName} </p>
+                        <p>Tag number: {activeMarker.tree_id}</p>
+                        <p>Tag number: {activeMarker.tag_number}</p>
+                        <p>Species Code: {activeMarker.species_code}</p>
+                        <p>Latin Name: {activeMarker.latin_name}</p>
+                        <p>Common Name: {activeMarker.common_name} </p>
                         <p>Sun: {activeMarker.sun}</p>
                         <p>Lat: {activeMarker.lat}</p>
-                        <p>Lng: {activeMarker.lng}</p>
+                        <p>Lng: {activeMarker.long}</p>
                     </div>
                 </div>
             )}

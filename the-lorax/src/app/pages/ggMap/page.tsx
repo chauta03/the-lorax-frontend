@@ -35,6 +35,26 @@ export default function GgMap() {
         // Cleanup event listener on unmount
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    // const markers = locations.map((position, i) => {
+    //     const label = '🌳';
+    //     const pinGlyph = new google.maps.marker.PinElement({
+    //       glyph: label,
+    //       glyphColor: "white",
+    //     })
+    //     const marker = new google.maps.marker.AdvancedMarkerElement({
+    //       position,
+    //       content: pinGlyph.element,
+    //     });
+    
+    //     // markers can only be keyboard focusable when they have click listeners
+    //     // open info window when marker is clicked
+    //     marker.addListener("click", () => {
+    //       infoWindow.setContent(position.lat + ", " + position.lng);
+    //       infoWindow.open(map, marker);
+    //     });
+    //     return marker;
+    //   });
     
     return (
         <APIProvider apiKey={apiKey}>
@@ -42,7 +62,6 @@ export default function GgMap() {
                 <div className='logo-container'>
                     <img src={logo} className='logo-icon'/>
                 </div>
-                {/* Map Component */}
                 <div className="map">
                     <Map
                         defaultZoom={15}   // Set initial zoom
@@ -51,7 +70,7 @@ export default function GgMap() {
                         gestureHandling="auto"    // Allows dragging and gestures
                         zoomControl={true}        // Enables zoom control buttons
                         scrollwheel={true}        // Allows zooming with the scroll wheel
-                        disableDoubleClickZoom={false} // Double-click zoom is enabled
+                        disableDoubleClickZoom={false}
                     >
                         <Markers />
                     </Map>
