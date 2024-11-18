@@ -10,10 +10,10 @@
   font-family: DynaPuff;
 }
 
-.logout-button {
+.log-button {
   position: absolute; 
   top: 20px; 
-  right: 20px; 
+  right: 6vw; 
   padding: 10px 20px;
   background-color: var(--light-green);
   border: none;
