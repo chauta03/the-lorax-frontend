@@ -1,9 +1,9 @@
 .directory {
-    height: 100%;
+    height: 90%;
     overflow: auto;
     background-color: var(--mid-green);
     padding-top: 12vh;
-    min-height: 100vh;
+    min-height: 80vh;
 }
 
 .directory * {
