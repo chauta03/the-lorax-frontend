@@ -39,27 +39,51 @@ export default function GgMap() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    
     return (
-        <APIProvider apiKey={apiKey}>
-            <div className="map-container">
-                <div className='logo-container'>
-                    <img src={logo} className='logo-icon'/>
-                </div>
-                <div className="map">
-                    <Map
-                        defaultZoom={15}   // Set initial zoom
-                        defaultCenter={initialPosition}  // Set initial center
-                        mapId={process.env.REACT_APP_NEXT_PUBLIC_MAP_ID}
-                        gestureHandling="auto"    // Allows dragging and gestures
-                        zoomControl={true}        // Enables zoom control buttons
-                        scrollwheel={true}        // Allows zooming with the scroll wheel
-                        disableDoubleClickZoom={false}
-                    >
-                        <Markers />
-                    </Map>
-                </div>
-            </div>
-        </APIProvider>
+        <div>
+            {isMobile ? (
+                <APIProvider apiKey={apiKey}>
+                    <div className="map-container">
+
+                        {/* Map Component */}
+                        <div className="map">
+                            <Map
+                                defaultZoom={15}   // Set initial zoom
+                                defaultCenter={initialPosition}  // Set initial center
+                                mapId={process.env.REACT_APP_NEXT_PUBLIC_MAP_ID}
+                                gestureHandling="auto"    // Allows dragging and gestures
+                                zoomControl={true}        // Enables zoom control buttons
+                                scrollwheel={true}        // Allows zooming with the scroll wheel
+                                disableDoubleClickZoom={false} // Double-click zoom is enabled
+                            >
+                                <Markers />
+                            </Map>
+                        </div>
+                    </div>
+                </APIProvider>
+            ) : (
+                <APIProvider apiKey={apiKey}>
+                    <div className="map-container">
+                        <div className='logo-container'>
+                            <img src={logo} className='logo-icon'/>
+                        </div>
+                        {/* Map Component */}
+                        <div className="map">
+                            <Map
+                                defaultZoom={15}   // Set initial zoom
+                                defaultCenter={initialPosition}  // Set initial center
+                                mapId={process.env.REACT_APP_NEXT_PUBLIC_MAP_ID}
+                                gestureHandling="auto"    // Allows dragging and gestures
+                                zoomControl={true}        // Enables zoom control buttons
+                                scrollwheel={true}        // Allows zooming with the scroll wheel
+                                disableDoubleClickZoom={false} // Double-click zoom is enabled
+                            >
+                                <Markers />
+                            </Map>
+                        </div>
+                    </div>
+                </APIProvider>
+            )}
+        </div>
     )
 }
