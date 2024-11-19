@@ -53,7 +53,7 @@
   
 .button-text {
     font-family: DynaPuff;
-    font-size: 3em;
+    font-size: min(3.5vw, 3em);
     font-style: normal;
     font-weight: 400;
     letter-spacing: 0.1vh;

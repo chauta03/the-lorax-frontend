@@ -40,3 +40,21 @@
     float: right;
     font-family: 'DynaPuff';
 }
+
+@media screen and (max-width: 768px) {
+    .map-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20% 0 5% 0;
+        background-color: #78D8A4;
+        height: 100vh;
+    }
+
+    .map {
+        height: 85vh;
+        width: 90%;
+        margin: 20px;
+        border-radius: 10%;
+    }
+}
