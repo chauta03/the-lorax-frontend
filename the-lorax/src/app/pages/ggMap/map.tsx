@@ -64,9 +64,9 @@ export default function GgMap() {
             ) : (
                 <APIProvider apiKey={apiKey}>
                     <div className="map-container">
-                        <div className='logo-container'>
+                        {/* <div className='logo-container'>
                             <img src={logo} className='logo-icon'/>
-                        </div>
+                        </div> */}
                         {/* Map Component */}
                         <div className="map">
                             <Map
