@@ -21,7 +21,6 @@ const fetchTreeInfo = async (): Promise<Point[]> => {
             long: tree.long
         }));
         
-        console.log("Fetched tree info:", formatted);
         return formatted;
     } catch (error) {
         if (axios.isAxiosError(error)) {

@@ -31,8 +31,6 @@ const handleSearch = async (query: string): Promise<Point[]> => {
         // Remove duplicates (in case multiple terms matched the same item)
         const uniqueResults = Array.from(new Set(results));
 
-        console.log(uniqueResults);
-
         return uniqueResults;
     } catch (error) {
         console.error("Error during search:", error);

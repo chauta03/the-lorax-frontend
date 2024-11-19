@@ -19,7 +19,6 @@ const fetchTreeHistoryInfo = async (): Promise<TreeHistory[]> => {
             year: tree.year
         }));
         
-        console.log("Fetched tree history:", formatted);
         return formatted;
     } catch (error) {
         if (axios.isAxiosError(error)) {

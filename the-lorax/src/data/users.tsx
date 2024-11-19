@@ -19,7 +19,6 @@ async function fetchUserData() {
 
         if (response.ok) {
             const data = await response.json();
-            console.log("Fetched user data:", data);
             return data;
         } else {
             alert("Failed to fetch user data.");
