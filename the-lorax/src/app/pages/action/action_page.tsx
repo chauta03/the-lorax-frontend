@@ -120,7 +120,7 @@ const ActionButton: React.FC = () => {
                         <div className="action-page-upper-buttons">
                             <Link to="/directory"><DirectoryButton/></Link>
                             <Link to="/about"><AboutButton/></Link>
-                            <Link to="/"><TreeButton/></Link>
+                            <Link to="/history"><TreeButton/></Link>
                             <Link to="/adminMobile"><AdminButton/></Link>
                         </div>
                         <SearchBar onSearch={handleSearchInput} />
@@ -137,7 +137,7 @@ const ActionButton: React.FC = () => {
                     <div className="action-page-upper-buttons">
                         <Link to="/directory"><DirectoryButton/></Link>
                         <Link to="/about"><AboutButton/></Link>
-                        <Link to="/"><TreeButton/></Link>
+                        <Link to="/history"><TreeButton/></Link>
                         <Link to="/admin"><AdminButton/></Link>
                     </div>
                     <SearchBar onSearch={handleSearchInput} />
