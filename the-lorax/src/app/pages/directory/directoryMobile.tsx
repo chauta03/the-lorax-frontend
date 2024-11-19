@@ -11,6 +11,7 @@ import { Point } from "../../../types/tree";
 import fetchTreeInfo from "../../../data/trees";
 import logo from '../../../images/logo.svg';
 import axios from "axios";
+import Footer from "../../components/footer";
 
 
 export default function Directory() {
@@ -140,10 +141,11 @@ export default function Directory() {
 
 
     return (
+        <div>
         <div className="directory">
-            <div className='logo-container'>
+            {/* <div className='logo-container'>
                 <img src={logo} className='logo-icon'/>
-            </div>
+            </div> */}
             <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
             {/* <div className="directory-lower"> */}
                 {/* <div className="directory-sort-and-filter">                            
@@ -162,6 +164,8 @@ export default function Directory() {
                     />
                 </div>
             {/* </div> */}
+        </div>
+        <Footer />
         </div>
     );
 }
