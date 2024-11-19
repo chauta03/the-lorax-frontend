@@ -73,6 +73,11 @@
     pointer-events: all;
 }
 
+.header-content-text {
+    color: #000;
+    text-decoration: none;
+}
+
 .sandwich-arrow-container {
     width: 2%;
     object-fit: contain;
@@ -103,7 +108,8 @@
     margin: 10%;
 }
 
-/* .logo-icon.active {
-    opacity: 100%;
-} */
+.logo-icon.active {
+    /* opacity: 0%; */
+    display: none;
+}
 
