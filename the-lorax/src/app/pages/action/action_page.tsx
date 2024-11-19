@@ -62,12 +62,25 @@ const ActionButton: React.FC = () => {
         }
     };
 
+    const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+        setIsPortrait(window.innerHeight > window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+        window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
 
 
     // Detect screen width on mount and resize
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            setIsMobile(window.innerWidth <= 768 || window.innerHeight <= 500);
         };
 
         // Set initial value
@@ -84,23 +97,41 @@ const ActionButton: React.FC = () => {
     return (
         <div>
             {isMobile ? (
-                <div className='action-page-phone'>
-                    <span className='header-text'>Campus Tree Project</span>
-                    <SearchBar onSearch={handleSearchInput} />
-                    <div className='action-page-background-phone'>
-                        <div className='action-page-left-buttons'>
-                            <Link to="/adminMobile"><AdminButtonMobile/></Link>
-                            <Link to="/"><TreeButtonMobile/></Link>
-                            <Link to="/about"><AboutButtonMobile/></Link>
-                            <Link to="/directory"><DirectoryButtonMobile/></Link>
+                isPortrait ? (
+                    <div className='action-page-phone'>
+                        <span className='header-text'>Kampus Tree Project</span>
+                        <SearchBar onSearch={handleSearchInput} />
+                        <div className='action-page-background-phone'>
+                            <div className='action-page-left-buttons'>
+                                <Link to="/adminMobile"><AdminButtonMobile/></Link>
+                                <Link to="/"><TreeButtonMobile/></Link>
+                                <Link to="/about"><AboutButtonMobile/></Link>
+                                <Link to="/directory"><DirectoryButtonMobile/></Link>
+                            </div>
+                            <div className='action-page-right-buttons'>
+                                <Link to="/support"><SupportButtonMobile/></Link>
+                                <Link to="/map"><MapButtonMobile/></Link>
+                            </div>
                         </div>
-                        <div className='action-page-right-buttons'>
-                            <Link to="/support"><SupportButtonMobile/></Link>
-                            <Link to="/map"><MapButtonMobile/></Link>
-                        </div>
+                        <Footer />
                     </div>
-                    <Footer />
-                </div>
+                ) : (
+                    <div className="action-page-background">
+                        <div className="action-page-upper-buttons">
+                            <Link to="/directory"><DirectoryButton/></Link>
+                            <Link to="/about"><AboutButton/></Link>
+                            <Link to="/"><TreeButton/></Link>
+                            <Link to="/adminMobile"><AdminButton/></Link>
+                        </div>
+                        <SearchBar onSearch={handleSearchInput} />
+                        <div className="action-page-lower-buttons">
+                            <Link to="/map"><MapButton/></Link>
+                            <Link to="/support"><SupportButton/></Link>
+                        </div>
+                        <Footer />
+                    </div>
+                )
+                
             ) : (
                 <div className="action-page-background">
                     <div className="action-page-upper-buttons">

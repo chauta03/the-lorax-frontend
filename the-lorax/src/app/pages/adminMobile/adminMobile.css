@@ -1,5 +1,6 @@
 .admin-phone {
     height: 100vh;
+    min-height: fit-content;
     background-color: #78D8A4;
     display: flex;
     justify-content: center;

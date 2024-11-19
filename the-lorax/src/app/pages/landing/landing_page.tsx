@@ -38,9 +38,9 @@ return (
             </div>
         ) : (
         <div className="landing-page-background landing-page-trees">
-            <div className='logo-container'>
+            {/* <div className='logo-container'>
                 <img src={logo} className='logo-icon'/>
-            </div>
+            </div> */}
             <div className="landing-page-text-container landing-page-text">
                 Kampus Tree Project
             </div>

@@ -212,9 +212,9 @@ export default function Directory({token}: {token: string | null}) {
 
     return (
         <div className="directory">
-            <div className='logo-container'>
+            {/* <div className='logo-container'>
                 <img src={logo} className='logo-icon'/>
-            </div>
+            </div> */}
             <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
             <div className="directory-lower">
                 <div className="directory-sort-and-filter">
