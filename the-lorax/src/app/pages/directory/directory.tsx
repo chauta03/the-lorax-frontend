@@ -11,6 +11,7 @@ import { Point } from "../../../types/tree";
 import fetchTreeInfo from "../../../data/trees";
 import logo from '../../../images/logo.svg';
 import axios from "axios";
+import Footer from "../../components/footer";
 
 
 export default function Directory({token}: {token: string | null}) {
@@ -211,6 +212,7 @@ export default function Directory({token}: {token: string | null}) {
 
 
     return (
+        <div>
         <div className="directory">
             {/* <div className='logo-container'>
                 <img src={logo} className='logo-icon'/>
@@ -447,6 +449,8 @@ export default function Directory({token}: {token: string | null}) {
                     </div>
                 )}
                 </div>
+        </div>
+        <Footer />
         </div>
     );
 }

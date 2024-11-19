@@ -1,6 +1,7 @@
 import React from 'react';
 import './adminMobile.css';
 import sadTree from '../../../images/icons/sad-tree.svg';
+import Footer from '../../components/footer';
 
 export default function AdminMobile() {
     
@@ -13,6 +14,7 @@ export default function AdminMobile() {
             <div className='sad-tree-container'>
                 <img src={sadTree} alt='Sad Tree' className='sad-tree-icon' />
             </div>
+            <Footer />
         </div>
     )
 }

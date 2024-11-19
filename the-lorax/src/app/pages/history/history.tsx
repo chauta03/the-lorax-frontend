@@ -9,6 +9,7 @@ import handleSearchHistory from "../../../data/handleSearchHistory";
 import { TreeHistory } from "../../../types/tree";
 import fetchTreeHistoryInfo from "../../../data/treeHistory";
 import axios from "axios";
+import Footer from "../../components/footer";
 
 export default function History({ token }: { token: string | null }) {
     const [isMobile, setIsMobile] = useState(false);
@@ -180,6 +181,7 @@ export default function History({ token }: { token: string | null }) {
     }, []);
 
     return (
+        <div>
         <div className="directory">
             <SearchBar onSearch={handleSearchInput} />
             <div className="directory-lower">
@@ -349,6 +351,8 @@ export default function History({ token }: { token: string | null }) {
                     </div>
                 </div>
             )}
+        </div>
+        <Footer />
         </div>
     );
 }

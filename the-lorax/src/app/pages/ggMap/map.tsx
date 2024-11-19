@@ -15,6 +15,7 @@ import "./map.css";
 import axios from "axios";
 import Markers from "./markers";
 import logo from '../../../images/logo.svg';
+import Footer from "../../components/footer";
 
 export default function GgMap() {
     const initialPosition = { lat: 42.290106400890906, lng: -85.59815573221456 };
@@ -84,6 +85,7 @@ export default function GgMap() {
                     </div>
                 </APIProvider>
             )}
+            <Footer />
         </div>
     )
 }
