@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import "../directory.css";
 import ArrowDown from '../../../../images/icons/arrow-down.svg';
+import TickboxTicked from '../../../../images/buttons/tick-box-ticked.svg';
+import TickboxEmpty from '../../../../images/buttons/tick-box-empty.svg';
 
 type FilterProps = {
     latinNames: string[];
@@ -108,7 +110,9 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                         Latin Name: {selectedLatinName || 'All'}
                     </span>
                     
-                    <img src={ArrowDown} alt="Sort" />
+                    {selectedLatinName === null ?
+                         <img src={TickboxEmpty} /> : <img src={TickboxTicked}/> 
+                    }
                     {showLatinDropdown && (
                         <div className="dropdown">
                             <div 
@@ -142,7 +146,9 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                     <span>
                         Common Name:  {selectedCommonName || 'All'}
                     </span>
-                    <img src={ArrowDown} alt="Sort" />
+                    {selectedCommonName === null ?
+                         <img src={TickboxEmpty} /> : <img src={TickboxTicked}/> 
+                    }
                     {showCommonDropdown && (
                         <div className="dropdown">
                             <div 
@@ -176,7 +182,9 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                     <span>
                         Sun: {selectedSun || 'All'}
                     </span>
-                    <img src={ArrowDown} alt="Sort" />
+                    {selectedSun === null ?
+                         <img src={TickboxEmpty} /> : <img src={TickboxTicked}/> 
+                    }
                     {showSunDropdown && (
                         <div className="dropdown">
                             <div 
@@ -208,9 +216,11 @@ export default function Filter({ latinNames, commonNames, sun, speciesCo, onFilt
                     ref={speciesCoDropdownRef}
                 >
                     <span>
-                        Species Co: {selectedSpeciesCo || 'All'}
+                        Species Code: {selectedSpeciesCo || 'All'}
                     </span>
-                    <img src={ArrowDown} alt="Sort" />
+                    {selectedSpeciesCo === null ?
+                         <img src={TickboxEmpty} /> : <img src={TickboxTicked}/> 
+                    }
                     {showSpeciesCo && (
                         <div className="dropdown">
                             <div 

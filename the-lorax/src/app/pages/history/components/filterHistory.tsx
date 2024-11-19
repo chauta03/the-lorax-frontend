@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import "../history.css";
-import ArrowDown from '../../../../images/icons/arrow-down.svg';
+import TickboxEmpty from '../../../../images/buttons/tick-box-empty.svg';
+import TickboxTicked from '../../../../images/buttons/tick-box-ticked.svg';
 
 type FilterProps = {
     hazardRating: string[];
@@ -58,20 +59,24 @@ export default function FilterHistory({ hazardRating, year, onFilter }: FilterPr
             <span className="sort-directory-text">Filter</span>
             <div className="sort-directory-category">
                 {/* Hazard Rating Dropdown */}
-                <div className="sort-directory-category-field">
+                <div className="sort-directory-category-field"
+                    onClick={() => {
+                        setShowHazardRatingDropdown(!showHazardRatingDropdown);
+                        setShowYearDropdown(false); 
+                    }}>
                     <div
                         className="filter-field-wrapper"
-                        onClick={() => {
-                            setShowHazardRatingDropdown(!showHazardRatingDropdown);
-                            setShowYearDropdown(false); // Hide other dropdown
-                        }}
+                        
                         ref={hazardRatingDropdownRef}
                     >
                         <span className='filter-field'>
                             Hazard Rating: {selectedHazardRating || 'All'}
                         </span>
-                        {/* <img src={ArrowDown} alt="Sort" /> */}
+                        
                     </div>
+                    {selectedHazardRating === null ?
+                         <img src={TickboxEmpty} /> : <img src={TickboxTicked}/> 
+                    }
                     {showHazardRatingDropdown && (
                         <div ref={hazardRatingDropdownRef} className="dropdown">
                             <div
@@ -94,19 +99,24 @@ export default function FilterHistory({ hazardRating, year, onFilter }: FilterPr
                 </div>
 
                 {/* Year Dropdown */}
-                <div className="sort-directory-category-field">
+                <div className="sort-directory-category-field"
+                    onClick={() => {
+                        setShowYearDropdown(!showYearDropdown);
+                        setShowHazardRatingDropdown(false); // Hide other dropdown
+                    }}>
                     <div
                         className="filter-field-wrapper"
-                        onClick={() => {
-                            setShowYearDropdown(!showYearDropdown);
-                            setShowHazardRatingDropdown(false); // Hide other dropdown
-                        }}
+                        
                     >
                         <span className='filter-field'>
                             Year: {selectedYear || 'All'}
+                            
                         </span>
-                        {/* <img src={ArrowDown} alt="Sort" /> */}
+                        
                     </div>
+                    {selectedYear === null ?
+                         <img src={TickboxEmpty} /> : <img src={TickboxTicked}/> 
+                    }
                     {showYearDropdown && (
                         <div ref={yearDropdownRef} className="dropdown">
                             <div
