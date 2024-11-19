@@ -60,14 +60,18 @@
     top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
+    /* background-color: white; */
+    width: fit-content;
+    height: fit-content;
 }
+
 
 .box span {
     display: block;
     width: 20px;
     height: 20px;
-    border-bottom: 2px solid var(--light-green);
-    border-right: 2px solid var(--light-green);
+    border-bottom: 3px solid var(--light-green);
+    border-right: 3px solid var(--light-green);
     transform: rotate(45deg);
     margin: -10px;
     animation: animate 2s infinite;
