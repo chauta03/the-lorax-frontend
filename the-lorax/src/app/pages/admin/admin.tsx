@@ -9,9 +9,11 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const response = await fetch(
@@ -28,14 +30,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                localStorage.setItem("token", data.access_token); // Save token to localStorage
-                onLogin(); // Trigger the onLogin callback
+                localStorage.setItem("token", data.access_token); 
+                onLogin(); 
             } else {
                 alert("Login failed!");
             }
         } catch (error) {
             console.error("Error logging in:", error);
             alert("An error occurred while logging in.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -60,7 +64,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button className="login-button" type="submit">Sign In</button>
+                    <button 
+                        className="login-button" 
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading ? "Signing In..." : "Sign In"}
+                    </button>
                 </form>
             </div>
             <div className="login-body-right">
