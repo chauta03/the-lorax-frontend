@@ -16,6 +16,7 @@ import Footer from "../../components/footer";
 
 export default function Directory({token}: {token: string | null}) {
     const [treeData, setTreeData] = useState<Point[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const [searchResults, setSearchResults] = useState<Point[] | null>(null);
     const [sortKey, setSortKey] = useState<keyof Point | null>(null);
     const [selectedLatinName, setSelectedLatinName] = useState<string | null>(null);
@@ -47,7 +48,7 @@ export default function Directory({token}: {token: string | null}) {
         common_name: "",
         sun: "",
         lat: 0,
-        long: 0
+        long: 0,
     });
 
     // Search when query changes
@@ -162,7 +163,9 @@ export default function Directory({token}: {token: string | null}) {
             })
             .then((response) => {
                 alert("Tree added successfully!");
-                setTreeData((prevTreeData) => [...prevTreeData, response.data]);
+                setTreeData((prevTreeData) =>
+                    prevTreeData.map((tree) => (tree.tree_id === newTree.tree_id ? newTree : tree))
+                );
                 setNewTree({
                     tree_id: undefined,
                     tag_number: undefined,
@@ -171,8 +174,9 @@ export default function Directory({token}: {token: string | null}) {
                     common_name: "",
                     sun: "",
                     lat: 0,
-                    long: 0
+                    long: 0,
                 });
+
                 setAddTreeModalOpen(false);
             })
             .catch((err) => alert(`Error adding tree: ${err.message}`));
@@ -215,146 +219,160 @@ export default function Directory({token}: {token: string | null}) {
 
     return (
         <div>
-        <div className="directory">
-            {/* <div className='logo-container'>
-                <img src={logo} className='logo-icon'/>
-            </div> */}
-            <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
-            <div className="directory-lower">
-                <div className="directory-sort-and-filter">
-                    {token && (
-                        <>
-                            <button className="login-button" onClick={() => setAddTreeModalOpen(true)}>Add New Tree</button>
+                    <div className="directory">
+                        <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
+                        <div className="directory-lower">
+                            <div className="directory-sort-and-filter">
+                                {token && (
+                                    <>
+                                        <button className="login-button" onClick={() => setAddTreeModalOpen(true)}>Add New Tree</button>
 
-                            {isAddTreeModalOpen && (
-                                <div className="modal">
-                                    <div className="modal-content long-modal-content">
-                                        <h2>Add New Tree</h2>
-                                        <button 
-                                            className="modal-close" 
-                                            type="button"
-                                            onClick={() => setAddTreeModalOpen(false)}
-                                            >
-                                            x
-                                        </button>
-                                        <form 
-                                            className="modal-form long-modal-form"
-                                            onSubmit={(e) => {
-                                                e.preventDefault();
-                                                handleAddTree();
-                                            }}
-                                        >
-                                            <>
-                                            
-                                            </>
-                                            <label>Tree ID:</label>
-                                            <input
-                                                type="number"
-                                                value={newTree.tree_id || ""}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, tree_id: Number(e.target.value) })
-                                                }
-                                                required
-                                            />
-                                            <label>Tag #:</label>
-                                            <input
-                                                type="number"
-                                                value={newTree.tag_number || ""}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, tag_number: Number(e.target.value) })
-                                                }
-                                                required
-                                            />
-                                            <label>Species Code:</label>
-                                            <input
-                                                type="text"
-                                                value={newTree.species_code || ""}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, species_code: e.target.value })
-                                                }
-                                                required
-                                            />
-                                            <label>Latin Name:</label>
-                                            <input
-                                                type="text"
-                                                value={newTree.latin_name || ""}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, latin_name: e.target.value })
-                                                }
-                                                required
-                                            />
-                                            <label>Common Name:</label>
-                                            <input
-                                                type="text"
-                                                value={newTree.common_name || ""}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, common_name: e.target.value })
-                                                }
-                                                required
-                                            />
-                                            <label>Sun:</label>
-                                            <input
-                                                type="text"
-                                                value={newTree.sun || ""}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, sun: e.target.value })
-                                                }
-                                                required
-                                            />
-                                            <label>Latitude:</label>
-                                            <input
-                                                type="number"
-                                                value={newTree.lat}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, lat: Number(e.target.value) })
-                                                }
-                                                required
-                                            />
-                                            <label>Longitude:</label>
-                                            <input
-                                                type="number"
-                                                value={newTree.long}
-                                                onChange={(e) =>
-                                                    setNewTree({ ...newTree, long: Number(e.target.value) })
-                                                }
-                                                required
-                                            />
-                                            <button className="submit-button" type="submit">Add Tree</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            )}
-                        </>
-                    )}
-                    <Filter
-                        latinNames={latinNames}
-                        commonNames={commonNames}
-                        sun={suns}
-                        speciesCo={speciesCos}
-                        onFilter={handleFilter}
-                    />
-                    <Sort onSort={handleSort} />
-                </div>
-                <div className="directory-display">
-                    {/* Pass filtered and sorted data to Display */}
-                    <Display
-                        token={token}
-                        data={filteredAndSortedData}
-                        onEdit={(tree) => {
-                            if (token) {
-                                setUpdatedTree(tree);
-                                setEditTreeModalOpen(true);
-                            }
-                        }}
-                        onDelete={(treeId) => {
-                            if (token) handleDeleteTree(treeId);
-                        }}
-                    />
-                </div>
-
+                                    </>
+                                )}
+                                <Filter
+                                    latinNames={latinNames}
+                                    commonNames={commonNames}
+                                    sun={suns}
+                                    speciesCo={speciesCos}
+                                    onFilter={handleFilter}
+                                />
+                                <Sort onSort={handleSort} />
+                            </div>
+                            <div className="directory-display">
+                                <Display
+                                    token={token}
+                                    data={filteredAndSortedData}
+                                    onEdit={(tree) => {
+                                        if (token) {
+                                            setUpdatedTree(tree);
+                                            setEditTreeModalOpen(true);
+                                        }
+                                    }}
+                                    onDelete={(treeId) => {
+                                        if (token) handleDeleteTree(treeId);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 
 
-                {/* Edit Tree Modal */}
+                {isAddTreeModalOpen && (
+                    <div className="modal">
+                        <div className="modal-content long-modal-content">
+                            <h2>Add New Tree</h2>
+                            <button 
+                                className="modal-close" 
+                                type="button"
+                                onClick={() => setAddTreeModalOpen(false)}
+                                >
+                                x
+                            </button>
+                            <form 
+                                className="modal-form long-modal-form"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+
+                                    const lat = Number(rawLat);
+                                    const long = Number(rawLong);
+
+                                    if (!isNaN(lat) && !isNaN(long)) {
+                                        setNewTree({ ...newTree, lat, long });
+                                        handleAddTree();
+                                    } else {
+                                        alert("Please enter valid latitude and longitude.");
+                                    }
+                                }}
+                            >
+                                <>
+                                
+                                </>
+                                <label>Tree ID:</label>
+                                <input
+                                    type="number"
+                                    value={newTree.tree_id || ""}
+                                    onChange={(e) =>
+                                        setNewTree({ ...newTree, tree_id: Number(e.target.value) })
+                                    }
+                                    required
+                                />
+                                <label>Tag #:</label>
+                                <input
+                                    type="number"
+                                    value={newTree.tag_number || ""}
+                                    onChange={(e) =>
+                                        setNewTree({ ...newTree, tag_number: Number(e.target.value) })
+                                    }
+                                    required
+                                />
+                                <label>Species Code:</label>
+                                <input
+                                    type="text"
+                                    value={newTree.species_code || ""}
+                                    onChange={(e) =>
+                                        setNewTree({ ...newTree, species_code: e.target.value })
+                                    }
+                                    required
+                                />
+                                <label>Latin Name:</label>
+                                <input
+                                    type="text"
+                                    value={newTree.latin_name || ""}
+                                    onChange={(e) =>
+                                        setNewTree({ ...newTree, latin_name: e.target.value })
+                                    }
+                                    required
+                                />
+                                <label>Common Name:</label>
+                                <input
+                                    type="text"
+                                    value={newTree.common_name || ""}
+                                    onChange={(e) =>
+                                        setNewTree({ ...newTree, common_name: e.target.value })
+                                    }
+                                    required
+                                />
+                                <label>Sun:</label>
+                                <input
+                                    type="text"
+                                    value={newTree.sun || ""}
+                                    onChange={(e) =>
+                                        setNewTree({ ...newTree, sun: e.target.value })
+                                    }
+                                    required
+                                />
+                                <label>Latitude:</label>
+                                <input
+                                    type="text" // Allow "-" and intermediate text input
+                                    value={rawLat}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                            setRawLat(value); // Update raw latitude input
+                                        }
+                                    }}
+                                    required
+                                />
+                                <label>Longitude:</label>
+                                <input
+                                    type="text"
+                                    value={rawLong}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                            setRawLong(value);
+                                        }
+                                    }}
+                                    required
+                                />
+                                <button className="submit-button" type="submit">Add Tree</button>
+                            </form>
+                        </div>
+                    </div>
+                )}
+            
+                          
+
                 {isEditTreeModalOpen && updatedTree && (
                     <div className="modal">
                         <div className="modal-content long-modal-content">
@@ -374,8 +392,8 @@ export default function Directory({token}: {token: string | null}) {
                                     // Convert raw inputs to integers
                                     const updatedTreeWithIntegers = {
                                         ...updatedTree,
-                                        lat: Math.round(Number(rawLat)),
-                                        long: Math.round(Number(rawLong)),
+                                        lat: Number(rawLat),
+                                        long: Number(rawLong),
                                     };
 
                                     handleUpdateTree(updatedTreeWithIntegers);
@@ -464,8 +482,6 @@ export default function Directory({token}: {token: string | null}) {
                         </div>
                     </div>
                 )}
-                </div>
-        </div>
         <Footer />
         </div>
     );
