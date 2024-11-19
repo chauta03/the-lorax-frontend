@@ -21,7 +21,7 @@ export default function Display({token, data, onDelete, onEdit }: DisplayProps) 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const treesPerPage = Math.floor((windowHeight * 0.45) / 50);
+    const treesPerPage = Math.floor((windowHeight * 0.47) / 50);
 
     // Calculate the index range for the current page
     const indexOfLastTree = currentPage * treesPerPage;
@@ -44,7 +44,6 @@ export default function Display({token, data, onDelete, onEdit }: DisplayProps) 
             setCurrentPage(currentPage - 1);
         }
     };
-
 
 
     return (
