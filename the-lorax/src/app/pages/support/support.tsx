@@ -37,7 +37,7 @@ export default function Support() {
                                 Question?
                             </h2>
                             <div className='support-body-text'>
-                                Contact
+                                <text>Contact </text>
                                 <a href='https://biology.kzoo.edu/faculty-staff/bgirdler/' target='_blank' rel='noopener noreferrer' className='link-text'>
                                     Dr. Binney Girdler
                                 </a>
@@ -49,7 +49,7 @@ export default function Support() {
                                 Resources
                             </h2>
                             <div className='support-body-text'>
-                                Backend Code at 
+                                <text>Backend Code at </text>
                                 <a href='https://github.com/cole-koryto/trees-backend' target='_blank' rel='noopener noreferrer' className='link-text'>
                                     Github
                                 </a>
@@ -59,9 +59,9 @@ export default function Support() {
                 </div>
             ) : (
                 <div className="support-page-background">
-                    <div className='logo-container-suppport-page'>
+                    {/* <div className='logo-container-suppport-page'>
                         <img src={logo} className='logo-icon'/>
-                    </div>
+                    </div> */}
                     <div className='support-text-container'>
                         <span className='support-text'>Support</span>
                     </div>
@@ -74,7 +74,7 @@ export default function Support() {
                                 Question?
                             </h2>
                             <div className='support-body-text'>
-                                Contact
+                                <text>Contact </text>
                                 <a href='https://biology.kzoo.edu/faculty-staff/bgirdler/' target='_blank' rel='noopener noreferrer' className='link-text'>
                                     Dr. Binney Girdler
                                 </a>
@@ -86,7 +86,7 @@ export default function Support() {
                                 Resources
                             </h2>
                             <div className='support-body-text'>
-                                Backend Code at 
+                                <text>Backend Code at </text>
                                 <a href='https://github.com/cole-koryto/trees-backend' target='_blank' rel='noopener noreferrer' className='link-text'>
                                     Github
                                 </a>
