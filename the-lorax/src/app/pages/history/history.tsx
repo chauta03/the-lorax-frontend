@@ -303,14 +303,18 @@ export default function History({ token }: { token: string | null }) {
                             <label>Tree Id</label>
                             <input
                                 type="number"
-                                value={updatedHistory.tree_id || ""}
-                                onChange={(e) =>
-                                    setUpdatedHistory({ ...updatedHistory, tree_id: Number(e.target.value) })
-                                }
+                                value={updatedHistory.tree_id !== null && updatedHistory.tree_id !== undefined ? updatedHistory.tree_id : ""}
+                                readOnly
+                                className="readonly-input"
                                 required
                             />
                             <label>History Id</label>
-                            <input type="number" value={updatedHistory.hist_id || ""} disabled />
+                            <input 
+                                type="number" 
+                                value={updatedHistory.hist_id !== null && updatedHistory.hist_id !== undefined ? updatedHistory.hist_id : ""} 
+                                className="readonly-input"
+                                disabled 
+                            />
                             <label>Hazard Rating:</label>
                             <input
                                 type="text"

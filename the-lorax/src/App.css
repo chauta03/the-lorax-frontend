@@ -120,6 +120,12 @@
   color: #61dafb;
 }
 
+.modal-form > input.readonly-input {
+  cursor: not-allowed;
+  background-color: var(--light-green);
+  opacity: 0.7;
+}
+
 /* Define variable */
 :root {
   --dark-green: #76b182;

@@ -20,6 +20,7 @@ export type Point = {
     long: number;
 };
 
+
 export type TreeHistory = {
     tree_id?: number;
     hist_id: number;
@@ -28,3 +29,14 @@ export type TreeHistory = {
     notes?: string;
     year: number;
 };
+
+export type UpdatedPoint = {
+    tree_id?: number;
+    tag_number?: number;
+    species_code?: string;
+    latin_name?: string;
+    common_name?: string;
+    sun?: string;
+    lat: string;
+    long: string;
+}

@@ -7,7 +7,7 @@ import SearchBar from "../../components/searchBar";
 import Sort from "./components/sort";
 import Filter from "./components/filter";
 import handleSearch from "../../../data/handleSearch";
-import { Point } from "../../../types/tree"; 
+import { Point, UpdatedPoint } from "../../../types/tree"; 
 import fetchTreeInfo from "../../../data/trees";
 import logo from '../../../images/logo.svg';
 import axios from "axios";
@@ -37,6 +37,8 @@ export default function Directory({token}: {token: string | null}) {
     const [isAddTreeModalOpen, setAddTreeModalOpen] = useState(false);
     const [isEditTreeModalOpen, setEditTreeModalOpen] = useState(false);
     const [updatedTree, setUpdatedTree] = useState<Point | null>(null);
+    const [rawLat, setRawLat] = useState<string>("");
+    const [rawLong, setRawLong] = useState<string>("");
     const [newTree, setNewTree] = useState<Point>({
         tree_id: undefined,
         tag_number: undefined,
@@ -368,16 +370,23 @@ export default function Directory({token}: {token: string | null}) {
                                 className="modal-form long-modal-form"
                                 onSubmit={(e) => {
                                     e.preventDefault();
-                                    handleUpdateTree(updatedTree);
+
+                                    // Convert raw inputs to integers
+                                    const updatedTreeWithIntegers = {
+                                        ...updatedTree,
+                                        lat: Math.round(Number(rawLat)),
+                                        long: Math.round(Number(rawLong)),
+                                    };
+
+                                    handleUpdateTree(updatedTreeWithIntegers);
                                 }}
                             >
                                 <label>Tree ID:</label>
                                 <input
                                     type="number"
-                                    value={updatedTree.tree_id || ""}
-                                    onChange={(e) =>
-                                        setUpdatedTree({ ...updatedTree, tree_id: Number(e.target.value) })
-                                    }
+                                    value={updatedTree.tree_id !== null && updatedTree.tree_id !== undefined ? updatedTree.tree_id : ""}
+                                    readOnly
+                                    className="readonly-input"
                                     required
                                 />
                                 <label>Tag #:</label>
@@ -427,20 +436,27 @@ export default function Directory({token}: {token: string | null}) {
                                 />
                                 <label>Latitude:</label>
                                 <input
-                                    type="number"
-                                    value={updatedTree.lat}
-                                    onChange={(e) =>
-                                        setUpdatedTree({ ...updatedTree, lat: Number(e.target.value) })
-                                    }
+                                    type="text" // Allow "-" and intermediate text input
+                                    value={rawLat}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                            setRawLat(value); // Update raw latitude input
+                                        }
+                                    }}
                                     required
                                 />
+
                                 <label>Longitude:</label>
                                 <input
-                                    type="number"
-                                    value={updatedTree.long}
-                                    onChange={(e) =>
-                                        setUpdatedTree({ ...updatedTree, long: Number(e.target.value) })
-                                    }
+                                    type="text" // Allow "-" and intermediate text input
+                                    value={rawLong}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                            setRawLong(value); // Update raw longitude input
+                                        }
+                                    }}
                                     required
                                 />
                                 <button className="submit-button" type="submit">Update Tree</button>
