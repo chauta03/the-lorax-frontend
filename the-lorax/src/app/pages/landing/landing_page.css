@@ -39,6 +39,22 @@
     background-repeat: no-repeat; /* Prevent background from repeating */
 }
 
+.k-logo-container {
+    width: 4%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    left: 3%;
+    bottom: 0;
+    /* transform: translate(-50%, -5%); */
+}
+
+.k-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 10%;
+}
+
 /* Phone Layout */
 
 @media screen and (max-width: 768px) {
