@@ -41,11 +41,11 @@ export default function About() {
                 </div>
             ) : (
                 <div className="about_background">
-                    <Link to="/">
+                    {/* <Link to="/">
                         <div className='logo-container' style={{top: '2%'}}>
                             <img src={logo} className='logo-icon'/>
                         </div>
-                    </Link>
+                    </Link> */}
                     <div className="about-body">
                         <AboutBanner className='about-banner-background'></AboutBanner>
                         <div className='every-tree-text-container'>
