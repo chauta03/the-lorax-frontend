@@ -74,15 +74,6 @@ const Markers = () => {
         if (marker && markers[key]) return;
         if (!marker && !markers[key]) return;
 
-        setMarkers((prev) => {
-            if (marker) {
-                return { ...prev, [key]: marker };
-            } else {
-                const newMarkers = { ...prev };
-                delete newMarkers[key];
-                return newMarkers;
-            }
-        });
     };
 
     const handleCloseWindow = () => {
