@@ -4,6 +4,7 @@ import './about.css';
 import logo from '../../../images/logo.svg';
 import { ReactComponent as AboutBanner } from '../../../images/about_banner.svg';
 import Footer from '../../components/footer';
+import { Link } from 'react-router-dom';
 
 export default function About() {
     const [isMobile, setIsMobile] = useState(false);
@@ -40,9 +41,11 @@ export default function About() {
                 </div>
             ) : (
                 <div className="about_background">
-                    <div className='logo-container' style={{top: '2%'}}>
-                        <img src={logo} className='logo-icon'/>
-                    </div>
+                    <Link to="/">
+                        <div className='logo-container' style={{top: '2%'}}>
+                            <img src={logo} className='logo-icon'/>
+                        </div>
+                    </Link>
                     <div className="about-body">
                         <AboutBanner className='about-banner-background'></AboutBanner>
                         <div className='every-tree-text-container'>
