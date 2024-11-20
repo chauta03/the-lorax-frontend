@@ -56,6 +56,7 @@
     background-color: var(--darker-green);
     padding: 20px;
     border-radius: var(--border-radius);
+    gap: 20px;
 }
 
 .map-search-bar {
@@ -72,12 +73,33 @@
     transition: 0.3s;
 }
 
+.current-location-button{
+    background-color: var(--light-orange);
+}
+
+
 .map-button:hover {
     background-color: var(--dark-green);
     color: white;
 }
 
+.map-search-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
 
+@media screen and (max-width: 1100px) {
+    .controls{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .map-search-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
 
 @media screen and (max-width: 768px) {
     .map-container {
@@ -98,5 +120,9 @@
 
     .map-search-bar {
         flex-direction: column;
+    }
+
+    .map-search-container{
+        flex-direction: row;
     }
 }

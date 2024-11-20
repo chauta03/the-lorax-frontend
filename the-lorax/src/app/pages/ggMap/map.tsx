@@ -6,6 +6,7 @@ import { APIProvider, Map, useMap, AdvancedMarker } from "@vis.gl/react-google-m
 import Markers from "./markers";
 import "./map.css";
 import Footer from "../../components/footer";
+import fetchTreeInfo from "../../../data/trees";
 
 export default function GgMap() {
     const initialPosition = { lat: 42.290106400890906, lng: -85.59815573221456 };
@@ -14,7 +15,10 @@ export default function GgMap() {
     const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
     const [searchLat, setSearchLat] = useState<string>("");
     const [searchLng, setSearchLng] = useState<string>("");
+    const [searchId, setSearchId] = useState<string>("");
     const [loadingLocation, setLoadingLocation] = useState<boolean>(false); // Loading state for location
+    const [searchingId, setSearchingId] = useState<boolean>(false);
+    const [searchingLL, setSearchingLL] = useState<boolean>(false);
 
     // Get tree
     const [searchParams] = useSearchParams();
@@ -34,9 +38,31 @@ export default function GgMap() {
 
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+    
+
+    // Search by tree ID
+    const handleSearchByTreeId = async (id: string) => {
+        setSearchingId(true);
+        const trees = await fetchTreeInfo()
+        const treeId = parseInt(id);
+
+        const targetTree = trees.find((tree) => tree.tree_id === treeId);
+
+
+        if (targetTree) {
+            if (mapInstanceRef.current) {
+                mapInstanceRef.current.panTo({ lat: targetTree.lat, lng: targetTree.long });
+                mapInstanceRef.current.setZoom(25);
+            }
+        } else {
+            alert("Tree not found.");
+        }
+        setSearchingId(false);
+    }
 
     // Handle search to center map
     const handleSearch = () => {
+        setSearchingLL(true);
         const lat = parseFloat(searchLat);
         const lng = parseFloat(searchLng);
 
@@ -52,6 +78,7 @@ export default function GgMap() {
 
         mapInstanceRef.current.panTo({ lat, lng });
         mapInstanceRef.current.setZoom(15);
+        setSearchingLL(false);
     };
 
     // Get Current Location
@@ -107,21 +134,44 @@ export default function GgMap() {
                         >
                             {loadingLocation ? "Loading location..." : "Get Current Location"}
                         </button>
-                        <div className="map-search-bar">
+
+                        <div className="map-search-container">
+                            <div className="map-search-bar">
                             <input
-                                type="text"
-                                placeholder="Latitude"
-                                value={searchLat}
-                                onChange={(e) => setSearchLat(e.target.value)}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Longitude"
-                                value={searchLng}
-                                onChange={(e) => setSearchLng(e.target.value)}
-                            />
-                            <button className="map-button" onClick={handleSearch}>Search</button>
+                                    type="text"
+                                    placeholder="Tree ID"
+                                    value={searchId}
+                                    onChange={(e) => setSearchId(e.target.value)}
+                                />
+                                <button
+                                    className="map-button"
+                                    onClick={() => handleSearchByTreeId(searchId)}
+                                >
+                                    {searchingId ? "Searching..." : "Search Tree ID"}
+                                </button>
+                            </div>
+
+
+
+                            <div className="map-search-bar">
+                                <input
+                                    type="text"
+                                    placeholder="Latitude"
+                                    value={searchLat}
+                                    onChange={(e) => setSearchLat(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Longitude"
+                                    value={searchLng}
+                                    onChange={(e) => setSearchLng(e.target.value)}
+                                />
+                                <button className="map-button" onClick={handleSearch}>
+                                    {searchingLL ? "Searching..." : "Search Location"}
+                                </button>
+                            </div>
                         </div>
+                        
                     </div>
 
                     {/* Map */}
