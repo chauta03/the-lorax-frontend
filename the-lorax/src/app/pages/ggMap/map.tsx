@@ -77,7 +77,7 @@ export default function GgMap() {
         }
 
         mapInstanceRef.current.panTo({ lat, lng });
-        mapInstanceRef.current.setZoom(15);
+        mapInstanceRef.current.setZoom(25);
         setSearchingLL(false);
     };
 
