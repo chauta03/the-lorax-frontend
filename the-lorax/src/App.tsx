@@ -17,6 +17,7 @@ import AdminMobile from './app/pages/adminMobile/adminMobile';
 import Users from './app/pages/admin/users';
 import Footer from './app/components/footer';
 
+
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
   const [isMobile, setIsMobile] = useState(false);
@@ -48,7 +49,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* Pass isMobile, token, and handleLogout to Header */}
       <Header token={token} handleLogout={handleLogout} isMobile={isMobile} />
       <ScrollToTop />
       <Routes>
