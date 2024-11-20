@@ -264,16 +264,28 @@ export default function History({ token }: { token: string | null }) {
                         >
                             <label>Tree Id</label>
                             <input
-                                type="number"
-                                value={newHistory.tree_id || ""}
-                                onChange={(e) => setNewHistory({ ...newHistory, tree_id: Number(e.target.value) })}
+                                type="text"
+                                value={newHistory.tree_id !== null && newHistory.tree_id !== undefined ? newHistory.tree_id : ""}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    setNewHistory({
+                                        ...newHistory,
+                                        tree_id: value === "" ? undefined : Number(value),
+                                    })
+                                }}
                                 required
                             />
                             <label>History Id</label>
                             <input
-                                type="number"
-                                value={newHistory.hist_id || ""}
-                                onChange={(e) => setNewHistory({ ...newHistory, hist_id: Number(e.target.value) })}
+                                type="text"
+                                value={newHistory.hist_id !== null && newHistory.hist_id !== undefined ? newHistory.hist_id : ""}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    setNewHistory({
+                                        ...newHistory,
+                                        hist_id: value === "" ? 0 : Number(value),
+                                    })
+                                }}
                                 // readOnly
                                 required
                             />

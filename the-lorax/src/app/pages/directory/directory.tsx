@@ -314,20 +314,28 @@ export default function Directory({token}: {token: string | null}) {
                                 </>
                                 <label>Tree ID:</label>
                                 <input
-                                    type="number"
-                                    value={newTree.tree_id || ""}
-                                    onChange={(e) =>
-                                        setNewTree({ ...newTree, tree_id: Number(e.target.value) })
-                                    }
+                                    type="text"
+                                    value={newTree.tree_id !== null && newTree.tree_id !== undefined ? newTree.tree_id : ""}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        setNewTree({
+                                            ...newTree,
+                                            tree_id: value === "" ? undefined : Number(value),
+                                        });
+                                    }}
                                     required
                                 />
                                 <label>Tag #:</label>
                                 <input
                                     type="number"
-                                    value={newTree.tag_number || ""}
-                                    onChange={(e) =>
-                                        setNewTree({ ...newTree, tag_number: Number(e.target.value) })
-                                    }
+                                    value={newTree.tag_number != null && newTree.tag_number !== undefined ? newTree.tag_number : ""}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        setNewTree({
+                                            ...newTree,
+                                            tag_number: value === "" ? undefined : Number(value),
+                                        });
+                                    }}
                                     required
                                 />
                                 <label>Species Code:</label>
