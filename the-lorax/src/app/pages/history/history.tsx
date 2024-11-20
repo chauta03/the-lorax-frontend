@@ -326,19 +326,6 @@ export default function History({ token }: { token: string | null }) {
                                             handleAddHistory();
                                         }}
                                     >
-                                        <label>Tree Id</label>
-                                        <input
-                                            type="text"
-                                            value={newHistory.tree_id !== null && newHistory.tree_id !== undefined ? newHistory.tree_id : ""}
-                                            onChange={(e) => {
-                                                const value = e.target.value;
-                                                setNewHistory({
-                                                    ...newHistory,
-                                                    tree_id: value === "" ? undefined : Number(value),
-                                                })
-                                            }}
-                                            required
-                                        />
                                         <label>History Id</label>
                                         <input
                                             type="text"
@@ -351,6 +338,19 @@ export default function History({ token }: { token: string | null }) {
                                                 })
                                             }}
                                             // readOnly
+                                            required
+                                        />
+                                        <label>Tree Id</label>
+                                        <input
+                                            type="text"
+                                            value={newHistory.tree_id !== null && newHistory.tree_id !== undefined ? newHistory.tree_id : ""}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setNewHistory({
+                                                    ...newHistory,
+                                                    tree_id: value === "" ? undefined : Number(value),
+                                                })
+                                            }}
                                             required
                                         />
                                         <label>Hazard Rating:</label>
@@ -400,6 +400,13 @@ export default function History({ token }: { token: string | null }) {
                                             handleUpdateHistory();
                                         }}
                                     >
+                                        <label>History Id</label>
+                                        <input 
+                                            type="number" 
+                                            value={updatedHistory.hist_id !== null && updatedHistory.hist_id !== undefined ? updatedHistory.hist_id : ""} 
+                                            className="readonly-input"
+                                            disabled 
+                                        />
                                         <label>Tree Id</label>
                                         <input
                                             type="number"
@@ -407,13 +414,6 @@ export default function History({ token }: { token: string | null }) {
                                             readOnly
                                             className="readonly-input"
                                             required
-                                        />
-                                        <label>History Id</label>
-                                        <input 
-                                            type="number" 
-                                            value={updatedHistory.hist_id !== null && updatedHistory.hist_id !== undefined ? updatedHistory.hist_id : ""} 
-                                            className="readonly-input"
-                                            disabled 
                                         />
                                         <label>Hazard Rating:</label>
                                         <input
