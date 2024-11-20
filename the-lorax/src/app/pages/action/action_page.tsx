@@ -104,7 +104,7 @@ const ActionButton: React.FC = () => {
                         <div className='action-page-background-phone'>
                             <div className='action-page-left-buttons'>
                                 <Link to="/adminMobile"><AdminButtonMobile/></Link>
-                                <Link to="/"><TreeButtonMobile/></Link>
+                                <Link to="/history"><TreeButtonMobile/></Link>
                                 <Link to="/about"><AboutButtonMobile/></Link>
                                 <Link to="/directory"><DirectoryButtonMobile/></Link>
                             </div>
