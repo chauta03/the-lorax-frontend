@@ -34,7 +34,15 @@ function App() {
   // Detect screen width on mount and resize
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const isNowMobile = window.innerWidth <= 768;
+
+      setIsMobile(isNowMobile);
+
+      // Logout user if mobile view is detected
+      if (isNowMobile && token) {
+        handleLogout();
+        alert("Logged out due to accessing on a mobile device.");
+      }
     };
 
     // Set initial value
@@ -45,7 +53,7 @@ function App() {
 
     // Cleanup event listener on unmount
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [token]);
 
   return (
     <BrowserRouter>

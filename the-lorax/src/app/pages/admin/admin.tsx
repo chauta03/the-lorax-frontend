@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './admin.css'
 import treeImage from '../../../images/login-tree-image.svg'
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
     onLogin: () => void; // Callback to trigger after successful login
@@ -10,6 +11,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -42,6 +44,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (window.innerWidth <= 768) {
+            navigate('/adminMobile')
+        }
+    })
+    
 
     return (
         <div className="login" >

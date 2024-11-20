@@ -2,8 +2,17 @@ import React from 'react';
 import './adminMobile.css';
 import sadTree from '../../../images/icons/sad-tree.svg';
 import Footer from '../../components/footer';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminMobile() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (window.innerWidth > 768) {
+            navigate('/admin')
+        }
+    })
     
     return (
         <div className='admin-phone'>
