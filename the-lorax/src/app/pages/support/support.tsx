@@ -86,6 +86,12 @@ export default function Support() {
                                 Resources
                             </h2>
                             <div className='support-body-text'>
+                                <text>Frontend Code at </text>
+                                <a href='https://github.com/chauta03/the-lorax-frontend.git' target='_blank' rel='noopener noreferrer' className='link-text'>
+                                    Github
+                                </a>
+                            </div>
+                            <div className='support-body-text'>
                                 <text>Backend Code at </text>
                                 <a href='https://github.com/cole-koryto/trees-backend' target='_blank' rel='noopener noreferrer' className='link-text'>
                                     Github
