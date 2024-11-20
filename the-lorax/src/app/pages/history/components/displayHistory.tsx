@@ -11,6 +11,26 @@ type DisplayProps = {
 export default function DisplayHistory({token, onEdit, onDelete, data }: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const [loading, setLoading] = useState(true);
+    
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            // If data is loaded and not empty, stop loading immediately
+            setLoading(false);
+            return;
+        }
+    
+        // If data isn't available, start loading
+        setLoading(true);
+    
+        // Fallback timeout to stop loading after a maximum duration
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 10000); // Adjust the timeout duration as needed
+    
+        return () => clearTimeout(timer); // Clear timeout on cleanup
+    }, [data]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -52,8 +72,8 @@ export default function DisplayHistory({token, onEdit, onDelete, data }: Display
             {/* Header Section */}
             <div className='display-filter'>
                 <div className={token ? "display-filter-header logged-in-display-filter-history" : "display-filter-header display-filter-history"}>
-                    <span className="display-filter-column">Tree ID</span>
                     <span className="display-filter-column">History ID</span>
+                    <span className="display-filter-column">Tree ID</span>
                     <span className="display-filter-column">Hazard Rating</span>
                     <span className="display-filter-column">DBH</span>
                     <span className="display-filter-column">Notes</span>
@@ -62,44 +82,49 @@ export default function DisplayHistory({token, onEdit, onDelete, data }: Display
                 </div>
 
                 {/* Display the rows of data */}
-                <div className="display-filter-container">
-                    {currentTrees.length > 0 ? (
-                        currentTrees.map((tree) => (
-                            <div key={tree.tree_id} className={token ? "display-filter-row logged-in-display-filter-history" : "display-filter-row display-filter-history"}>
-                                <span className="display-filter-column">{tree.tree_id}</span>
-                                <span className="display-filter-column">{tree.hist_id}</span>
-                                <span className="display-filter-column">{tree.hazard_rating}</span>
-                                <span className="display-filter-column">{tree.DBH}</span>
-                                <span className="display-filter-column">{tree.notes}</span>
-                                <span className="display-filter-column">{tree.year}</span>
-                                {
-                                    token && (
-                                        <span className="display-filter-column admin-buttons-edit-delete">
-                                            <button
-                                                className="action-button edit-button"
-                                                onClick={() => onEdit(tree)}
-                                            >
-                                                Edit
-                                            </button>
-                                            <button
-                                                className="action-button delete-button"
-                                                onClick={() => {
-                                                    onDelete(Number(tree.tree_id));
-                                                }}
-                                            >
-                                                Delete
-                                            </button>
-                                        </span>
-                                    )
-                                }
+                {loading ? (
+                    <div className="display-filter-container">Loading...</div>
+                ) : (
+                    <div className="display-filter-container">
+                        {currentTrees.length > 0 ? (
+                            currentTrees.map((tree) => (
+                                <div key={tree.tree_id} className={token ? "display-filter-row logged-in-display-filter-history" : "display-filter-row display-filter-history"}>
+                                    <span className="display-filter-column">{tree.hist_id}</span>
+                                    <span className="display-filter-column">{tree.tree_id}</span>
+                                    <span className="display-filter-column">{tree.hazard_rating}</span>
+                                    <span className="display-filter-column">{tree.DBH}</span>
+                                    <span className="display-filter-column">{tree.notes}</span>
+                                    <span className="display-filter-column">{tree.year}</span>
+                                    {
+                                        token && (
+                                            <span className="display-filter-column admin-buttons-edit-delete">
+                                                <button
+                                                    className="action-button edit-button"
+                                                    onClick={() => onEdit(tree)}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    className="action-button delete-button"
+                                                    onClick={() => {
+                                                        onDelete(Number(tree.hist_id));
+                                                    }}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </span>
+                                        )
+                                    }
+                                </div>
+                            ))
+                        ) : (
+                            <div className="display-filter-loading">
+                                No tree data to display
                             </div>
-                        ))
-                    ) : (
-                        <div className="display-filter-loading">
-                            No tree data to display
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+                )}
+                
 
                 {/* Pagination Controls */}
                 <div className="pagination-controls">
@@ -110,7 +135,7 @@ export default function DisplayHistory({token, onEdit, onDelete, data }: Display
                     >
                         Previous
                     </button>
-                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)} (total of {data.length} trees)</span>
+                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)} (total of {data.length} observations)</span>
                     <button
                         className="pagination-button"
                         onClick={handleNextPage}

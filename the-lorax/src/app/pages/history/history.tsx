@@ -35,6 +35,10 @@ export default function History({ token }: { token: string | null }) {
     });
     const [updatedHistory, setUpdatedHistory] = useState<TreeHistory | null>(null);
 
+    const [isLoadingAddTreeHistory, setIsLoadingAddTreeHistory] = useState<boolean>(false);
+    const [isLoadingEditTreeHistory, setIsLoadingEditTreeHistory] = useState<boolean>(false);
+    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -103,13 +107,25 @@ export default function History({ token }: { token: string | null }) {
     }, [searchResults, treeData, sortKey, selectedHazardRating, selectedYear]);
 
     const handleAddHistory = () => {
+        setIsLoadingAddTreeHistory(true)
+
+        if (!token) {
+            alert("Authorization token is missing.");
+            setIsLoadingAddTreeHistory(false);
+            return;
+        }
+
+        console.log("Payload being sent:", newHistory);
+
         axios
             .post(`${process.env.REACT_APP_FASTAPI_URL}treehistory/new`, newHistory, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
                 alert("History added successfully!");
-                setTreeData((prevTreeData) => [...prevTreeData, response.data]);
+                setTreeData((prevTreeData) => 
+                    prevTreeData.map((tree) => (tree.hist_id === newHistory.hist_id ? newHistory : tree))
+                );
                 setNewHistory({
                     tree_id: 0,
                     hist_id: 0,
@@ -123,7 +139,8 @@ export default function History({ token }: { token: string | null }) {
             .catch((err) => {
                 console.error("Error response:", err.response?.data || err.message);
                 alert(`Error: ${err.response?.data?.detail || err.message}`);
-            });
+            })
+            .finally(() => setIsLoadingAddTreeHistory(false));
     };
 
     const handleUpdateHistory = () => {
@@ -132,11 +149,14 @@ export default function History({ token }: { token: string | null }) {
             return;
         }
 
+        setIsLoadingEditTreeHistory(true);
+
         axios
             .patch(`${process.env.REACT_APP_FASTAPI_URL}treehistory/update/${updatedHistory.hist_id}`, updatedHistory, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
+                alert("Successfully updated tree!")
                 setTreeData((prevTreeData) =>
                     prevTreeData.map((history) =>
                         history.hist_id === updatedHistory.hist_id ? updatedHistory : history
@@ -148,17 +168,20 @@ export default function History({ token }: { token: string | null }) {
             .catch((err) => {
                 console.error("Error updating history:", err.response?.data || err.message);
                 alert(`Error updating history: ${err.response?.data?.detail || err.message}`);
-            });
+            })
+            .finally(() => setIsLoadingEditTreeHistory(true));
     };
 
     const handleDeleteHistory = (histId: number) => {
         if (!window.confirm(`Are you sure you want to delete history ID ${histId}?`)) return;
+
 
         axios
             .delete(`${process.env.REACT_APP_FASTAPI_URL}treehistory/delete/${histId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then(() => {
+                alert("Successfully deleted tree!")
                 setTreeData((prevTreeData) => prevTreeData.filter((history) => history.hist_id !== histId));
             })
             .catch((err) => alert(`Error deleting history: ${err.message}`));
@@ -251,6 +274,7 @@ export default function History({ token }: { token: string | null }) {
                                 type="number"
                                 value={newHistory.hist_id || ""}
                                 onChange={(e) => setNewHistory({ ...newHistory, hist_id: Number(e.target.value) })}
+                                // readOnly
                                 required
                             />
                             <label>Hazard Rating:</label>
@@ -279,7 +303,7 @@ export default function History({ token }: { token: string | null }) {
                                 required
                             />
                             <button className="submit-button" type="submit">
-                                Add
+                                {isLoadingAddTreeHistory ? <text>Add Tree History...</text> : <text>Add Tree History</text>}
                             </button>
                         </form>
                     </div>
@@ -349,7 +373,7 @@ export default function History({ token }: { token: string | null }) {
                                 required
                             />
                             <button className="submit-button" type="submit">
-                                Update
+                                {isLoadingEditTreeHistory ? <text>Edit Tree History...</text> : <text>Edit Tree History</text>}
                             </button>
                         </form>
                     </div>

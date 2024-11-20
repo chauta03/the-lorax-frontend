@@ -6,10 +6,29 @@ type DisplayProps = {
     data: TreeHistory[]; 
 };
 
-export default function DisplayHistoryMobile({data }: DisplayProps) {
+export default function DisplayHistoryMobile({ data }: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [selectedTree, setSelectedTree] = useState<TreeHistory | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            // If data is loaded and not empty, stop loading immediately
+            setLoading(false);
+            return;
+        }
+    
+        // If data isn't available, start loading
+        setLoading(true);
+    
+        // Fallback timeout to stop loading after a maximum duration
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 10000); // Adjust the timeout duration as needed
+    
+        return () => clearTimeout(timer); // Clear timeout on cleanup
+    }, [data]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -64,29 +83,37 @@ export default function DisplayHistoryMobile({data }: DisplayProps) {
                 </div>
 
                 {/* Display the rows of data */}
-                <div className="display-filter-container">
-                    {currentTrees.length > 0 ? (
-                        currentTrees.map((tree) => (
-                            <div key={tree.tree_id} className="display-filter-row display-filter-history">
-                                <span className="display-filter-column">{tree.tree_id}</span>
-                                <span className="display-filter-column">{tree.hazard_rating}</span>
-                                <span className="display-filter-column">{tree.year}</span>
-                                <span className="display-filter-column">
-                                    <img
-                                        src={LearnMore}
-                                        alt="Learn More"
-                                        className="learn-more-icon"
-                                        onClick={() => handleLearnMore(tree)} 
-                                    />
-                                </span>
-                            </div>
-                        ))
-                    ) : (
-                        <div className="display-filter-loading">
-                            No tree data to display
+                {loading ? (
+                    <div className="display-filter-container">
+                        Loading...
+                    </div> ) : (
+                        <div className="display-filter-container">
+                            {currentTrees.length > 0 ? (
+                                currentTrees.map((tree) => (
+                                    <div key={tree.tree_id} className="display-filter-row display-filter-history">
+                                        <span className="display-filter-column">{tree.tree_id}</span>
+                                        <span className="display-filter-column">{tree.hazard_rating}</span>
+                                        <span className="display-filter-column">{tree.year}</span>
+                                        <span className="display-filter-column">
+                                            <img
+                                                src={LearnMore}
+                                                alt="Learn More"
+                                                className="learn-more-icon"
+                                                onClick={() => handleLearnMore(tree)} 
+                                            />
+                                        </span>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="display-filter-loading">
+                                    No tree data to display
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
+                    
+                
+                )}
+                
 
                 {/* Pagination Controls */}
                 <div className="pagination-controls">
@@ -97,7 +124,7 @@ export default function DisplayHistoryMobile({data }: DisplayProps) {
                     >
                         Previous
                     </button>
-                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)} (total of {data.length} trees)</span>
+                    <span>Page {currentPage} of {Math.ceil(data.length / treesPerPage)} (total of {data.length} observations)</span>
                     <button
                         className="pagination-button"
                         onClick={handleNextPage}
