@@ -88,18 +88,6 @@ export default function GgMap() {
         useEffect(() => {
             if (map) {
                 mapInstanceRef.current = map;
-
-                if (initialLat && initialLong) {
-                    const parsedLat = parseFloat(initialLat);
-                    const parsedLong = parseFloat(initialLong);
-
-                    if (!isNaN(parsedLat) && !isNaN(parsedLong)) {
-                        map.panTo({ lat: parsedLat, lng: parsedLong }); 
-                        map.setZoom(21); 
-                    } else {
-                        console.error("Invalid latitude or longitude values");
-                    }
-                }
             }
         }, [map]);
 
@@ -148,7 +136,7 @@ export default function GgMap() {
                             disableDoubleClickZoom={false}
                         >
                             <MapContainer />
-                            <Markers />
+                            <Markers initialLat={parseFloat(initialLat)} initialLong={parseFloat(initialLong)} />
                             {currentLocation && (
                                 <AdvancedMarker
                                     position={currentLocation}

@@ -9,7 +9,12 @@ import "./map.css";
 import { Point } from "../../../types/tree";
 import "./markers.css";
 
-const Markers = () => {
+type MarkersProps = {
+    initialLat?: number | null;
+    initialLong?: number | null;
+};
+
+const Markers = ({ initialLat, initialLong }: MarkersProps) => {
     const map = useMap();
     const [points, setPoints] = useState<Point[]>([]); // State to hold fetched points
     const [markers, setMarkers] = useState<{ [key: string]: Marker }>({});
@@ -23,44 +28,59 @@ const Markers = () => {
         const loadTreeData = async () => {
             const treePoints = await fetchTreeInfo(); // Call the fetch function
             setPoints(treePoints);
+
+            // Automatically focus on the tree if initialLat and initialLong are passed
+            if (initialLat && initialLong) {
+                const targetTree = treePoints.find(
+                    (point) => point.lat === initialLat && point.long === initialLong
+                );
+
+                if (targetTree) {
+                    setActiveMarker(targetTree); // Set as active
+                    if (map) {
+                        map.panTo({ lat: initialLat, lng: initialLong });
+                        map.setZoom(25); // Adjust zoom level as needed
+                    }
+                }
+            }
         };
 
         loadTreeData();
     }, []);
 
     // Initialize the MarkerClusterer and attach it to the map
-    useEffect(() => {
-        if (!map) return;
+    // useEffect(() => {
+    //     if (!map) return;
 
         // Initialize the MarkerClusterer
-        if (!clusterer.current) {
-            clusterer.current = new MarkerClusterer({ map });
-        }
+        // if (!clusterer.current) {
+        //     clusterer.current = new MarkerClusterer({ map });
+        // }
 
         // Add a listener for cluster clicks to zoom in on the cluster
-        clusterer.current.addListener("click", (cluster: Cluster) => {
-            if (cluster.markers) {
-                // Zoom in on the clicked cluster
-                const mapBounds = new google.maps.LatLngBounds();
-                cluster.markers.forEach((marker) => {
-                    if ('getPosition' in marker) {
-                        const position = marker.getPosition();
-                        if (position) {
-                            mapBounds.extend(position);
-                        }
-                    }
-                });
-                map.fitBounds(mapBounds);
-            }
-        });
+    //     clusterer.current.addListener("click", (cluster: Cluster) => {
+    //         if (cluster.markers) {
+    //             // Zoom in on the clicked cluster
+    //             const mapBounds = new google.maps.LatLngBounds();
+    //             cluster.markers.forEach((marker) => {
+    //                 if ('getPosition' in marker) {
+    //                     const position = marker.getPosition();
+    //                     if (position) {
+    //                         mapBounds.extend(position);
+    //                     }
+    //                 }
+    //             });
+    //             map.fitBounds(mapBounds);
+    //         }
+    //     });
 
-    }, [map]);
+    // }, [map]);
 
     // Update the MarkerClusterer markers when the markers change
-    useEffect(() => {
-        clusterer.current?.clearMarkers();
-        clusterer.current?.addMarkers(Object.values(markers));
-    }, [markers]);
+    // useEffect(() => {
+    //     clusterer.current?.clearMarkers();
+    //     clusterer.current?.addMarkers(Object.values(markers));
+    // }, [markers]);
 
     // if (map) {
     //     google.maps.event.addListener(map, 'zoom_changed', function() {
@@ -83,6 +103,12 @@ const Markers = () => {
 
     const handleMarkerClick = (point: Point) => {
         setActiveMarker(point);
+
+        if (map) {
+            // Focus the map on the clicked tree's location and zoom in
+            map.panTo({ lat: point.lat, lng: point.long });
+            map.setZoom(25); 
+        }
     };
 
     const handleCloseSidebar = () => {
