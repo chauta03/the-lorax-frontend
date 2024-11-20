@@ -15,6 +15,7 @@ import ScrollToTop from './app/components/ScrollToTop';
 import Support from './app/pages/support/support';
 import AdminMobile from './app/pages/adminMobile/adminMobile';
 import Users from './app/pages/admin/users';
+import Footer from './app/components/footer';
 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
@@ -61,6 +62,7 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/history" element={<History token={token} />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

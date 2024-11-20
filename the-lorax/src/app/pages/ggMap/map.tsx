@@ -161,7 +161,6 @@ export default function GgMap() {
                     </div>
                 </div>
             </APIProvider>
-            <Footer />
         </div>
     );
 }

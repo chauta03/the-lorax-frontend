@@ -113,7 +113,6 @@ const ActionButton: React.FC = () => {
                                 <Link to="/map"><MapButtonMobile/></Link>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 ) : (
                     <div className="action-page-background">
@@ -128,7 +127,6 @@ const ActionButton: React.FC = () => {
                             <Link to="/map"><MapButton/></Link>
                             <Link to="/support"><SupportButton/></Link>
                         </div>
-                        <Footer />
                     </div>
                 )
                 
@@ -145,7 +143,6 @@ const ActionButton: React.FC = () => {
                         <Link to="/map"><MapButton/></Link>
                         <Link to="/support"><SupportButton/></Link>
                     </div>
-                    <Footer />
                 </div>
             )}
         </div>

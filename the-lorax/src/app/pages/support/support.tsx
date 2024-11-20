@@ -104,7 +104,6 @@ export default function Support() {
                     </div>
                 </div>
             )}
-            <Footer />
         </div>
     )
 }
