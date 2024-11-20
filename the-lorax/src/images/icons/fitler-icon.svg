@@ -1,0 +1,6 @@
+<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 10L23 10" stroke="black" stroke-width="2"/>
+<circle cx="7" cy="5" r="4" stroke="black" stroke-width="2"/>
+<path d="M23 17L-7.7486e-07 17" stroke="black" stroke-width="2"/>
+<circle cx="16" cy="21" r="4" transform="rotate(180 16 21)" stroke="black" stroke-width="2"/>
+</svg>
