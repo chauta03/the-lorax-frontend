@@ -23,6 +23,8 @@ const Users: React.FC<UsersProps> = ({ token }) => {
 
     const [selectedDataPermissions, setSelectedDataPermissions] = useState<boolean | null>(null);
     const [selectedUserPermissions, setSelectedUserPermissions] = useState<boolean | null>(null);
+    const [loadingAddUser, setLoadingAddUser] = useState<boolean>(false);
+    const [loadingEditUser, setLoadingEditUser] = useState<boolean>(false);
 
     useEffect(() => {
         axios
@@ -34,6 +36,8 @@ const Users: React.FC<UsersProps> = ({ token }) => {
     }, [token]);
 
     const handleAddUser = () => {
+        setLoadingAddUser(true);
+    
         axios
             .post(`${process.env.REACT_APP_FASTAPI_URL}users/new`, newUser, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -48,6 +52,7 @@ const Users: React.FC<UsersProps> = ({ token }) => {
                     data_permissions: false,
                     user_permissions: false,
                 });
+    
                 // Refresh user list
                 axios
                     .get<User[]>(`${process.env.REACT_APP_FASTAPI_URL}users`, {
@@ -56,8 +61,12 @@ const Users: React.FC<UsersProps> = ({ token }) => {
                     .then((response) => setUsers(response.data));
                 setAddUserModalOpen(false);
             })
-            .catch((error) => alert("Error adding user: " + error));
+            .catch((error) => alert("Error adding user: " + error))
+            .finally(() => {
+                setLoadingAddUser(false); // Ensure this is properly wrapped in a function
+            });
     };
+    
 
     const handleDeleteUser = (username: string) => {
         axios
@@ -73,6 +82,8 @@ const Users: React.FC<UsersProps> = ({ token }) => {
 
     const handleUpdateUser = () => {
         if (!modifyUser || !modifyUser.username) return;
+
+        setLoadingEditUser(true);
 
         axios
             .patch(
@@ -93,7 +104,8 @@ const Users: React.FC<UsersProps> = ({ token }) => {
                     .then((response) => setUsers(response.data));
                 setEditUserModalOpen(false);
             })
-            .catch((error) => alert("Error updating user: " + error));
+            .catch((error) => alert("Error updating user: " + error))
+            .finally(() => setLoadingEditUser(false))
     };
 
     const handleFilter = (key: "data_permissions" | "user_permissions", value: boolean | null) => {
@@ -218,7 +230,9 @@ const Users: React.FC<UsersProps> = ({ token }) => {
                                             }
                                         />
                                     </label>
-                                    <button className="submit-button" type="submit">Add User</button>
+                                    <button className="submit-button" type="submit">
+                                        {loadingAddUser ? <text>Add User...</text> : <text>Add User</text>}
+                                    </button>
 
                                 </form>
                             </div>
@@ -262,23 +276,17 @@ const Users: React.FC<UsersProps> = ({ token }) => {
                             
                             <label>Email:</label>
                             <input
+                                className="readonly-input"
                                 type="email"
                                 value={modifyUser.email || ""}
-                                onChange={(e) =>
-                                    setModifyUser({ ...modifyUser, email: e.target.value })
-                                }
-                                required
+                                readOnly
                             />
                             <label>Full Name:</label>
                             <input
+                                className="readonly-input"
                                 type="text"
                                 value={modifyUser.full_name || ""}
-                                onChange={(e) =>
-                                    setModifyUser({
-                                        ...modifyUser,
-                                        full_name: e.target.value,
-                                    })
-                                }
+                                readOnly
                                 required
                             />
                             <label>Password:</label>
@@ -311,7 +319,9 @@ const Users: React.FC<UsersProps> = ({ token }) => {
                                     })
                                 }
                             />
-                            <button className="submit-button" type="submit">Update User</button>
+                            <button className="submit-button" type="submit">
+                                {loadingEditUser ? <text>Update User...</text> : <text>Update User</text>}
+                            </button>
 
                         </form>
                     </div>

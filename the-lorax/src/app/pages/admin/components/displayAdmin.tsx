@@ -10,6 +10,25 @@ type DisplayProps = {
 export default function DisplayAdmin({ data, onDelete, onEdit }: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            // If data is loaded and not empty, stop loading immediately
+            setLoading(false);
+            return;
+        }
+    
+        // If data isn't available, start loading
+        setLoading(true);
+    
+        // Fallback timeout to stop loading after a maximum duration
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 10000); // Adjust the timeout duration as needed
+    
+        return () => clearTimeout(timer); // Clear timeout on cleanup
+    }, [data]);
 
     // Handle window resize to adjust the number of rows displayed per page
     useEffect(() => {
@@ -65,49 +84,54 @@ export default function DisplayAdmin({ data, onDelete, onEdit }: DisplayProps) {
                 </div>
 
                 {/* Display the rows of user data */}
-                <div className="display-filter-container">
-                    {currentUsers.length > 0 ? (
-                        currentUsers.map((user) => (
-                            <div key={user.username} className="admin-display-filter-row">
-                                <span className="display-filter-column">{user.username}</span>
-                                <span className="display-filter-column">{user.email}</span>
-                                <span className="display-filter-column">{user.full_name}</span>
-                                <span className="display-filter-column">
-                                    {user.data_permissions ? "Yes" : "No"}
-                                </span>
-                                <span className="display-filter-column">
-                                    {user.user_permissions ? "Yes" : "No"}
-                                </span>
-                                <span className="display-filter-column buttons-edit-delete">
-                                    <button
-                                        className="action-button edit-button"
-                                        onClick={() => onEdit(user)}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        className="action-button buttons-edit-delete"
-                                        onClick={() => {
-                                            if (
-                                                window.confirm(
-                                                    `Are you sure you want to delete user ${user.username}?`
-                                            )
-                                            ) {
-                                                onDelete(user.username);
-                                            }
-                                        }}
-                                    >
-                                        Delete
-                                    </button>
-                                </span>
+                {loading ? (
+                    <div className="display-filter-container">Loading users...</div>
+                ) : (
+                    <div className="display-filter-container">
+                        {currentUsers.length > 0 ? (
+                            currentUsers.map((user) => (
+                                <div key={user.username} className="admin-display-filter-row">
+                                    <span className="display-filter-column">{user.username}</span>
+                                    <span className="display-filter-column">{user.email}</span>
+                                    <span className="display-filter-column">{user.full_name}</span>
+                                    <span className="display-filter-column">
+                                        {user.data_permissions ? "Yes" : "No"}
+                                    </span>
+                                    <span className="display-filter-column">
+                                        {user.user_permissions ? "Yes" : "No"}
+                                    </span>
+                                    <span className="display-filter-column buttons-edit-delete">
+                                        <button
+                                            className="action-button edit-button"
+                                            onClick={() => onEdit(user)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            className="action-button buttons-edit-delete"
+                                            onClick={() => {
+                                                if (
+                                                    window.confirm(
+                                                        `Are you sure you want to delete user ${user.username}?`
+                                                )
+                                                ) {
+                                                    onDelete(user.username);
+                                                }
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
+                                    </span>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="display-filter-loading">
+                                No user data to display
                             </div>
-                        ))
-                    ) : (
-                        <div className="display-filter-loading">
-                            No user data to display
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+                )}
+                
 
                 {/* Pagination Controls */}
                 <div className="pagination-controls">
