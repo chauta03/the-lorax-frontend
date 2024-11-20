@@ -190,6 +190,8 @@ export default function Directory({token}: {token: string | null}) {
                     lat: 0,
                     long: 0,
                 });
+                setRawLat("");
+                setRawLong("");
 
                 setAddTreeModalOpen(false);
             })
@@ -344,8 +346,12 @@ export default function Directory({token}: {token: string | null}) {
                             onSubmit={(e) => {
                                 e.preventDefault();
 
-                                const lat = Number(rawLat);
-                                const long = Number(rawLong);
+                                console.log(rawLat, rawLong);
+
+                                const lat = parseFloat(rawLat);
+                                const long = parseFloat(rawLong);
+
+                                console.log(lat, long)
 
                                 if (!isNaN(lat) && !isNaN(long)) {
                                     setNewTree({ ...newTree, lat, long });
@@ -414,12 +420,12 @@ export default function Directory({token}: {token: string | null}) {
                             />
                             <label>Latitude:</label>
                             <input
-                                type="text" // Allow "-" and intermediate text input
+                                type="text"
                                 value={rawLat}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (value === "" || value === "-" || !isNaN(Number(value))) {
-                                        setRawLat(value); // Update raw latitude input
+                                    if (value === "" || value === "-" || !isNaN(parseFloat(value))) {
+                                        setRawLat(value);
                                     }
                                 }}
                                 required
@@ -430,7 +436,7 @@ export default function Directory({token}: {token: string | null}) {
                                 value={rawLong}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                    if (value === "" || value === "-" || !isNaN(parseFloat(value))) {
                                         setRawLong(value);
                                     }
                                 }}
@@ -463,8 +469,8 @@ export default function Directory({token}: {token: string | null}) {
                                 // Convert raw inputs to integers
                                 const updatedTreeWithIntegers = {
                                     ...updatedTree,
-                                    lat: Number(rawLat),
-                                    long: Number(rawLong),
+                                    lat: parseFloat(rawLat),
+                                    long: parseFloat(rawLong),
                                 };
 
                                 handleUpdateTree(updatedTreeWithIntegers);
@@ -529,7 +535,7 @@ export default function Directory({token}: {token: string | null}) {
                                 value={rawLat}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                    if (value === "" || value === "-" || !isNaN(parseFloat(value))) {
                                         setRawLat(value); // Update raw latitude input
                                     }
                                 }}
@@ -542,7 +548,7 @@ export default function Directory({token}: {token: string | null}) {
                                 value={rawLong}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (value === "" || value === "-" || !isNaN(Number(value))) {
+                                    if (value === "" || value === "-" || !isNaN(parseFloat(value))) {
                                         setRawLong(value); // Update raw longitude input
                                     }
                                 }}
