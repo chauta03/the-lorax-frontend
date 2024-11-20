@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Point } from "../../../../types/tree";
 import LearnMore from "../../../../images/buttons/3-dots.svg";
+import TreeToMap from "../../../../images/buttons/tree-to-map.svg"
+import { useNavigate } from 'react-router-dom';
 
 type DisplayProps = {
     data: Point[]; 
@@ -10,6 +12,7 @@ export default function DisplayMobile({data}: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [selectedTree, setSelectedTree] = useState<Point | null>(null);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const handleResize = () => {
@@ -51,6 +54,12 @@ export default function DisplayMobile({data}: DisplayProps) {
     const closeModal = () => {
         setSelectedTree(null);
     }
+
+    const handleGoToMap = (lat: number, long: number) => {
+        if (lat && long) {
+            navigate(`/map?lat=${encodeURIComponent(lat)}&long=${encodeURIComponent(long)}`);
+        }
+    };
 
 
     return (
@@ -124,6 +133,13 @@ export default function DisplayMobile({data}: DisplayProps) {
                                 <li><strong>Latitude:</strong> {selectedTree.lat}</li>
                                 <li><strong>Longitude:</strong> {selectedTree.long}</li>
                             </ul>
+                            <div className="mobile-to-map-button" onClick={() => handleGoToMap(selectedTree.lat, selectedTree.long)}>
+                                <img 
+                                    src={TreeToMap} 
+                                    alt="tree" 
+                                    className="mobile-tree-to-map-icon" />
+                                <text>  Go to map</text>
+                            </div>
                         </div>
                     </div>
                 )}

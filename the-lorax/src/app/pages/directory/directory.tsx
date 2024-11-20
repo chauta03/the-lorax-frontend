@@ -51,7 +51,9 @@ export default function Directory({token}: {token: string | null}) {
         sun: "",
         lat: 0,
         long: 0,
-    });
+    }); 
+    const [isLoadingAddTree, setIsLoadingAddTree] = useState<boolean>(false);
+    const [isLoadingUpdateTree, setIsLoadingUpdateTree] = useState<boolean>(false);
 
     // Search when query changes
     useEffect(() => {
@@ -159,6 +161,8 @@ export default function Directory({token}: {token: string | null}) {
 
     // Handle adding a tree
     const handleAddTree = () => {
+        setIsLoadingAddTree(true);
+
         axios
             .post(`${process.env.REACT_APP_FASTAPI_URL}treeinfo/new`, newTree, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -181,12 +185,15 @@ export default function Directory({token}: {token: string | null}) {
 
                 setAddTreeModalOpen(false);
             })
-            .catch((err) => alert(`Error adding tree: ${err.message}`));
+            .catch((err) => alert(`Error adding tree: ${err.message}`))
+            .finally(() => setIsLoadingAddTree(false))
     };
 
     // Handle updating a tree
     const handleUpdateTree = (updatedTree: Point) => {
         if (!updatedTree) return;
+
+        setIsLoadingUpdateTree(true);
 
         axios
             .patch(`${process.env.REACT_APP_FASTAPI_URL}treeinfo/update/${updatedTree.tree_id}`, updatedTree, {
@@ -200,7 +207,8 @@ export default function Directory({token}: {token: string | null}) {
                 setUpdatedTree(null);
                 setEditTreeModalOpen(false);
             })
-            .catch((err) => alert(`Error updating tree: ${err.message}`));
+            .catch((err) => alert(`Error updating tree: ${err.message}`))
+            .finally(() => setIsLoadingUpdateTree(false));
     };
 
     // Handle deleting a tree
@@ -382,7 +390,9 @@ export default function Directory({token}: {token: string | null}) {
                                     }}
                                     required
                                 />
-                                <button className="submit-button" type="submit">Add Tree</button>
+                                <button className="submit-button" type="submit">
+                                    {isLoadingAddTree ? <text>Add Tree...</text> : <text>Add Tree</text>}
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -494,7 +504,9 @@ export default function Directory({token}: {token: string | null}) {
                                     }}
                                     required
                                 />
-                                <button className="submit-button" type="submit">Update Tree</button>
+                                <button className="submit-button" type="submit">
+                                    {isLoadingUpdateTree ? <text>Update Tree...</text> : <text>Update Tree</text>}
+                                </button>
                             </form>
                         </div>
                     </div>
