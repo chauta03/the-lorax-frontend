@@ -158,6 +158,7 @@
   --light-yellow: #FFC727;
   --light-orange: #F2A144;
   --border-radius: 40px;
+  width: 100vw;
 }
 
 @keyframes App-logo-spin {
