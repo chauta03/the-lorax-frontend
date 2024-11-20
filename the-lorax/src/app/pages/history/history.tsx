@@ -91,6 +91,13 @@ export default function History({ token }: { token: string | null }) {
             data = data.filter((history) => history.year === selectedYear);
         }
 
+        data = [...data].sort((a, b) => {
+            const aValue = a.hist_id ?? "";
+            const bValue = b.hist_id ?? "";
+
+            return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+        });
+
         if (sortKey) {
             data = [...data].sort((a, b) => {
                 const aValue = a[sortKey] ?? "";

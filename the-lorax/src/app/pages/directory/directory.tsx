@@ -144,6 +144,15 @@ export default function Directory({token}: {token: string | null}) {
             data = data.filter(tree => tree.species_code === selectedSpeciesCo);
         }
 
+        data = [...data].sort((a, b) => {
+            const aValue = a.tree_id ?? '';
+            const bValue = b.tree_id ?? '';
+            if (aValue === '' && bValue !== '') return 1;
+            if (aValue !== '' && bValue === '') return -1;
+            
+            return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+        });
+
         // Apply sorting
         if (sortKey) {
             data = [...data].sort((a, b) => {
