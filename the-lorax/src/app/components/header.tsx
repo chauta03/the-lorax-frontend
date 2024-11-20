@@ -70,12 +70,12 @@ export default function Header({ token, handleLogout, isMobile }: HeaderProps) {
                     </div>
                     {/* Show login/logout button based on the token */}
                     {token ? (
-                        <button className="log-button" onClick={handleLogout}>
+                        <button className="logOut-button" onClick={handleLogout}>
                             Logout
                         </button>
                     ) : (
                         <Link to="/admin">
-                            <button className="log-button">
+                            <button className="logIn-button">
                                 Login
                             </button>
                         </Link>

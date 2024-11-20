@@ -12,15 +12,15 @@
   font-family: DynaPuff;
 }
 
-.log-button {
+.logIn-button {
   position: absolute; 
   top: 3.5vh; 
   right: 6vw; 
   padding: 10px 20px;
-  background-color: var(--light-green);
+  background-color: var(--light-orange);
   border: none;
   border-radius: 5px;
-  color: var(--dark-green);
+  color: white;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
@@ -28,9 +28,31 @@
   z-index: 1000000;
 }
 
-.logout-button:hover {
-  background-color: var(--dark-green);
+.logOut-button {
+  position: absolute; 
+  top: 20px; 
+  right: 6vw; 
+  padding: 10px 20px;
+  background-color: var(--light-orange);
+  border: none;
+  border-radius: 5px;
+  color: #002550;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-family: DynaPuff;
+  z-index: 1000000;
+}
+
+
+.logIn-button:hover {
+  background-color: var(--grey);
   color: white;
+}
+
+.logOut-button:hover {
+  background-color: var(--grey);
+  color: black;
 }
 
 /* Modal */
@@ -132,6 +154,8 @@
   --mid-green: #78D8A4;
   --light-green: #E0FFDF;
   --grey: #345D33;
+  --light-yellow: #FFC727;
+  --light-orange: #F2A144;
   --border-radius: 40px;
 }
 
