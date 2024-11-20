@@ -195,7 +195,6 @@ export default function Directory() {
                 </div>
                 {/* </div> */}
         </div>
-        <Footer />
         </div>
     );
 }
