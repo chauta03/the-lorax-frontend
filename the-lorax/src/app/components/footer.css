@@ -4,7 +4,7 @@
     align-items: center;
     gap: 20px;
     height: 10%;
-    width: 100vw;
+    width: auto;
     background-color: var(--light-green);
     z-index: 1000;
     margin-top: auto;
