@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Point } from "../../../../types/tree";
+import TreeToMap from "../../../../images/buttons/tree-to-map.svg";
+import { useNavigate } from 'react-router-dom';
 
 type DisplayProps = {
     token: string | null;
@@ -11,6 +13,7 @@ type DisplayProps = {
 export default function Display({token, data, onDelete, onEdit }: DisplayProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const handleResize = () => {
@@ -45,6 +48,11 @@ export default function Display({token, data, onDelete, onEdit }: DisplayProps) 
         }
     };
 
+    const handleGoToMap = (lat: number, long: number) => {
+        if (lat && long) {
+            navigate(`/map?lat=${encodeURIComponent(lat)}&long=${encodeURIComponent(long)}`);
+        }
+    };
 
     return (
         <div className="display-container">
@@ -59,7 +67,7 @@ export default function Display({token, data, onDelete, onEdit }: DisplayProps) 
                     <span className="display-filter-column">Sun</span>
                     <span className="display-filter-column">Lat</span>
                     <span className="display-filter-column">Long</span>
-                    {token && <span className="display-filter-column">Actions</span>}
+                    {/* {token && <span className="display-filter-column">Actions</span>} */}
                 </div>
 
                 {/* Display the rows of data */}
@@ -75,6 +83,13 @@ export default function Display({token, data, onDelete, onEdit }: DisplayProps) 
                                 <span className="display-filter-column">{tree.sun}</span>
                                 <span className="display-filter-column">{tree.lat}</span>
                                 <span className="display-filter-column">{tree.long}</span>
+                                <span className="display-filter-column">
+                                    <img 
+                                        onClick={() => handleGoToMap(tree.lat, tree.long)}
+                                        src={TreeToMap} 
+                                        alt="tree" 
+                                        className="tree-to-map-icon" />
+                                </span>
                                 {
                                     token && (
                                         <span className="display-filter-column admin-buttons-edit-delete">

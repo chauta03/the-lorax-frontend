@@ -4,6 +4,7 @@
     background-color: var(--mid-green);
     padding-top: 12vh;
     min-height: 80vh;
+    width: 100vw;
 }
 
 .directory * {
@@ -85,14 +86,14 @@
 
 .display-filter-header, .display-filter-row {
     display: grid;
-    grid-template-columns: 0.3fr 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr; 
+    grid-template-columns: 0.3fr 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr; 
     gap: 10px;
     padding: 10px;
 }
 
 .logged-in-display-filter-header, .logged-in-display-filter-row {
     display: grid;
-    grid-template-columns: 0.3fr 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr; 
+    grid-template-columns: 0.3fr 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 0.5fr; 
     gap: 10px;
     padding: 10px;
 }
@@ -151,6 +152,32 @@
     background-color: #f0f0f0;
 }
 
+.tree-to-map-icon {
+    width: 40px;
+}
+
+@media (max-width: 950px) {
+    .directory-lower {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .directory-sort-and-filter {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .directory-display {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .display-filter {
+        width: 100vw;
+    }
+}
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .directory-lower {

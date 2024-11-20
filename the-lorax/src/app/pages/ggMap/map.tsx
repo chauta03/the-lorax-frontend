@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import { APIProvider, Map, useMap, AdvancedMarker } from "@vis.gl/react-google-maps";
 import Markers from "./markers";
 import "./map.css";
@@ -14,6 +15,11 @@ export default function GgMap() {
     const [searchLat, setSearchLat] = useState<string>("");
     const [searchLng, setSearchLng] = useState<string>("");
     const [loadingLocation, setLoadingLocation] = useState<boolean>(false); // Loading state for location
+
+    // Get tree
+    const [searchParams] = useSearchParams();
+    const initialLat = searchParams.get("lat") || "";
+    const initialLong = searchParams.get("long") || "";
 
     const mapInstanceRef = useRef<google.maps.Map | null>(null);
 
@@ -82,6 +88,18 @@ export default function GgMap() {
         useEffect(() => {
             if (map) {
                 mapInstanceRef.current = map;
+
+                if (initialLat && initialLong) {
+                    const parsedLat = parseFloat(initialLat);
+                    const parsedLong = parseFloat(initialLong);
+
+                    if (!isNaN(parsedLat) && !isNaN(parsedLong)) {
+                        map.panTo({ lat: parsedLat, lng: parsedLong }); 
+                        map.setZoom(21); 
+                    } else {
+                        console.error("Invalid latitude or longitude values");
+                    }
+                }
             }
         }, [map]);
 
