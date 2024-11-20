@@ -72,7 +72,7 @@ export default function GgMap() {
                 // Center map on current location
                 if (mapInstanceRef.current) {
                     mapInstanceRef.current.panTo({ lat: latitude, lng: longitude });
-                    mapInstanceRef.current.setZoom(15);
+                    mapInstanceRef.current.setZoom(35);
                 }
             },
             (error) => {
