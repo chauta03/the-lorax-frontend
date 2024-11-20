@@ -237,6 +237,28 @@
     transform: translateX(0); /* Show sidebar */
 }
 
+.mobile-tree-to-map-icon {
+    width: 35px;
+}
+
+/* Go to map in mobile */
+.mobile-to-map-button {
+    background-color: var(--light-green);
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: fit-content;
+    padding: 10px;
+    align-self: center;
+    display: flex;
+}
+
+.mobile-to-map-button text{
+    align-self: center;
+    justify-self: center;
+}
+
 @media (max-width: 1100px) {
     .directory-lower {
         width: 100%;
