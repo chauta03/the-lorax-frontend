@@ -15,6 +15,8 @@ import Footer from "../../components/footer";
 
 
 export default function Directory({token}: {token: string | null}) {
+    const [isDirectoryMobile, setIsDirectoryMobile] = useState(false);
+    
     const [treeData, setTreeData] = useState<Point[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [searchResults, setSearchResults] = useState<Point[] | null>(null);
@@ -215,6 +217,21 @@ export default function Directory({token}: {token: string | null}) {
             })
             .catch((err) => alert(`Error deleting tree: ${err.message}`));
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+          setIsDirectoryMobile(window.innerWidth <= 1100);
+        };
+    
+        // Set initial value
+        handleResize();
+    
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize);
+    
+        // Cleanup event listener on unmount
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
 
     return (

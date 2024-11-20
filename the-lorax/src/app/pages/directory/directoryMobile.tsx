@@ -12,6 +12,7 @@ import fetchTreeInfo from "../../../data/trees";
 import logo from '../../../images/logo.svg';
 import axios from "axios";
 import Footer from "../../components/footer";
+import filterIcon from '../../../images/icons/fitler-icon.svg';
 
 
 export default function Directory() {
@@ -139,6 +140,10 @@ export default function Directory() {
         return data;
     }, [searchResults, treeData, sortKey, selectedLatinName, selectedCommonName, selectedSun, selectedSpeciesCo]);
 
+    const [showNav, setShowNav] = useState(false);
+
+    // Function to close the sidebar
+    const closeSidebar = () => setShowNav(false);
 
     return (
         <div>
@@ -147,8 +152,8 @@ export default function Directory() {
                 <img src={logo} className='logo-icon'/>
             </div> */}
             <SearchBar onSearch={handleSearchInput}  initialQuery={searchTerm}/>
-            {/* <div className="directory-lower"> */}
-                {/* <div className="directory-sort-and-filter">                            
+            {/* <div className="directory-lower">
+                <div className="directory-sort-and-filter">                            
                     <Filter
                         latinNames={latinNames}
                         commonNames={commonNames}
@@ -158,12 +163,37 @@ export default function Directory() {
                     />
                     <Sort onSort={handleSort} />
                 </div> */}
+                <div className="filter-mobile-container" onClick={() => setShowNav(!showNav)}>
+                    <img src={filterIcon} alt="Filter Icon" className="filter-mobile-icon" />
+                    Filter
+                </div>
+
+                <div className={`filter-sidebar-overlay ${showNav ? 'active' : ''}`}>
+                    <div className="filter-sidebar-content">
+                        <button className="filter-close-btn" onClick={closeSidebar}>
+                            ✕
+                        </button>
+                        <div className="directory-lower">
+                            <div className="directory-sort-and-filter">                            
+                                <Filter
+                                    latinNames={latinNames}
+                                    commonNames={commonNames}
+                                    sun={suns}
+                                    speciesCo={speciesCos}
+                                    onFilter={handleFilter}
+                                />
+                                <Sort onSort={handleSort} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="directory-display">
                     <DisplayMobile
                         data={filteredAndSortedData}
                     />
                 </div>
-            {/* </div> */}
+                {/* </div> */}
         </div>
         <Footer />
         </div>

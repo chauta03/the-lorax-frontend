@@ -158,7 +158,7 @@
     width: 40px;
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
     .directory-lower {
         width: 100vw;
         display: flex;
@@ -180,6 +180,7 @@
         width: 100vw;
     }
 }
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .directory-lower {
@@ -230,11 +231,93 @@
         width: 100%;
     }
 
+    .sort-directory-category {
+        width: 90%; /* Increased width for filter box */
+        padding: 15px 25px; /* Adjusted padding for better spacing */
+        border-radius: 15px; /* Slightly rounded corners */
+        background-color: var(--light-green);
+        position: relative; /* Enables dropdown positioning within filter box */
+    }
+
     .dropdown {
-        width: 90vw;
+        width: 90%;
         max-height: 250px;
         left: 50%;
         transform: translateX(-50%);
     }
+
+    .filter-mobile-container {
+        position: relative;
+        border-radius: 15px;
+        color: black;
+        cursor: pointer;
+        font-family: 'DynaPuff';
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        width: fit-content;
+        background-color: var(--light-green);
+        padding: 1% 3% 1% 2%;
+        margin: 2%;
+    }
+
+    .filter-mobile-icon {
+        width: 26%;
+        height: auto;
+        display: block;
+        padding: 5%;
+    }
+
+
+    /* Sidebar */
+
+    /* Sidebar overlay */
+    .filter-sidebar-overlay {
+        position: fixed;
+        top: 0;
+        right: 0; /* Position the overlay to the right */
+        width: 80%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Dim background */
+        display: flex;
+        justify-content: flex-end; /* Align sidebar to the right */
+        transform: translateX(100%); /* Hide by default */
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    /* Sidebar content */
+    .filter-sidebar-content {
+        width: 70%; /* Adjust width as needed */
+        height: 100%;
+        background: var(--light-green);
+        padding: 20px;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1); /* Shadow on the left side */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Links inside the sidebar */
+    .filter-sidebar-content-text {
+        font-size: 2rem;
+        color: #000;
+        text-decoration: none;
+    }
+
+    /* Close button */
+    .filter-close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        align-self: flex-end;
+    }
+
+    /* Active sidebar */
+    .filter-sidebar-overlay.active {
+        transform: translateX(0); /* Show sidebar */
+    }
+
 }
 
