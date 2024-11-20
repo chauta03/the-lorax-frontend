@@ -140,6 +140,7 @@ const Markers = ({ initialLat, initialLong }: MarkersProps) => {
                 >
                     <div>
                         <h4>Tree Information</h4>
+                        <p>Tree Id: {activeMarker.tree_id}</p>
                         <p>Location: {activeMarker.lat}, {activeMarker.long}</p>
                         <p>Title: {activeMarker.latin_name}</p>
                         <button onClick={() => setShowSidebar(true)}>Learn more</button>
