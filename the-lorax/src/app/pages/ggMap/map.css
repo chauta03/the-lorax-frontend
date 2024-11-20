@@ -4,6 +4,7 @@
     align-items: center;
     padding: 8% 0px;
     background-color: #78D8A4;
+    width: 100vw;
 }
 
 .map-container * {
