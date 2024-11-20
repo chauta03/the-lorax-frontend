@@ -21,11 +21,8 @@ const fetchTreeHistoryInfo = async (): Promise<TreeHistory[]> => {
         
         return formatted;
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("Error fetching tree history:", error.response?.data);
-        } else {
-            console.error("Unexpected error:", error);
-        }
+        console.error("Unexpected error:", error);
+
         return [];
     }
 };

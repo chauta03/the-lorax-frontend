@@ -8,8 +8,8 @@ import FilterHistory from "./components/filterHistory";
 import handleSearchHistory from "../../../data/handleSearchHistory";
 import { TreeHistory } from "../../../types/tree";
 import fetchTreeHistoryInfo from "../../../data/treeHistory";
-import axios from "axios";
 import Footer from "../../components/footer";
+import api from "../../api/api";
 
 export default function History({ token }: { token: string | null }) {
     const [isMobile, setIsMobile] = useState(false);
@@ -124,7 +124,7 @@ export default function History({ token }: { token: string | null }) {
 
         console.log("Payload being sent:", newHistory);
 
-        axios
+        api
             .post(`${process.env.REACT_APP_FASTAPI_URL}treehistory/new`, newHistory, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -158,7 +158,7 @@ export default function History({ token }: { token: string | null }) {
 
         setIsLoadingEditTreeHistory(true);
 
-        axios
+        api
             .patch(`${process.env.REACT_APP_FASTAPI_URL}treehistory/update/${updatedHistory.hist_id}`, updatedHistory, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -183,7 +183,7 @@ export default function History({ token }: { token: string | null }) {
         if (!window.confirm(`Are you sure you want to delete history ID ${histId}?`)) return;
 
 
-        axios
+        api
             .delete(`${process.env.REACT_APP_FASTAPI_URL}treehistory/delete/${histId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })

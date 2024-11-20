@@ -5,6 +5,7 @@ import { User, NewUser, ModifyUser, UsersProps } from "../../../types/user";
 import FilterAdmin from "./components/filterAdmin";
 import DisplayAdmin from "./components/displayAdmin";
 import SearchBar from "../../components/searchBar";
+import api from "../../api/api"
 
 const Users: React.FC<UsersProps> = ({ token }) => {
     const [users, setUsers] = useState<User[]>([]);
@@ -27,7 +28,7 @@ const Users: React.FC<UsersProps> = ({ token }) => {
     const [loadingEditUser, setLoadingEditUser] = useState<boolean>(false);
 
     useEffect(() => {
-        axios
+        api
             .get<User[]>(`${process.env.REACT_APP_FASTAPI_URL}users`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -38,7 +39,7 @@ const Users: React.FC<UsersProps> = ({ token }) => {
     const handleAddUser = () => {
         setLoadingAddUser(true);
     
-        axios
+        api
             .post(`${process.env.REACT_APP_FASTAPI_URL}users/new`, newUser, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -69,7 +70,7 @@ const Users: React.FC<UsersProps> = ({ token }) => {
     
 
     const handleDeleteUser = (username: string) => {
-        axios
+        api
             .delete(`${process.env.REACT_APP_FASTAPI_URL}users/delete/${username}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -85,7 +86,7 @@ const Users: React.FC<UsersProps> = ({ token }) => {
 
         setLoadingEditUser(true);
 
-        axios
+        api
             .patch(
                 `${process.env.REACT_APP_FASTAPI_URL}users/update/${modifyUser.username}`,
                 modifyUser,

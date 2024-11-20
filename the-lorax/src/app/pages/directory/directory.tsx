@@ -9,9 +9,8 @@ import Filter from "./components/filter";
 import handleSearch from "../../../data/handleSearch";
 import { Point, UpdatedPoint } from "../../../types/tree"; 
 import fetchTreeInfo from "../../../data/trees";
-import logo from '../../../images/logo.svg';
-import axios from "axios";
 import Footer from "../../components/footer";
+import api from "../../api/api"
 
 
 export default function Directory({token}: {token: string | null}) {
@@ -149,7 +148,7 @@ export default function Directory({token}: {token: string | null}) {
             const bValue = b.tree_id ?? '';
             if (aValue === '' && bValue !== '') return 1;
             if (aValue !== '' && bValue === '') return -1;
-            
+
             return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
         });
 
@@ -172,7 +171,7 @@ export default function Directory({token}: {token: string | null}) {
     const handleAddTree = () => {
         setIsLoadingAddTree(true);
 
-        axios
+        api
             .post(`${process.env.REACT_APP_FASTAPI_URL}treeinfo/new`, newTree, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -204,7 +203,7 @@ export default function Directory({token}: {token: string | null}) {
 
         setIsLoadingUpdateTree(true);
 
-        axios
+        api
             .patch(`${process.env.REACT_APP_FASTAPI_URL}treeinfo/update/${updatedTree.tree_id}`, updatedTree, {
                 headers: { Authorization: `Bearer ${token}` },
             })
@@ -224,7 +223,7 @@ export default function Directory({token}: {token: string | null}) {
     const handleDeleteTree = (treeId: number) => {
         if (!window.confirm(`Are you sure you want to delete tree ${treeId}?`)) return;
 
-        axios
+        api
             .delete(`${process.env.REACT_APP_FASTAPI_URL}treeinfo/delete/${treeId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
