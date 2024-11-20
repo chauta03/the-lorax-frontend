@@ -14,7 +14,7 @@
 
 .log-button {
   position: absolute; 
-  top: 20px; 
+  top: 3.5vh; 
   right: 6vw; 
   padding: 10px 20px;
   background-color: var(--light-green);
