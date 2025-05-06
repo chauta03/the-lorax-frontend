@@ -25,7 +25,7 @@ export default function DisplayAdmin({ data, onDelete, onEdit }: DisplayProps) {
         // Fallback timeout to stop loading after a maximum duration
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 10000); // Adjust the timeout duration as needed
+        }, 100000000); // Adjust the timeout duration as needed
     
         return () => clearTimeout(timer); // Clear timeout on cleanup
     }, [data]);
