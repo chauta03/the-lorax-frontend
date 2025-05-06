@@ -1,6 +1,6 @@
 # 🌲 The Lorax Frontend
 
-This is the frontend for **The Lorax Project**, a web application designed to display and manage tree data on Kalamazoo College’s campus using an interactive map powered by the Google Maps API.
+This is the frontend for the **Kampus Tree Project**, a web application designed to display and manage tree data on Kalamazoo College’s campus using an interactive map powered by the Google Maps API.
 
 ## 🚀 Features
 
