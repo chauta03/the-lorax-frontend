@@ -15,7 +15,7 @@ Before running the application, create a `.env` file in the project root and add
 
 REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key  
 REACT_APP_NEXT_PUBLIC_MAP_ID=your_google_map_id  
-REACT_APP_FASTAPI_URL=http://localhost:8000  # or your deployed FastAPI backend URL
+REACT_APP_FASTAPI_URL=https://kampus-tree.info/  # or your deployed FastAPI backend URL
 
 You must enable the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview) and [Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview) in your Google Cloud Console.
 
