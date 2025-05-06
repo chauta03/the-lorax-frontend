@@ -36,22 +36,11 @@ You must enable the [Google Maps JavaScript API](https://developers.google.com/m
 
 The app will run at http://localhost:3000
 
-## 📁 Project Structure
-
-├── public/  
-├── src/  
-│   ├── components/     # Reusable UI components  
-│   ├── pages/          # Main page components  
-│   ├── services/       # API service layer  
-│   └── utils/          # Utility functions  
-├── .env                # Environment variables  
-├── package.json  
-└── README.md
-
 ## 💡 Notes
 
 - Ensure CORS is properly configured on the backend to allow requests from this frontend.
 - Works with the FastAPI backend at: https://github.com/cole-koryto/trees-backend.git
+- The project is public at: https://kampus-tree.vercel.app/ 
   
 ## 📜 License
 
